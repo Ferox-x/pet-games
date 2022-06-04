@@ -1,0 +1,30 @@
+{% load static %}
+<header class="header">
+	<div class="header__container _container">
+		<a href="{% url 'core:main' %}" class="header__logo">
+			<img src="{% static 'img/logo.png' %}" alt="logo">
+		</a>
+		<nav class="header__menu menu">
+			<ul class="menu__list">
+				<li class="menu__item">
+					<a href="{% url 'core:main' %}" class="menu__link">Home</a>
+				</li>
+				<li class="menu__item">
+					<a href="" class="menu__link">All games</a>
+				</li>
+				<li class="menu__item">
+					<a href="" class="menu__link">Leaderboards</a>
+				</li>
+				<li class="menu__item">
+					<a href="{% url 'core:about' %}" class="menu__link">About</a>
+				</li>
+				<li class="menu__item">
+					<a href="{% url 'core:contacts' %}" class="menu__link">Contacts</a>
+				</li>
+			</ul>
+		</nav>
+		<a href="" class="header__login">
+			Log In
+		</a>
+	</div>
+</header>

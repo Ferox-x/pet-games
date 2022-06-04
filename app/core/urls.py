@@ -2,6 +2,7 @@ from django.urls import path
 
 from core.views import MainPage, ContactsView, AboutView
 
+app_name = 'core'
 
 urlpatterns = [
     path('', MainPage.as_view(), name='main'),

@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block title %}Pet Games{% endblock %}
+{% block content %}
+{% load static %}
+	<h1 class="main-block__title">Brain Development Games</h1>
+	<div class="main-block__text">
+		High-quality games with different tasks necessary for brain development
+	</div>
+	<form action="" class="main-block__search-form">Search Games...</form>
+	<section class="main-block__apps">
+		<div class="apps__body">
+			<div class="apps_column">
+				<div class="apps__item item-app">
+					<img src="{% static 'img/firstpic.png' %}" alt="game-logo" class="item-app__image">
+					<h3 class="item-app__title">Chotte Ustaad</h3>
+					<div class="item-app__text">This text is game description</div>
+					<div class="item-app__link">
+						<a href="" class="play_link">PLAY</a>
+					</div>
+				</div>
+			</div>
+			<div class="apps_column">
+				<div class="apps__item item-app">
+					<img src="{% static 'img/two.jpg' %}" alt="game-logo" class="item-app__image">
+					<h3 class="item-app__title">Rowdy Billa</h3>
+					<div class="item-app__text">This text is game description</div>
+					<div class="item-app__link">
+						<a href="" class="play_link">PLAY</a>
+					</div>
+				</div>
+			</div>
+			<div class="apps_column">
+				<div class="apps__item item-app">
+					<img src="{% static 'img/three.jpg' %}" alt="game-logo" class="item-app__image">
+					<h3 class="item-app__title">Humpty Dumpty</h3>
+					<div class="item-app__text">This text is game description</div>
+					<div class="item-app__link">
+						<a href="" class="play_link">PLAY</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>
+{% endblock %}
