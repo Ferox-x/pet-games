@@ -11,6 +11,22 @@ window.addEventListener('keydown', (hotKey) => {
     }
 })
 
+
+function scaleGame(){
+    let size = document.getElementById('slider').value;
+    document.getElementById('mainDiv').style.width = size + 'px';
+    document.getElementById('mainDiv').style.height = size + 'px';
+
+    for (let j = 1; j <= 25; j++) {
+        if (j === 25) {
+            document.getElementById(String(j)).style.fontSize = size * 0.1 + 'px';
+        }
+        else {
+            document.getElementById(String(j)).style.fontSize = size * 0.075 + 'px';
+        }
+    }
+}
+
 function reloadGame() {
     for (let i = 1; i <=25; i++){
             let child = document.getElementById(String(i))

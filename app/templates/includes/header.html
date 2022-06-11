@@ -24,10 +24,18 @@
 			</ul>
 		</nav>
 		{% if request.user.is_authenticated %}
-			<a href="{% url 'users:login' %}" class="header__login">Welcome, {{ user.username }}</a>
-			<a href="{% url 'users:logout' %}" class="header__login">Logout</a>
+			<ul class="menu__list">
+				<li class="login__buttons">
+					<a href="{% url 'users:login' %}" class="header__login">Welcome, {{ user.username }}</a>
+					<a href="{% url 'users:logout' %}" class="header__login">Logout</a>
+				</li>
+			</ul>
 		{% else %}
-		<a href="{% url 'users:login' %}" class="header__login">Log In</a>
+			<ul class="login__list">
+				<li class="login__buttons">
+					<a href="{% url 'users:login' %}" class="header__login">Log In</a>
+				</li>
+			</ul>
 		{% endif %}
 	</div>
 </header>

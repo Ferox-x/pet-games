@@ -85,12 +85,17 @@ body {
 .header__login {
     color: white;
     line-height: 30px;
-    margin: 0px 0px 0px 20%;
     border: 1px solid;
     border-radius: 10px;
     padding: 5px;
     letter-spacing: 0.1em;
     white-space: nowrap;
+}
+.login__list {
+    display: flex;
+}
+
+.login__buttons {
 }
 @media (max-width: 670px) {
     .header__login {
