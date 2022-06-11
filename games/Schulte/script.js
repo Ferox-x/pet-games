@@ -100,7 +100,6 @@ function draw() {
                 elementDiv.onclick = correctClick
             }
             elementDiv.className = 'main_div__button'
-            mainDiv.insertBefore(elementDiv, null)
         }
     }
 }
