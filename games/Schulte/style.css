@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&family=Poppins:wght@500&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #161819;
+}
+
+.main_div {
+    font-family: Poppins;
+    position: relative;
+    margin: 0 auto;
+    margin-top: 150px;
+    width: 500px;
+    height: 500px;
+    border: 15px solid #696969;
+    display: grid;
+    grid-column-gap: 0px;
+    grid-template-columns: repeat(auto-fit, 100px);
+    background-color: #696969;
+    border-radius: 2%;
+    box-shadow: 14px 12px 13px 4px rgba(0, 0, 0, 0.3);
+}
+
+.main_div__button {
+    font-size: 35px;
+    font-weight: 600;
+    width: 96px;
+    height: 96px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #696969;
+    border-collapse: collapse;
+    background-color: #dbdbdb;
+    border-radius: 10%;
+    color: #3a3a3a;
+    box-shadow: 2px 2px 7px 2px rgba(107, 107, 107, 0.09) inset;
+    user-select: none;
+}
+
+.shake {
+  animation-duration: 0.3s;
+  animation-name: shake;
+  animation: shake;
+}
+
+.shake:hover {
+  animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
