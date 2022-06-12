@@ -46,7 +46,7 @@ function correctClick (event) {
     });
 
     if (flag === true) {
-        selectedDiv.style.backgroundColor = '#6b6b6b17';
+        selectedDiv.style.backgroundColor = '#ffc76c';
     }
     else {
         selectedDiv.className = 'main_div__button shake';
