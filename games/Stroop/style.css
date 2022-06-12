@@ -14,13 +14,13 @@ body {
   position: relative;
   margin: 0 auto;
   margin-top: 15%;
-  width: 650px;
-  height: 600px;
+  width: 450px;
+  height: 450px;
 }
 
 .word-block {
   font-size: 45px;
-  font-weight: 600;
+  font-weight: 500;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -41,7 +41,7 @@ body {
   justify-content: center;
   align-items: center;
   width: 70px;
-  background-color: red;
+  background-color: #ff0000;
   border: 2px solid #dbdbdb;
   border-collapse: collapse;
   border-radius: 5%;

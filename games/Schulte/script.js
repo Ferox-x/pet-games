@@ -91,15 +91,16 @@ function draw() {
             if (i === 3 && j === 3) {
                 elementDiv.innerHTML = '·';
                 elementDiv.style.fontSize = '50px';
-                elementDiv.id = '25'
+                elementDiv.id = '25';
             }
             else {
-                let elementId = randomId()
+                let elementId = randomId();
                 elementDiv.id = elementId;
                 elementDiv.innerHTML = elementId;
-                elementDiv.onclick = correctClick
+                elementDiv.onclick = correctClick;
             }
             elementDiv.className = 'main_div__button'
+            mainDiv.insertBefore(elementDiv, null)
         }
     }
 }
