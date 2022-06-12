@@ -67,12 +67,10 @@ function correctClick (event) {
 function draw() {
     function randomId() {
         let divId;
-        let arrayLenght = arrayNumbers.length;
         let index;
 
         divId = Math.floor(Math.random() * 24) + 1;
         index = arrayNumbers.indexOf(String(divId));
-
 
         while (index === -1) {
             divId = Math.floor(Math.random() * 24) + 1;
@@ -80,9 +78,9 @@ function draw() {
         }
 
         arrayNumbers.splice(index, 1);
-        console.log(divId,index, arrayLenght, arrayNumbers);
         return String(divId);
     }
+    let size = document.getElementById('slider').value;
 
     for (let i = 1; i <= 5; i++) {
         for (let j = 1; j <= 5; j++) {
@@ -94,8 +92,10 @@ function draw() {
                 elementDiv.id = '25';
             }
             else {
+
                 let elementId = randomId();
                 elementDiv.id = elementId;
+                elementDiv.style.fontSize = size * 0.075 + 'px';
                 elementDiv.innerHTML = elementId;
                 elementDiv.onclick = correctClick;
             }
