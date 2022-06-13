@@ -35,13 +35,13 @@ body {
     line-height: 1;
     font-size: 17px;
     font-family: 'Poppins', sans-serif;
-    color: #14213d;
+    color: #fff;
     font-weight: 400;
-    background-color: #fff;
+    background-color: #141414;
 }
 
 .background-img {
-    background-image: url('img/bg_spiral.svg');
+    background-image: url('img/bg_spiral_dark.svg');
     background-repeat: no-repeat;
     background-size: 1700px 1700px;
     background-position-x: center;
@@ -58,7 +58,7 @@ body {
 .header {
     height: 90px;
     width: 100%;
-    background-color: #f5f4f4;
+    background-color: #3d3d3d;
 }
 
 .header_img {
@@ -85,7 +85,7 @@ body {
 
 .header_li_a {
     text-decoration: none;
-    color: #14213d;
+    color: #fff;
 
 }
 
@@ -127,7 +127,7 @@ body {
 
 .orange {
     text-decoration: none;
-    color: #14213d;
+    color: #141414;
     display: inline-block;
     margin-bottom: 15px;
     padding: 12px 98px;
@@ -137,5 +137,5 @@ body {
 
 .grey-box {
     height: 90px;
-    background-color: #f5f4f4;
+    background-color: #3d3d3d;
 }
