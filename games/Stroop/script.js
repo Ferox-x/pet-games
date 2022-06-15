@@ -1,8 +1,8 @@
 const colorName = document.getElementById('wordBlock');
+const arrayColorsName = ['Blue', 'Black', 'Green', 'Red', 'Yellow'];
+const arrayColors = ['blue', 'black', 'green', 'red', 'yellow'];
 
-let prewColorName = 'nameColor'
-let arrayColorsName = ['Blue', 'Black', 'Green', 'Red', 'Yellow'];
-let arrayColors = ['blue', 'black', 'green', 'red', 'yellow'];
+let prevColorName = undefined
 let correctCounter = 0
 let totalCounter = 0
 
@@ -41,7 +41,7 @@ function generateColors() {
 
     do {
         currentColorName = randomColor(arrayColorsName);
-    } while (currentColorName === prewColorName)
+    } while (currentColorName === prevColorName)
     return [currentColor, currentColorName]
 }
 
@@ -53,7 +53,7 @@ function createElementP(currentColor, currentColorName) {
     colorNameP.className = 'world-block__p'
     colorNameP.id = 'block__p'
     colorName.appendChild(colorNameP)
-    prewColorName = currentColorName
+    prevColorName = currentColorName
 }
 
 function draw() {
