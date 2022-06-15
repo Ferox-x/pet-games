@@ -41,7 +41,6 @@ body {
   justify-content: center;
   align-items: center;
   width: 70px;
-  background-color: #ff0000;
   border: 2px solid #dbdbdb;
   border-collapse: collapse;
   border-radius: 5%;
@@ -51,7 +50,6 @@ body {
   justify-content: center;
   align-items: center;
   width: 70px;
-  background-color: yellow;
   border: 2px solid #dbdbdb;
   border-collapse: collapse;
   border-radius: 5%;
@@ -61,7 +59,6 @@ body {
   justify-content: center;
   align-items: center;
   width: 70px;
-  background-color: green;
   border: 2px solid #dbdbdb;
   border-collapse: collapse;
   border-radius: 5%;
@@ -71,7 +68,6 @@ body {
   justify-content: center;
   align-items: center;
   width: 70px;
-  background-color: black;
   border: 2px solid #dbdbdb;
   border-collapse: collapse;
   border-radius: 5%;
@@ -81,7 +77,6 @@ body {
   justify-content: center;
   align-items: center;
   width: 70px;
-  background-color: blue;
   border: 2px solid #dbdbdb;
   border-collapse: collapse;
   border-radius: 5%;
