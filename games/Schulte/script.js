@@ -1,8 +1,12 @@
-const mainDiv = document.getElementById('mainDiv');
+const mainDiv = document.getElementById('mainDiv')
+const timerDiv = document.getElementById('timer')
+let pTimer = document.createElement('p')
+
+timerDiv.insertBefore(pTimer, null)
 
 let arrayNumbers =  ['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24'];
 let counter = 1
-
+let time = 0
 
 window.addEventListener('keydown', (hotKey) => {
     console.log(hotKey.code)
@@ -11,6 +15,24 @@ window.addEventListener('keydown', (hotKey) => {
     }
 })
 
+function timer() {
+    time++
+    let minutes, seconds, milSec = 0
+    milSec = time % 100
+    seconds = ~~(time/100) % 60
+    minutes = ~~(time/6000)
+    if (seconds < 10) {
+        seconds = '0' + String(seconds)
+    }
+    if (minutes < 10) {
+        minutes = '0' + String(minutes)
+    }
+    if (milSec < 10) {
+        milSec = '0' + String(milSec)
+    }
+    pTimer.innerHTML = String(minutes) + ':' + String(seconds) + ':' +String(milSec)
+
+}
 
 function scaleGame(){
     let size = document.getElementById('slider').value;
@@ -34,7 +56,9 @@ function reloadGame() {
         }
         arrayNumbers = ['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24'];
         counter = 1
+        time = 0
         draw()
+        clearInterval(document.interval)
 }
 
 function correctClick (event) {
@@ -103,6 +127,7 @@ function draw() {
             mainDiv.insertBefore(elementDiv, null)
         }
     }
+    document.interval = setInterval(timer, 10)
 }
 
 draw()
