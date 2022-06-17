@@ -119,32 +119,30 @@ function startGame() {
     startButton.onclick = startGameClick
 }
 
-
-
 function startGameClick() {
     let counter = document.createElement('counter')
     counter.id = 'counter'
     footerBlock.appendChild(counter)
 
     function timer(){
-    let time = document.getElementById('time')
-    let word = document.getElementById('block__p')
+        let time = document.getElementById('time')
+        let word = document.getElementById('block__p')
 
-    if(time.innerHTML > 0){
-        time.innerHTML--
-    } else {
-        time.remove()
-        for (let j = 1; j <= 5; j++) {
-            let elementDiv = document.getElementById(String(j))
-        elementDiv.remove()
-        }
-        word.remove()
-        counter.remove()
-        incorrectCounter = 0
-        correctCounter = 0
-        totalCounter = 0
-        clearInterval(interval)
-        startGame()
+        if(time.innerHTML > 0){
+            time.innerHTML--
+        } else {
+            time.remove()
+            for (let j = 1; j <= 5; j++) {
+                let elementDiv = document.getElementById(String(j))
+            elementDiv.remove()
+            }
+            word.remove()
+            counter.remove()
+            incorrectCounter = 0
+            correctCounter = 0
+            totalCounter = 0
+            clearInterval(interval)
+            startGame()
         }
     }
 
