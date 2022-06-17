@@ -14,12 +14,12 @@ body {
   position: relative;
   margin: 0 auto;
   margin-top: 15%;
-  width: 450px;
-  height: 450px;
+  width: 600px;
+  height: 350px;
 }
 
-.word-block {
-  font-size: 45px;
+.header-block {
+  font-size: 25px;
   font-weight: 500;
   display: flex;
   justify-content: center;
@@ -28,7 +28,15 @@ body {
   user-select: none;
 }
 
-.color-block {
+.main-block {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  height: 50px;
+}
+
+.main-block-game {
   justify-items: center;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -36,53 +44,66 @@ body {
   margin-top: 30px;
 }
 
-.color-block__elem_one {
+.main-block-two {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.footer-block {
+  margin-top: 20px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.color-block__elem {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 70px;
-  background-color: #ff0000;
   border: 2px solid #dbdbdb;
   border-collapse: collapse;
   border-radius: 5%;
 }
-.color-block__elem_two {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 70px;
+
+.start_game__a {
+  text-align: center;
   background-color: yellow;
-  border: 2px solid #dbdbdb;
-  border-collapse: collapse;
-  border-radius: 5%;
+  width: 350px;
+  border-radius: 10px;
+  color: black;
 }
-.color-block__elem_three {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 70px;
-  background-color: green;
-  border: 2px solid #dbdbdb;
-  border-collapse: collapse;
-  border-radius: 5%;
+
+.slider {
+  display: block;
+  -webkit-appearance: none;
+  width: 250px;
+  height: 15px;
+  border-radius: 5px;
+  background: #fff;
+  outline: none;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
 }
-.color-block__elem_four {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 70px;
-  background-color: black;
-  border: 2px solid #dbdbdb;
-  border-collapse: collapse;
-  border-radius: 5%;
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: yellow;
+  cursor: pointer;
 }
-.color-block__elem-five {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 70px;
-  background-color: blue;
-  border: 2px solid #dbdbdb;
-  border-collapse: collapse;
-  border-radius: 5%;
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: yellow;
+  cursor: pointer;
 }
