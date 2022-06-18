@@ -36,6 +36,16 @@ body {
   height: 50px;
 }
 
+.main-block-word {
+  font-size: 25px;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #dbdbdb;
+  user-select: none;
+}
+
 .main-block-game {
   justify-items: center;
   display: grid;
@@ -60,7 +70,7 @@ body {
   align-items: center;
 }
 
-.color-block__elem {
+.color_block {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -70,7 +80,7 @@ body {
   border-radius: 5%;
 }
 
-.start_game__a {
+.start_game {
   text-align: center;
   background-color: yellow;
   width: 350px;
