@@ -6,12 +6,18 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body id="body">
-    <div class="slidecontainer">
-        <input type="range" min="400" max="900" value="650" class="slider" id="slider" onchange="scaleGame()">
+    <div class="container">
+        <div class="main_div" id="mainDiv"></div>
+        <ul class="right_side">
+            <li class="slidecontainer right_li">
+                <input type="range" min="400" max="800" value="650" class="slider" id="slider" onchange="scaleGame()">
+            </li>
+            <li id="timer" class="timer right_li"></li>
+            <li class="start right_li">
+                <p class="right_li_p_start">START</p>
+            </li>
+        </ul>
     </div>
-    <div class="main_div" id="mainDiv"></div>
-    <div id="timer"></div>
-
     <script id="script" src="script.js"></script>
 </body>
 </html>

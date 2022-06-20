@@ -1,7 +1,7 @@
 const mainDiv = document.getElementById('mainDiv')
 const timerDiv = document.getElementById('timer')
 let pTimer = document.createElement('p')
-
+pTimer.className = 'ptimer'
 timerDiv.insertBefore(pTimer, null)
 
 let arrayNumbers =  ['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24'];
@@ -36,9 +36,9 @@ function timer() {
 
 function scaleGame(){
     let size = document.getElementById('slider').value;
-    document.getElementById('mainDiv').style.width = size + 'px';
-    document.getElementById('mainDiv').style.height = size + 'px';
-
+    mainDiv.style.width = size + 'px';
+    mainDiv.style.height = size + 'px';
+    mainDiv.style.marginLeft = String((1350 - size) / 2) + 'px'
     for (let j = 1; j <= 25; j++) {
         if (j === 25) {
             document.getElementById(String(j)).style.fontSize = size * 0.1 + 'px';
