@@ -1,41 +1,27 @@
 {% load static %}
 <header class="header">
-	<div class="header__container _container">
-		<a href="{% url 'core:main' %}" class="header__logo">
-			<img src="{% static 'img/logo.png' %}" alt="logo">
-		</a>
-		<nav class="header__menu menu">
-			<ul class="menu__list">
-				<li class="menu__item">
-					<a href="{% url 'core:main' %}" class="menu__link">Home</a>
-				</li>
-				<li class="menu__item">
-					<a href="" class="menu__link">All games</a>
-				</li>
-				<li class="menu__item">
-					<a href="" class="menu__link">Leaderboards</a>
-				</li>
-				<li class="menu__item">
-					<a href="{% url 'core:about' %}" class="menu__link">About</a>
-				</li>
-				<li class="menu__item">
-					<a href="{% url 'core:contacts' %}" class="menu__link">Contacts</a>
-				</li>
-			</ul>
-		</nav>
-		{% if request.user.is_authenticated %}
-			<ul class="menu__list">
-				<li class="login__buttons">
-					<a href="{% url 'users:login' %}" class="header__login">Welcome, {{ user.username }}</a>
-					<a href="{% url 'users:logout' %}" class="header__login">Logout</a>
-				</li>
-			</ul>
-		{% else %}
-			<ul class="login__list">
-				<li class="login__buttons">
-					<a href="{% url 'users:login' %}" class="header__login">Log In</a>
-				</li>
-			</ul>
-		{% endif %}
-	</div>
+    <nav>
+        <ul class="header-ul">
+            <img class="header_li header_img" src="{% static '/img/light_theme/logoBDG.svg' %}" alt="">
+            <li class="header_li">
+                <a href="#" class="header_li_a">Home</a>
+            </li>
+            <li class="header_li">
+                <a href="#" class="header_li_a">All games</a>
+            </li>
+            <li class="header_li">
+                <a href="#" class="header_li_a">Leaderboards</a>
+            </li>
+            <li class="header_li">
+                <a href="#" class="header_li_a">About</a>
+            </li>
+            <li class="header_li">
+                <a href="#" class="header_li_a">Contacts</a>
+            </li>
+            <div class="header_div_right">
+                <li class="header_li">RU</li>
+                <li class="header_li">Logout</li>
+            </div>
+        </ul>
+    </nav>
 </header>

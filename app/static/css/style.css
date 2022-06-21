@@ -1,0 +1,209 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+
+/* Обнуление */
+*,
+*::before,
+*::after {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+a {
+    text-decoration: none;
+}
+ul,
+ol,
+li {
+    list-style: none;
+}
+img {
+    vertical-align: top;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: inherit;
+    font-size: inherit;
+}
+html,
+body {
+    height: 100%;
+    line-height: 1;
+    font-size: 17px;
+    font-family: 'Poppins', sans-serif;
+    color: #14213d;
+    font-weight: 400;
+    background-color: #fff;
+}
+
+.background-img {
+    background-image: url('../img/light_theme/bg_spiral.svg');
+    background-repeat: no-repeat;
+    background-size: 1700px 1700px;
+    background-position-x: center;
+    background-position-y: -350px;
+    /* background-position: top -370px left 250px; */
+}
+
+.container {
+    width: 1350px;
+    margin: 0 auto;
+
+}
+
+.header {
+    height: 90px;
+    width: 100%;
+    background-color: #f5f4f4;
+}
+
+.header_img {
+    width: 80px;
+    height: 60px;
+}
+
+.header-ul {
+    height: 90px;
+    margin: 0 auto;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+
+.header_li {
+    display: inline-block;
+    margin-right: 45px;
+    margin-bottom: 0;
+}
+
+.header_li_a {
+    text-decoration: none;
+    color: #14213d;
+
+}
+
+.header_div_right {
+    position: absolute;
+    right: 0;
+}
+
+.header_div_right_li {
+    vertical-align: baseline;
+    display: inline-block;
+    margin-right: 45px;
+    margin-bottom: 0;
+}
+
+.main-content {
+    padding-left: 30px;
+    height: 1080px;
+}
+
+.main-content-text {
+    margin: 0;
+    display: block;
+    text-align: left;
+}
+
+.main-content-h1 {
+    font-weight: 500;
+    padding-top: 150px;
+    width: 735px;
+    font-size: 96px;
+    margin-bottom: 15px;
+}
+
+.main-content-h2 {
+    width: 390px;
+    font-size: 20px;
+    padding-bottom: 33px;
+}
+
+.orange {
+    text-decoration: none;
+    color: #14213d;
+    display: inline-block;
+    margin-bottom: 15px;
+    padding: 12px 98px;
+    background-color: orange;
+    border-radius: 16px;
+}
+
+.grey-box {
+    height: 90px;
+    background-color: #f5f4f4;
+}
+
+.game_present {
+    margin-top: 120px;
+    height: 1080px;
+}
+
+
+.game_ul {
+    display: flex;
+    flex-direction: row;
+}
+
+.game_li {
+    margin-right: 232px;
+}
+
+.game_li:last-child {
+    margin-right: 0px;
+}
+
+.game_img {
+    width: 552px;
+    height: 600px;
+}
+
+.game_li_text_right {
+    text-align: right;
+}
+
+.game_li_text_left {
+    text-align: left;
+}
+
+.game_decriprion {
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 30px;
+    margin-bottom: 111px;
+}
+
+.game_decriprion_schulte {
+    margin-bottom: 206px;
+}
+
+.name_game {
+    font-weight: 500;
+    font-size: 96px;
+    line-height: 110px;
+    color: #14213D;
+    margin-bottom: 23px;
+}
+
+.company_name {
+    font-size: 20px;
+    line-height: 10px;
+    letter-spacing: 0.02em;
+    margin-bottom: 66px;
+}
+
+.play_game_button {
+    color: black;
+    width: 317px;
+    height: 50px;
+    background: #FFC76C;
+    border-radius: 16px;
+    padding: 18px 95px;
+}
