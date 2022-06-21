@@ -1,21 +1,37 @@
-const headerBlock = document.getElementById('headerBlock');
-const mainBlock = document.getElementById('mainBlock');
-const mainBlockWord = document.getElementById('mainBlockWord');
-const mainBlockGame = document.getElementById('mainBlockGame');
-const mainBlockTwo = document.getElementById('mainBlockTwo');
-const footerBlock = document.getElementById('footerBlock');
+const timerBlock = document.getElementById('timerBlock');
+const sliderBlock = document.getElementById('sliderBlock');
+const wordBlock = document.getElementById('wordBlock');
+const colorElemBlock = document.getElementById('colorElemBlock');
+const startBlock = document.getElementById('startBlock');
+const scoreBlock = document.getElementById('scoreBlock');
 
-const colorsNames = ['Blue', 'Black', 'Green', 'Red', 'Yellow'];
-const colorsTypes = ['blue', 'black', 'green', 'red', 'yellow'];
+const colorsNames = ['Yellow', 'Red', 'Green', 'Blue', 'Black'];
+const colorsTypes = [
+    'rgba(250, 212, 15, 0.5)',
+    'rgba(255, 0, 0, 0.5)',
+    'rgba(66, 255, 0, 0.47)',
+    'rgba(0, 133, 255, 0.5)',
+    'rgba(0, 0, 0, 0.5)'
+];
 
 let prevColorName = undefined;
 let correctCounter = 0;
 let incorrectCounter = 0;
 let totalCounter = 0;
 
+function spanColor(total, correct, incorrect) {
+    return (
+        '<span style="color: rgba(0, 0, 0, 0.7)">' + String(total) + '</span>' +
+        '<span style="opacity: 0.5">' + ' - ' + '</span>' +
+        '<span style="color: rgba(66, 255, 0, 0.7)">' + String(correct) + '</span>' +
+        '<span style="opacity: 0.5">' + ' - ' + '</span>' +
+        '<span style="color: rgba(255, 0, 0, 0.7)">' + String(incorrect) + '</span>'
+    )
+}
+
 function colorsGenerator() {
     function randomElement(array) {
-        return colorsNames[Math.floor(Math.random() * array.length)];
+        return array[Math.floor(Math.random() * array.length)];
     }
 
     let colorName = randomElement(colorsNames);
@@ -33,7 +49,7 @@ function wordColorGenerator(colorType, colorName) {
     wordColor.style.color = colorType;
     wordColor.className = 'word-color';
     wordColor.id = 'wordColor';
-    mainBlockWord.appendChild(wordColor);
+    wordBlock.appendChild(wordColor);
     prevColorName = colorName;
 }
 
@@ -41,16 +57,15 @@ function timerSetting() {
     let value = document.getElementById('slider').value;
     let timer = document.getElementById('timer');
     timer.innerHTML = String(value) + ' seconds';
-    headerBlock.appendChild(timer);
 }
 
 function clickColorBlock(event) {
     const colorTypeName = {
-        'blue': 'Blue',
-        'black': 'Black',
-        'green': 'Green',
-        'red': 'Red',
-        'yellow': 'Yellow',
+        'rgba(250, 212, 15, 0.5)': 'Yellow',
+        'rgba(255, 0, 0, 0.5)': 'Red',
+        'rgba(66, 255, 0, 0.47)': 'Green',
+        'rgba(0, 133, 255, 0.5)': 'Blue',
+        'rgba(0, 0, 0, 0.5)': 'Black',
     };
 
     let colorNameText = document.getElementById('wordColor').textContent;
@@ -64,18 +79,22 @@ function clickColorBlock(event) {
     }
 
     totalCounter++
-    document.getElementById('counter').innerHTML = String(totalCounter) +':' + String(correctCounter)+':' + String(incorrectCounter);
+
+    document.getElementById('counter').innerHTML = spanColor(totalCounter, correctCounter, incorrectCounter)
     document.getElementById('wordColor').remove();
     wordColorGenerator(colorsGenerator()[0], colorsGenerator()[1]);
 }
 
 function mainMenu() {
+    wordBlock.style.display = 'none'
+    scoreBlock.style.display = 'none'
+
     let timer = document.createElement('p');
     timer.id = 'timer';
     timer.className = 'timer';
     timer.style.userSelect = 'none';
     timer.innerHTML = '60 seconds';
-    headerBlock.appendChild(timer);
+    timerBlock.appendChild(timer);
 
     let slider = document.createElement('input');
     slider.id = 'slider';
@@ -86,53 +105,60 @@ function mainMenu() {
     slider.step = '10';
     slider.value = '60';
     slider.oninput = timerSetting;
-    mainBlock.appendChild(slider);
+    sliderBlock.appendChild(slider);
 
     for (let j=1; j<=5; j++) {
         let colorBlock = document.createElement('div');
         colorBlock.id = String(j);
         colorBlock.className = 'color_block';
         colorBlock.style.backgroundColor = colorsTypes[j-1];
-        mainBlockGame.appendChild(colorBlock);
+        colorElemBlock.appendChild(colorBlock);
     }
 
     let startGame = document.createElement('a');
     startGame.id = 'startGame';
     startGame.className = 'start_game';
-    startGame.innerHTML = 'Start';
+    startGame.innerHTML = 'START';
     startGame.style.userSelect = 'none';
-    mainBlockTwo.appendChild(startGame);
+    startBlock.appendChild(startGame);
     startGame.onclick = mainGame;
-
-    let description = document.createElement('p');
-    description.id = 'description';
-    description.className = 'description';
-    description.innerHTML = 'You must click on the button of the color that describes the word.';
-    description.style.userSelect = 'none';
-    footerBlock.appendChild(description);
 }
 
 function mainGame() {
+
+    let timerCircle = document.createElement('div')
+    timerCircle.id = 'timerCircle'
+    timerCircle.className = 'timer-circle'
+    timerBlock.appendChild(timerCircle)
+    timerBlock.className = 'timer-block-game'
+
     let counter = document.createElement('counter')
     counter.id = 'counter'
     counter.className = 'counter'
-    counter.innerHTML = '0:0:0'
-    footerBlock.appendChild(counter)
+    counter.innerHTML = spanColor(totalCounter, correctCounter, incorrectCounter)
+    scoreBlock.appendChild(counter)
+
 
     let time = document.createElement('p')
     time.id = 'time'
+    time.className = 'timer-game'
     time.innerHTML = document.getElementById('slider').value
-    headerBlock.appendChild(time)
+    timerCircle.appendChild(time)
 
     wordColorGenerator(colorsGenerator()[0], colorsGenerator()[1])
     for (let j=1; j<=5; j++) {
         document.getElementById(String(j)).onclick = clickColorBlock;
+
     }
 
     document.getElementById('timer').remove()
     document.getElementById('slider').remove()
     document.getElementById('startGame').remove()
-    document.getElementById('description').remove()
+
+    startBlock.style.display = 'none'
+    sliderBlock.style.display = 'none'
+    wordBlock.style.display = 'flex'
+    scoreBlock.style.display = 'flex'
 
     let interval = setInterval(timerDisplay, 1000)
 
@@ -143,6 +169,10 @@ function mainGame() {
             time.innerHTML--
         } else {
             time.remove()
+            timerCircle.remove()
+            timerBlock.className = 'timer-block'
+            startBlock.style.display = 'flex'
+            sliderBlock.style.display = 'flex'
             for (let j = 1; j <= 5; j++) {
                 let colorBlock = document.getElementById(String(j))
             colorBlock.remove()
