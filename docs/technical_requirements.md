@@ -81,6 +81,7 @@
 
 * Бэкенд:
     - Язык Python
+    - Фреймворк Django
     - Фреймворк RestAPI
     - БД SQLite
     - Django ORM
