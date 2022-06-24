@@ -58,7 +58,9 @@ body {
 .header {
     height: 90px;
     width: 100%;
-    background-color: #f5f4f4;
+    /* background-color: #f5f4f4; */
+    background-color: white;
+
 }
 
 .header_img {
@@ -138,7 +140,9 @@ body {
 
 .grey-box {
     height: 90px;
-    background-color: #f5f4f4;
+    /* background-color: #f5f4f4; */
+    background-color: white;
+
 }
 
 .game_present {

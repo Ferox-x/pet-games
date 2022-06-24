@@ -1,8 +1,7 @@
 const mainDiv = document.getElementById('mainDiv')
 const timerDiv = document.getElementById('timer')
+const  startButton = document.getElementById('schulte_start')
 let pTimer = document.createElement('p')
-pTimer.className = 'ptimer'
-timerDiv.insertBefore(pTimer, null)
 
 let arrayNumbers =  ['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24'];
 let counter = 1
@@ -49,16 +48,28 @@ function scaleGame(){
     }
 }
 
+
+function clearBoard() {
+    arrayNumbers = ['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24'];
+    for (let i = 1; i <=25; i++) {
+        let child = document.getElementById(String(i))
+        child.remove()
+    }
+}
+
 function reloadGame() {
-    for (let i = 1; i <=25; i++){
-            let child = document.getElementById(String(i))
-            child.remove()
-        }
-        arrayNumbers = ['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24'];
-        counter = 1
-        time = 0
-        draw()
-        clearInterval(document.interval)
+    clearInterval(document.timer)
+    startGame()
+    counter = 1
+    time = 0
+}
+
+function sendData() {
+    let formData = new FormData()
+    formData.append('time', time)
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "/games/schulte");
+    xhr.send(formData);
 }
 
 function correctClick (event) {
@@ -77,7 +88,10 @@ function correctClick (event) {
     }
 
     if (counter === 25) {
-        reloadGame()
+        clearInterval(document.timer)
+        clearBoard()
+        schulteManager()
+        sendData()
     }
 
     function correctQuery (id) {
@@ -88,7 +102,8 @@ function correctClick (event) {
     }
 }
 
-function draw() {
+function draw(flag=false) {
+
     function randomId() {
         let divId;
         let index;
@@ -106,28 +121,47 @@ function draw() {
     }
     let size = document.getElementById('slider').value;
 
-    for (let i = 1; i <= 5; i++) {
-        for (let j = 1; j <= 5; j++) {
-            let elementDiv = document.createElement('div');
+    for (let i = 1; i <= 25; i++) {
+        let elementDiv = document.createElement('div');
 
-            if (i === 3 && j === 3) {
-                elementDiv.innerHTML = '·';
-                elementDiv.style.fontSize = '50px';
-                elementDiv.id = '25';
-            }
-            else {
-
-                let elementId = randomId();
+        if (i === 13) {
+            elementDiv.innerHTML = '·';
+            elementDiv.style.fontSize = '50px';
+            elementDiv.id = '25';
+        }
+        else {
+            if (flag === true) {
+                let elementId = randomId()
                 elementDiv.id = elementId;
                 elementDiv.style.fontSize = size * 0.075 + 'px';
                 elementDiv.innerHTML = elementId;
                 elementDiv.onclick = correctClick;
             }
-            elementDiv.className = 'main_div__button'
-            mainDiv.insertBefore(elementDiv, null)
+            else {
+                elementDiv.id = randomId();
+                elementDiv.style.fontSize = size * 0.075 + 'px';
+                elementDiv.innerHTML = '·';
+            }
         }
+        elementDiv.className = 'main_div__button'
+        mainDiv.insertBefore(elementDiv, null)
     }
-    document.interval = setInterval(timer, 10)
 }
 
-draw()
+function startGame () {
+    clearInterval(document.timer)
+    clearBoard()
+    draw(true)
+    document.timer = setInterval(timer, 10)
+}
+
+function schulteManager () {
+
+    startButton.onclick = startGame
+    startButton.style.userSelect = 'none'
+    pTimer.className = 'ptimer'
+    timerDiv.insertBefore(pTimer, null)
+    draw()
+}
+
+schulteManager()
