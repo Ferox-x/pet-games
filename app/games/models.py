@@ -10,7 +10,7 @@ class SchulteModel(models.Model):
         on_delete=models.CASCADE,
     )
 
-    records = models.CharField(
+    record = models.CharField(
         max_length=10,
         verbose_name='Время',
     )
