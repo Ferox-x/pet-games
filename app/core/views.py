@@ -18,4 +18,3 @@ class AboutView(View):
 
     def get(self, request):
         return render(request, 'core/main_page/about.html', {})
-

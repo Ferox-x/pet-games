@@ -5,214 +5,219 @@
 *,
 *::before,
 *::after {
-    padding: 0;
-    margin: 0;
-    border: 0;
-    box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  box-sizing: border-box;
 }
+
 a {
-    text-decoration: none;
+  text-decoration: none;
 }
+
 ul,
 ol,
 li {
-    list-style: none;
+  list-style: none;
 }
+
 img {
-    vertical-align: top;
+  vertical-align: top;
 }
+
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-    font-weight: inherit;
-    font-size: inherit;
+  font-weight: inherit;
+  font-size: inherit;
 }
+
 html,
 body {
-    height: 100%;
-    line-height: 1;
-    font-size: 17px;
-    font-family: 'Poppins', sans-serif;
-    color: #14213d;
-    font-weight: 400;
-    background-color: #fff;
+  height: 100%;
+  line-height: 1;
+  font-size: 17px;
+  font-family: 'Poppins', sans-serif;
+  color: #14213d;
+  font-weight: 400;
+  background-color: #fff;
 }
 
 .background-img {
-    background-image: url('../img/light_theme/bg_spiral.svg');
-    background-repeat: no-repeat;
-    background-size: 1700px 1700px;
-    background-position-x: center;
-    background-position-y: -350px;
-    /* background-position: top -370px left 250px; */
+  background-image: url('../img/light_theme/bg_spiral.svg');
+  background-repeat: no-repeat;
+  background-size: 1700px 1700px;
+  background-position-x: center;
+  background-position-y: -350px;
+  /* background-position: top -370px left 250px; */
 }
 
 .container {
-    width: 1350px;
-    margin: 0 auto;
+  width: 1350px;
+  margin: 0 auto;
 
 }
 
 .header {
-    height: 90px;
-    width: 100%;
-    background-color: #f5f4f4;
+  height: 90px;
+  width: 100%;
+  background-color: #f5f4f4;
 
 }
 
 .header_img {
-    width: 80px;
-    height: 60px;
+  width: 80px;
+  height: 60px;
 }
 
 .header-ul {
-    height: 90px;
-    margin: 0 auto;
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    align-items: center;
+  height: 90px;
+  margin: 0 auto;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
 }
 
 
 .header_li {
-    display: inline-block;
-    margin-right: 45px;
-    margin-bottom: 0;
+  display: inline-block;
+  margin-right: 45px;
+  margin-bottom: 0;
 }
 
 .header_li_a {
-    text-decoration: none;
-    color: #14213d;
+  text-decoration: none;
+  color: #14213d;
 
 }
 
 .header_div_right {
-    position: absolute;
-    right: 0;
+  position: absolute;
+  right: 0;
 }
 
 .header_div_right_li {
-    vertical-align: baseline;
-    display: inline-block;
-    margin-right: 45px;
-    margin-bottom: 0;
+  vertical-align: baseline;
+  display: inline-block;
+  margin-right: 45px;
+  margin-bottom: 0;
 }
 
 .main-content {
-    padding-left: 30px;
-    height: 1080px;
+  padding-left: 30px;
+  height: 1080px;
 }
 
 .main-content-text {
-    margin: 0;
-    display: block;
-    text-align: left;
+  margin: 0;
+  display: block;
+  text-align: left;
 }
 
 .main-content-h1 {
-    font-weight: 500;
-    padding-top: 150px;
-    width: 735px;
-    font-size: 96px;
-    margin-bottom: 15px;
+  font-weight: 500;
+  padding-top: 150px;
+  width: 735px;
+  font-size: 96px;
+  margin-bottom: 15px;
 }
 
 .main-content-h2 {
-    width: 390px;
-    font-size: 20px;
-    padding-bottom: 33px;
+  width: 390px;
+  font-size: 20px;
+  padding-bottom: 33px;
 }
 
 .orange {
-    text-decoration: none;
-    color: #14213d;
-    display: inline-block;
-    margin-bottom: 15px;
-    padding: 12px 98px;
-    background-color: orange;
-    border-radius: 16px;
+  text-decoration: none;
+  color: #14213d;
+  display: inline-block;
+  margin-bottom: 15px;
+  padding: 12px 98px;
+  background-color: orange;
+  border-radius: 16px;
 }
 
 .grey-box {
-    height: 90px;
-    background-color: #f5f4f4;
+  height: 90px;
+  background-color: #f5f4f4;
 }
 
 .game_present {
-    margin-top: 120px;
-    height: 1080px;
+  margin-top: 120px;
+  height: 1080px;
 }
 
 
 .game_ul {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 
 .game_li {
-    margin-right: 232px;
+  margin-right: 232px;
 }
 
 .game_li:last-child {
-    margin-right: 0;
+  margin-right: 0;
 }
 
 .game_img {
-    width: 552px;
-    height: 600px;
+  width: 552px;
+  height: 600px;
 }
 
 .game_li_text_right {
-    text-align: right;
+  text-align: right;
 }
 
 .game_li_text_left {
-    text-align: left;
+  text-align: left;
 }
 
 .game_decriprion {
-    font-weight: 400;
-    font-size: 24px;
-    line-height: 30px;
-    margin-bottom: 111px;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 30px;
+  margin-bottom: 111px;
 }
 
 .game_decriprion_schulte {
-    margin-bottom: 206px;
+  margin-bottom: 206px;
 }
 
 .name_game {
-    font-weight: 500;
-    font-size: 96px;
-    line-height: 110px;
-    color: #14213D;
-    margin-bottom: 23px;
+  font-weight: 500;
+  font-size: 96px;
+  line-height: 110px;
+  color: #14213D;
+  margin-bottom: 23px;
 }
 
 .company_name {
-    font-size: 20px;
-    line-height: 10px;
-    letter-spacing: 0.02em;
-    margin-bottom: 66px;
+  font-size: 20px;
+  line-height: 10px;
+  letter-spacing: 0.02em;
+  margin-bottom: 66px;
 }
 
 .play_game_button {
-    color: black;
-    width: 317px;
-    height: 50px;
-    background: #FFC76C;
-    border-radius: 16px;
-    padding: 18px 95px;
+  color: black;
+  width: 317px;
+  height: 50px;
+  background: #FFC76C;
+  border-radius: 16px;
+  padding: 18px 95px;
 }
 
 /*schulte-css*/
 body {
-    background-color: #fff;
+  background-color: #fff;
 }
 
 .schulte_container {
@@ -227,28 +232,28 @@ body {
 }
 
 .schulte_main_div {
-    margin-right: 40px;
-    margin-left: 375px;
-    width: 600px;
-    height: 600px;
-    border: 15px solid #ffc76c;
-    border-radius: 2%;
-    display: inline-grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(5, 1fr);
-    background-color: #ffc76c;
+  margin-right: 40px;
+  margin-left: 375px;
+  width: 600px;
+  height: 600px;
+  border: 15px solid #ffc76c;
+  border-radius: 2%;
+  display: inline-grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  background-color: #ffc76c;
 }
 
 .schulte_main_div__button {
-    font-weight: 500;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 2px solid #ffc76c;
-    border-collapse: collapse;
-    background-color: #fff;
-    border-radius: 5%;
-    user-select: none;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #ffc76c;
+  border-collapse: collapse;
+  background-color: #fff;
+  border-radius: 5%;
+  user-select: none;
 }
 
 .schulte_shake {
@@ -258,7 +263,7 @@ body {
 }
 
 .schulte_shake:hover {
-  animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+  animation: schulte_shake 0.82s cubic-bezier(.36, .07, .19, .97) both;
   transform: translate3d(0, 0, 0);
   backface-visibility: hidden;
   perspective: 1000px;
@@ -335,30 +340,31 @@ body {
 }
 
 .schulte_table_of_records {
-    width: 330px;
-    height: 320px;
-    border-width: 5px 0;
-    border-style: solid;
-    border-color: #14213D;
-    box-shadow: 0 4px 4px #D9D9D9;
-    overflow: auto;
+  width: 330px;
+  height: 320px;
+  border-width: 5px 0;
+  border-style: solid;
+  border-color: #14213D;
+  box-shadow: 0 4px 4px #D9D9D9;
+  overflow: auto;
 }
 
 .schulte_table_of_records_li {
-    padding-top: 5px;
-    list-style: decimal inside;
-    padding-left: 28px;
-    height: 30px;
-    background-color: rgba(237, 236, 236, 0.5);
+  padding-top: 5px;
+  list-style: decimal inside;
+  padding-left: 28px;
+  height: 30px;
+  background-color: rgba(237, 236, 236, 0.5);
 }
 
 .schulte_table_of_records_p {
-    padding-left: 28px;
-    padding-top: 5px;
-    height: 20px;
-    margin-bottom: 5px;
+  padding-left: 28px;
+  padding-top: 5px;
+  height: 20px;
+  margin-bottom: 5px;
 }
 
 .schulte_table_of_records_li::marker {
 }
+
 /*end schulte css*/
