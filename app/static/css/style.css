@@ -37,7 +37,6 @@ h6 {
 
 html,
 body {
-  height: 100%;
   line-height: 1;
   font-size: 17px;
   font-family: 'Poppins', sans-serif;
@@ -47,24 +46,21 @@ body {
 }
 
 .background-img {
-  background-image: url('../img/light_theme/bg_spiral.svg');
+  background-position: center;
+  background-image: url("../img/light_theme/rectangle_all.svg");
   background-repeat: no-repeat;
-  background-size: 1700px 1700px;
-  background-position-x: center;
-  background-position-y: -350px;
-  /* background-position: top -370px left 250px; */
+
 }
 
 .container {
   width: 1350px;
+  height: 3099px;
   margin: 0 auto;
-
 }
 
 .header {
   height: 90px;
   width: 100%;
-  background-color: #f5f4f4;
 
 }
 
@@ -110,7 +106,8 @@ body {
 
 .main-content {
   padding-left: 30px;
-  height: 1080px;
+  height: 506px;
+  margin-bottom: 298px;
 }
 
 .main-content-text {
@@ -121,26 +118,18 @@ body {
 
 .main-content-h1 {
   font-weight: 500;
-  padding-top: 150px;
+  margin-top: 150px;
+  margin-bottom: 24px;
   width: 735px;
   font-size: 96px;
-  margin-bottom: 15px;
 }
 
 .main-content-h2 {
-  width: 390px;
-  font-size: 20px;
-  padding-bottom: 33px;
-}
-
-.orange {
-  text-decoration: none;
-  color: #14213d;
-  display: inline-block;
-  margin-bottom: 15px;
-  padding: 12px 98px;
-  background-color: orange;
-  border-radius: 16px;
+  width: 401px;
+  height: 106px;
+  font-size: 22px;
+  margin-bottom: 24px;
+  line-height: 30px;
 }
 
 .grey-box {
@@ -149,10 +138,13 @@ body {
 }
 
 .game_present {
-  margin-top: 120px;
-  height: 1080px;
+  height: 600px;
 }
 
+.game_present_stroop {
+  height: 600px;
+  margin-bottom: 400px;
+}
 
 .game_ul {
   display: flex;
@@ -178,46 +170,56 @@ body {
 
 .game_li_text_left {
   text-align: left;
+  margin-right: 255px;
 }
 
-.game_decriprion {
+.game_description {
   font-weight: 400;
   font-size: 24px;
   line-height: 30px;
-  margin-bottom: 111px;
+  margin-bottom: 81px;
+  color: #fff;
 }
 
-.game_decriprion_schulte {
-  margin-bottom: 206px;
+.game_description_schulte {
+  width: 545px;
+  height: 144px;
+  margin-bottom: 177px;
 }
 
 .name_game {
   font-weight: 500;
   font-size: 96px;
-  line-height: 110px;
-  color: #14213D;
-  margin-bottom: 23px;
+  color: #fff;
+  margin-bottom: 28px;
 }
 
 .company_name {
+  color: #fff;
   font-size: 20px;
-  line-height: 10px;
   letter-spacing: 0.02em;
-  margin-bottom: 66px;
+  margin-bottom: 85px;
 }
 
 .play_game_button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   color: black;
   width: 317px;
   height: 50px;
-  background: #FFC76C;
+  background: #fff;
   border-radius: 16px;
-  padding: 18px 95px;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
 /*schulte-css*/
 body {
   background-color: #fff;
+}
+
+.schulte_body {
+  background-image: url("../img/light_theme/rectangle_top.svg");
 }
 
 .schulte_container {
@@ -227,8 +229,8 @@ body {
 
   width: 1350px;
   color: #14213d;
-  margin: 100px auto 0;
-
+  margin: 0 auto;
+  padding-top: 50px;
 }
 
 .schulte_main_div {
@@ -236,12 +238,12 @@ body {
   margin-left: 375px;
   width: 600px;
   height: 600px;
-  border: 15px solid #ffc76c;
+  border: 15px solid #14213D;
   border-radius: 2%;
   display: inline-grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(5, 1fr);
-  background-color: #ffc76c;
+  background-color: #14213D;
 }
 
 .schulte_main_div__button {
@@ -249,7 +251,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 2px solid #ffc76c;
+  border: 2px solid #14213D;
   border-collapse: collapse;
   background-color: #fff;
   border-radius: 5%;
@@ -301,16 +303,8 @@ body {
   list-style: none;
 }
 
-.schulte_slidecontainer {
-  display: inline-block;
-  width: 100%;
-}
-
-.schulte_slider {
-  display: inline-block;
-  width: 100%;
-  height: 100%;
-  background-color: #14213D;
+.schulte_right_li_p_start {
+  padding-top: 15px;
 }
 
 .schulte_timer {
@@ -322,14 +316,13 @@ body {
   font-size: 36px;
   line-height: 30px;
   text-align: center;
+  padding: 15px;
 }
 
 .schulte_ptimer {
   width: 150px;
   height: 30px;
-  padding: 15px;
   text-align: left;
-  opacity: 0.5;
 }
 
 .schulte_start {
@@ -345,7 +338,7 @@ body {
   border-width: 5px 0;
   border-style: solid;
   border-color: #14213D;
-  box-shadow: 0 4px 4px #D9D9D9;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   overflow: auto;
 }
 
@@ -362,9 +355,6 @@ body {
   padding-top: 5px;
   height: 20px;
   margin-bottom: 5px;
-}
-
-.schulte_table_of_records_li::marker {
 }
 
 /*end schulte css*/
@@ -529,4 +519,5 @@ body {
   font-size: 20px;
   line-height: 30px;
 }
+
 /*end stroop-css*/

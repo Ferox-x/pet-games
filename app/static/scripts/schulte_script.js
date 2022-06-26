@@ -3,8 +3,6 @@ const mainDiv = document.getElementById('mainDiv')
 const timerDiv = document.getElementById('timer')
 const startButton = document.getElementById('schulte_start')
 const table_of_records_li = document.getElementById('schulte_table_of_records')
-const table_of_records_ol = document.getElementById('schulte_table_of_records_ol')
-
 
 let pTimer = document.createElement('p')
 let xhr = new XMLHttpRequest()
@@ -15,25 +13,6 @@ let counter = 1
 let time = 0
 let format_time = ''
 
-
-xhr.onreadystatechange = function () {
-    if (this.readyState === 4 && this.status === 200) {
-        table_of_records_ol.remove()
-        let new_ol = document.createElement('ol')
-        new_ol.id = 'schulte_table_of_records_ol'
-        new_ol.className = 'schulte_table_of_records_ol'
-        table_of_records_li.insertBefore(new_ol, null)
-
-        const json_records = JSON.parse(this.responseText)
-
-        for (let i = 0; i < 20; i++) {
-            let new_li = document.createElement('li')
-            new_li.className = 'schulte_table_of_records_li'
-            new_li.innerText = json_records[String(i)]
-            new_ol.insertBefore(new_li, null)
-        }
-    }
-}
 
 window.addEventListener('keydown', (hotKey) => {
 
@@ -83,6 +62,25 @@ function sendData() {
     formData.append('time', format_time)
     xhr.open("POST", "/games/schulte/")
     xhr.send(formData)
+    xhr.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 200) {
+            let table_of_records_ol = document.getElementById('schulte_table_of_records_ol')
+            table_of_records_ol.remove()
+            let new_ol = document.createElement('ol')
+            new_ol.id = 'schulte_table_of_records_ol'
+            new_ol.className = 'schulte_table_of_records_ol'
+            table_of_records_li.insertBefore(new_ol, null)
+
+            const json_records = JSON.parse(this.responseText)
+
+            for (let i = 0; i < 20; i++) {
+                let new_li = document.createElement('li')
+                new_li.className = 'schulte_table_of_records_li'
+                new_li.innerText = json_records[String(i)]
+                new_ol.insertBefore(new_li, null)
+            }
+        }
+}
 }
 
 
@@ -95,7 +93,7 @@ function correctClick(event) {
     });
 
     if (flag === true) {
-        selectedDiv.style.backgroundColor = '#ffc76c'
+        selectedDiv.style.backgroundColor = '#14213D'
         selectedDiv.classList.remove('schulte_shake')
     } else {
         selectedDiv.className = 'schulte_main_div__button schulte_shake'
@@ -170,7 +168,7 @@ function startGame() {
 
 function schulteManager() {
 
-    startButton.onclick = startGame
+    startButton.onclick = reloadGame
     startButton.style.userSelect = 'none'
     pTimer.className = 'schulte_ptimer'
     timerDiv.insertBefore(pTimer, null)

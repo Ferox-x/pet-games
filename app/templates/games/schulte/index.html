@@ -1,19 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}Schulte{% endblock %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="utf-8"/>
-  <title>Schulte</title>
-  <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
-<body id="body">
+{% block content %}
+<body id="body" class="schulte_body">
 <div class="schulte_container">
   <div class="schulte_main_div" id="mainDiv"></div>
   <ul class="schulte_right_side">
-{#    <li class="schulte_slidecontainer schulte_right_li">#}
-{#      <input type="range" min="400" max="800" value="650"#}
-{#             class="schulte_slider" id="slider" onchange="scaleGame()">#}
-{#    </li>#}
     <li id="timer" class="schulte_timer schulte_right_li"></li>
     <li class="schulte_start schulte_right_li">
       <p id="schulte_start" class="schulte_right_li_p_start">START</p>
@@ -35,4 +27,4 @@
 {% csrf_token %}
 <script id="script" src="{% static 'scripts/schulte_script.js' %}"></script>
 </body>
-</html>
+{% endblock %}
