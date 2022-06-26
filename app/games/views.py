@@ -28,7 +28,9 @@ class SchulteGame(View):
 class StroopGame(View):
 
     def get(self, request):
-        return render(request, 'games/stroop.html', {})
+        template = 'games/stroop/index.html'
+        context = {}
+        return render(request, template, context)
 
 
 class AllGames(View):

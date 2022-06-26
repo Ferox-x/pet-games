@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}Stroop Game{% endblock %}
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Stroop</title>
+</head>
+<body>
+    <div class="stroop_container">
+	    <div class="stroop_timer-block" id="timerBlock"></div>
+	    <div class="stroop_slider-block" id="sliderBlock"></div>
+	    <div class="stroop_word-block" id="wordBlock"></div>
+	    <div class="stroop_color_elem_block" id="colorElemBlock"></div>
+	    <div class="stroop_start-block" id="startBlock"></div>
+	    <div class="stroop_score-block" id="scoreBlock"></div>
+    </div>
+	<script id="script" src="{% static 'scripts/stroop_script.js' %}"></script>
+</body>
+</html>
+{% endblock %}

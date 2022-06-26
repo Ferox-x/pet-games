@@ -47,7 +47,7 @@ function wordColorGenerator(colorType, colorName) {
     let wordColor = document.createElement('p');
     wordColor.innerHTML = colorName;
     wordColor.style.color = colorType;
-    wordColor.className = 'word-color';
+    wordColor.className = 'stroop_word-color';
     wordColor.id = 'wordColor';
     wordBlock.appendChild(wordColor);
     prevColorName = colorName;
@@ -93,7 +93,7 @@ function timerDisplay(){
         } else {
             time.remove()
             document.getElementById('timerCircle').remove()
-            timerBlock.className = 'timer-block'
+            timerBlock.className = 'stroop_timer-block'
             startBlock.style.display = 'flex'
             sliderBlock.style.display = 'flex'
             for (let j = 1; j <= 5; j++) {
@@ -117,14 +117,14 @@ function mainMenu() {
 
     let timer = document.createElement('p');
     timer.id = 'timer';
-    timer.className = 'timer';
+    timer.className = 'stroop_timer';
     timer.style.userSelect = 'none';
     timer.innerHTML = '60 seconds';
     timerBlock.appendChild(timer);
 
     let slider = document.createElement('input');
     slider.id = 'slider';
-    slider.className = 'slider';
+    slider.className = 'stroop_slider';
     slider.type = 'range';
     slider.min = '10';
     slider.max = '120';
@@ -136,14 +136,14 @@ function mainMenu() {
     for (let j=1; j<=5; j++) {
         let colorBlock = document.createElement('div');
         colorBlock.id = String(j);
-        colorBlock.className = 'color_block';
+        colorBlock.className = 'stroop_color_block';
         colorBlock.style.backgroundColor = colorsTypes[j-1];
         colorElemBlock.appendChild(colorBlock);
     }
 
     let startGame = document.createElement('a');
     startGame.id = 'startGame';
-    startGame.className = 'start_game';
+    startGame.className = 'stroop_start_game';
     startGame.innerHTML = 'START';
     startGame.style.userSelect = 'none';
     startBlock.appendChild(startGame);
@@ -154,20 +154,20 @@ function mainGame() {
 
     let timerCircle = document.createElement('div')
     timerCircle.id = 'timerCircle'
-    timerCircle.className = 'timer-circle'
+    timerCircle.className = 'stroop_timer-circle'
     timerBlock.appendChild(timerCircle)
-    timerBlock.className = 'timer-block-game'
+    timerBlock.className = 'stroop_timer-block-game'
 
     let counter = document.createElement('counter')
     counter.id = 'counter'
-    counter.className = 'counter'
+    counter.className = 'stroop_counter'
     counter.innerHTML = spanColor(totalCounter, correctCounter, incorrectCounter)
     scoreBlock.appendChild(counter)
 
 
     let time = document.createElement('p')
     time.id = 'time'
-    time.className = 'timer-game'
+    time.className = 'stroop_timer-game'
     time.innerHTML = document.getElementById('slider').value
     timerCircle.appendChild(time)
 
