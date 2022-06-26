@@ -2,14 +2,41 @@ const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
 const mainDiv = document.getElementById('mainDiv')
 const timerDiv = document.getElementById('timer')
 const startButton = document.getElementById('schulte_start')
+const table_of_records_li = document.getElementById('schulte_table_of_records')
+const table_of_records_ol = document.getElementById('schulte_table_of_records_ol')
+
+
 let pTimer = document.createElement('p')
+let xhr = new XMLHttpRequest()
+
 
 let arrayNumbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24']
 let counter = 1
 let time = 0
+let format_time = ''
+
+
+xhr.onreadystatechange = function () {
+    if (this.readyState === 4 && this.status === 200) {
+        table_of_records_ol.remove()
+        let new_ol = document.createElement('ol')
+        new_ol.id = 'schulte_table_of_records_ol'
+        new_ol.className = 'schulte_table_of_records_ol'
+        table_of_records_li.insertBefore(new_ol, null)
+
+        const json_records = JSON.parse(this.responseText)
+
+        for (let i = 0; i < 20; i++) {
+            let new_li = document.createElement('li')
+            new_li.className = 'schulte_table_of_records_li'
+            new_li.innerText = json_records[String(i)]
+            new_ol.insertBefore(new_li, null)
+        }
+    }
+}
 
 window.addEventListener('keydown', (hotKey) => {
-    console.log(hotKey.code)
+
     if (hotKey.code === 'KeyR') {
         reloadGame()
     }
@@ -30,24 +57,9 @@ function timer() {
     if (milSec < 10) {
         milSec = '0' + String(milSec)
     }
-    pTimer.innerHTML = String(minutes) + ':' + String(seconds) + ':' + String(milSec)
-
+    format_time = String(minutes) + ':' + String(seconds) + ':' + String(milSec)
+    pTimer.innerHTML = format_time
 }
-
-function scaleGame() {
-    let size = document.getElementById('slider').value
-    mainDiv.style.width = size + 'px'
-    mainDiv.style.height = size + 'px'
-    mainDiv.style.marginLeft = String((1350 - size) / 2) + 'px'
-    for (let j = 1; j <= 25; j++) {
-        if (j === 25) {
-            document.getElementById(String(j)).style.fontSize = size * 0.1 + 'px'
-        } else {
-            document.getElementById(String(j)).style.fontSize = size * 0.075 + 'px'
-        }
-    }
-}
-
 
 function clearBoard() {
     arrayNumbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24'];
@@ -66,12 +78,13 @@ function reloadGame() {
 
 function sendData() {
     let formData = new FormData()
+    formData.append('HTTP_X_REQUESTED_WITH', 'XMLHttpRequest')
     formData.append('csrfmiddlewaretoken', csrftoken)
-    formData.append('time', time)
-    let xhr = new XMLHttpRequest()
+    formData.append('time', format_time)
     xhr.open("POST", "/games/schulte/")
     xhr.send(formData)
 }
+
 
 function correctClick(event) {
     let divId = event.target.id
@@ -123,8 +136,6 @@ function draw(flag = false) {
         return String(divId)
     }
 
-    let size = document.getElementById('slider').value
-
     for (let i = 1; i <= 25; i++) {
         let elementDiv = document.createElement('div')
 
@@ -136,12 +147,12 @@ function draw(flag = false) {
             if (flag === true) {
                 let elementId = randomId()
                 elementDiv.id = elementId
-                elementDiv.style.fontSize = size * 0.075 + 'px'
+                elementDiv.style.fontSize = 50 + 'px'
                 elementDiv.innerHTML = elementId
                 elementDiv.onclick = correctClick
             } else {
                 elementDiv.id = randomId();
-                elementDiv.style.fontSize = size * 0.075 + 'px'
+                elementDiv.style.fontSize = 50 + 'px'
                 elementDiv.innerHTML = '·'
             }
         }

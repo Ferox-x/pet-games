@@ -10,19 +10,19 @@
 <div class="schulte_container">
   <div class="schulte_main_div" id="mainDiv"></div>
   <ul class="schulte_right_side">
-    <li class="schulte_slidecontainer schulte_right_li">
-      <input type="range" min="400" max="800" value="650"
-             class="schulte_slider" id="slider" onchange="scaleGame()">
-    </li>
+{#    <li class="schulte_slidecontainer schulte_right_li">#}
+{#      <input type="range" min="400" max="800" value="650"#}
+{#             class="schulte_slider" id="slider" onchange="scaleGame()">#}
+{#    </li>#}
     <li id="timer" class="schulte_timer schulte_right_li"></li>
     <li class="schulte_start schulte_right_li">
       <p id="schulte_start" class="schulte_right_li_p_start">START</p>
     </li>
-    <li class="schulte_right_li schulte_table_of_records">
+    <li id="schulte_table_of_records" class="schulte_right_li schulte_table_of_records">
       <p class="schulte_table_of_records_p">
         Your achievements
       </p>
-      <ol class="schulte_table_of_records_ol">
+      <ol id="schulte_table_of_records_ol" class="schulte_table_of_records_ol">
         {% for record in records %}
           <li class="schulte_table_of_records_li">
             {{ record.record }}
