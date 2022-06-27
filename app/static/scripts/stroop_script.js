@@ -19,6 +19,18 @@ let correctCounter = 0;
 let incorrectCounter = 0;
 let totalCounter = 0;
 
+window.addEventListener('keydown', (hotkey) => {
+    const hotkeys = {
+        'KeyQ': '1',
+        'KeyW': '2',
+        'KeyE': '3',
+        'KeyR': '4',
+        'KeyT': '5'
+    };
+
+    document.getElementById(hotkeys[hotkey.code]).click();
+});
+
 function spanColor(total, correct, incorrect) {
     return (
         '<span style="color: rgba(0, 0, 0, 0.7)">' + String(total) + '</span>' +
@@ -53,12 +65,6 @@ function wordColorGenerator(colorType, colorName) {
     prevColorName = colorName;
 }
 
-function timerSetting() {
-    let value = document.getElementById('slider').value;
-    let timer = document.getElementById('timer');
-    timer.innerHTML = String(value) + ' seconds';
-}
-
 function clickColorBlock(event) {
     const colorTypeName = {
         'rgba(250, 212, 15, 0.5)': 'Yellow',
@@ -85,31 +91,37 @@ function clickColorBlock(event) {
     wordColorGenerator(colorsGenerator()[0], colorsGenerator()[1]);
 }
 
-function timerDisplay(){
-        let time = document.getElementById('time')
+function timerSetting() {
+    let value = document.getElementById('slider').value;
+    let timer = document.getElementById('timer');
+    timer.innerHTML = String(value) + ' seconds';
+}
 
-        if(time.innerHTML > 0){
-            time.innerHTML--
-        } else {
-            time.remove()
-            document.getElementById('timerCircle').remove()
-            timerBlock.className = 'stroop_timer-block'
-            startBlock.style.display = 'flex'
-            sliderBlock.style.display = 'flex'
-            for (let j = 1; j <= 5; j++) {
-                let colorBlock = document.getElementById(String(j))
+function timerDisplay() {
+    let time = document.getElementById('time')
+
+    if (time.innerHTML > 0) {
+        time.innerHTML--
+    } else {
+        time.remove()
+        document.getElementById('timerCircle').remove()
+        timerBlock.className = 'stroop_timer-block'
+        startBlock.style.display = 'flex'
+        sliderBlock.style.display = 'flex'
+        for (let j = 1; j <= 5; j++) {
+            let colorBlock = document.getElementById(String(j))
             colorBlock.remove()
-            }
-
-            document.getElementById('wordColor').remove()
-            counter.remove()
-            incorrectCounter = 0
-            correctCounter = 0
-            totalCounter = 0
-            clearInterval(document.interval)
-            mainMenu()
         }
+
+        document.getElementById('wordColor').remove()
+        counter.remove()
+        incorrectCounter = 0
+        correctCounter = 0
+        totalCounter = 0
+        clearInterval(document.interval)
+        mainMenu()
     }
+}
 
 function mainMenu() {
     wordBlock.style.display = 'none'
@@ -133,11 +145,11 @@ function mainMenu() {
     slider.oninput = timerSetting;
     sliderBlock.appendChild(slider);
 
-    for (let j=1; j<=5; j++) {
+    for (let j = 1; j <= 5; j++) {
         let colorBlock = document.createElement('div');
         colorBlock.id = String(j);
         colorBlock.className = 'stroop_color_block';
-        colorBlock.style.backgroundColor = colorsTypes[j-1];
+        colorBlock.style.backgroundColor = colorsTypes[j - 1];
         colorElemBlock.appendChild(colorBlock);
     }
 
@@ -172,9 +184,8 @@ function mainGame() {
     timerCircle.appendChild(time)
 
     wordColorGenerator(colorsGenerator()[0], colorsGenerator()[1])
-    for (let j=1; j<=5; j++) {
+    for (let j = 1; j <= 5; j++) {
         document.getElementById(String(j)).onclick = clickColorBlock;
-
     }
 
     document.getElementById('timer').remove()
