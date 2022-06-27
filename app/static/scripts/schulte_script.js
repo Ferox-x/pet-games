@@ -5,6 +5,7 @@ const startButton = document.getElementById('schulte_start')
 const table_of_records_li = document.getElementById('schulte_table_of_records')
 
 let pTimer = document.createElement('p')
+
 let xhr = new XMLHttpRequest()
 
 

@@ -2,10 +2,12 @@
 <header class="header">
   <nav>
     <ul class="header-ul">
-      <img class="header_li header_img"
+      <a href="{% url 'core:main' %}">
+        <img class="header_li header_img"
            src="{% static '/img/fav/header-logo.svg' %}" alt="">
+      </a>
       <li class="header_li">
-        <a href="#" class="header_li_a">Home</a>
+        <a href="{% url 'core:main' %}" class="header_li_a">Home</a>
       </li>
       <li class="header_li">
         <a href="#" class="header_li_a">All games</a>
