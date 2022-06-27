@@ -46,7 +46,6 @@ body {
 }
 
 .background-img {
-  background-position: center;
   background-image: url("../img/light_theme/rectangle_all.svg");
   background-repeat: no-repeat;
 
@@ -54,7 +53,6 @@ body {
 
 .container {
   width: 1350px;
-  height: 3099px;
   margin: 0 auto;
 }
 
@@ -146,6 +144,10 @@ body {
   margin-bottom: 400px;
 }
 
+.game_present_schulte {
+  margin-bottom: 290px;
+}
+
 .game_ul {
   display: flex;
   flex-direction: row;
@@ -212,6 +214,40 @@ body {
   border-radius: 16px;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
+
+/*footer*/
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #14213D;
+  height: 100px;
+  color: #fff;
+  font-size: 12px;
+  line-height: 150%;
+  padding-top: 40px;
+}
+
+.footer_div_ul {
+  margin-bottom: 22px;
+}
+
+.footer_div_ul_li {
+  display: inline-flex;
+  margin-right: 45px;
+}
+
+.footer_div_ul_li:last-child{
+  margin-right: 0;
+}
+
+.footer_div_p {
+  text-align: center;
+}
+
+
+/*end footer*/
 
 /*schulte-css*/
 body {
