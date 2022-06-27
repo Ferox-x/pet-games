@@ -12,13 +12,15 @@ def is_ajax(request):
 class SchulteGame(View):
 
     def get(self, request):
-        records = list(reversed(SchulteModel.objects.values('record').filter(
-            user_id=request.user.id)))[:20]
+        records = None
+        if request.user.is_authenticated():
+            records = list(reversed(SchulteModel.objects.values('record').filter(
+                user_id=request.user.id)))[:20]
         return render(request, 'games/schulte/index.html',
                       {'records': records})
 
     def post(self, request):
-        if is_ajax(request):
+        if request.user.is_authenticated() and is_ajax(request):
             time = request.POST.get('time')
             SchulteModel(record=time, user=request.user).save()
             records = list(reversed(SchulteModel.objects.values('record').filter(

@@ -21,6 +21,7 @@ urlpatterns = [
     path('', include('core.urls', namespace='core')),
     path('games/', include('games.urls')),
     path('users/', include('users.urls')),
-    path('', include('users.urls', namespace='users')),
+    path('', include('users.urls', namespace='user')),
     path('auth/', include('django.contrib.auth.urls')),
+    path('__debug__/', include('debug_toolbar.urls')),
 ]
