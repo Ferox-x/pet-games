@@ -5,6 +5,9 @@ const colorElemBlock = document.getElementById('colorElemBlock');
 const startBlock = document.getElementById('startBlock');
 const scoreBlock = document.getElementById('scoreBlock');
 
+const table = document.getElementById('table')
+const recordsList = document.getElementById('recordsList')
+
 const colorsNames = ['Yellow', 'Red', 'Green', 'Blue', 'Black'];
 const colorsTypes = [
     'rgba(250, 212, 15, 0.5)',
@@ -14,10 +17,11 @@ const colorsTypes = [
     'rgba(0, 0, 0, 0.5)'
 ];
 
-let prevColorName = undefined;
+let sliderValue = 0;
+let totalCounter = 0;
 let correctCounter = 0;
 let incorrectCounter = 0;
-let totalCounter = 0;
+let prevColorName = undefined;
 
 window.addEventListener('keydown', (hotkey) => {
     const hotkeys = {
@@ -27,9 +31,42 @@ window.addEventListener('keydown', (hotkey) => {
         'KeyR': '4',
         'KeyT': '5'
     };
-
-    document.getElementById(hotkeys[hotkey.code]).click();
+    if (hotkey.code in hotkeys) {
+        document.getElementById(hotkeys[hotkey.code]).click();
+    }
 });
+
+function sendData(data) {
+    const csrftoken = document.querySelector(
+        '[name=csrfmiddlewaretoken]'
+    ).value;
+
+    let xhr = new XMLHttpRequest();
+    let formData = new FormData();
+    formData.append('HTTP_X_REQUESTED_WITH', 'XMLHttpRequest');
+    formData.append('csrfmiddlewaretoken', csrftoken);
+    formData.append('record', data);
+
+    xhr.open("POST", "/games/stroop/");
+    xhr.send(formData);
+}
+
+function saveResult(total, correct, incorrect) {
+    let formatRecord = total + ' - ' + correct + ' - ' + incorrect;
+    sendData(formatRecord);
+}
+
+function achievementsBlock() {
+    table.onclick = showHide;
+
+    function showHide() {
+        if (recordsList.style.display !== 'block') {
+            recordsList.style.display = 'block';
+        } else {
+            recordsList.style.display = 'none';
+        }
+    }
+}
 
 function spanColor(total, correct, incorrect) {
     return (
@@ -115,15 +152,22 @@ function timerDisplay() {
 
         document.getElementById('wordColor').remove()
         counter.remove()
-        incorrectCounter = 0
-        correctCounter = 0
-        totalCounter = 0
         clearInterval(document.interval)
         mainMenu()
     }
 }
 
 function mainMenu() {
+    achievementsBlock()
+
+    if (sliderValue === 2) {
+        saveResult(totalCounter, correctCounter, incorrectCounter)
+    }
+
+    incorrectCounter = 0
+    correctCounter = 0
+    totalCounter = 0
+
     wordBlock.style.display = 'none'
     scoreBlock.style.display = 'none'
 
@@ -138,9 +182,9 @@ function mainMenu() {
     slider.id = 'slider';
     slider.className = 'stroop_slider';
     slider.type = 'range';
-    slider.min = '10';
+    slider.min = '2';
     slider.max = '120';
-    slider.step = '10';
+    slider.step = '2';
     slider.value = '60';
     slider.oninput = timerSetting;
     sliderBlock.appendChild(slider);
@@ -188,6 +232,9 @@ function mainGame() {
         document.getElementById(String(j)).onclick = clickColorBlock;
     }
 
+    sliderValue = Number(document.getElementById('slider').value)
+    document.interval = setInterval(timerDisplay, 1000)
+
     document.getElementById('timer').remove()
     document.getElementById('slider').remove()
     document.getElementById('startGame').remove()
@@ -197,7 +244,6 @@ function mainGame() {
     wordBlock.style.display = 'flex'
     scoreBlock.style.display = 'flex'
 
-    document.interval = setInterval(timerDisplay, 1000)
 }
 
 mainMenu()

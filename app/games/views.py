@@ -1,8 +1,8 @@
-from django.http import JsonResponse
-from django.shortcuts import render
+from http import HTTPStatus
 from django.views import View
-
-from games.models import SchulteModel
+from django.shortcuts import render
+from django.http import JsonResponse
+from games.models import SchulteModel, StroopModel
 
 
 def is_ajax(request):
@@ -28,15 +28,32 @@ class SchulteGame(View):
             json_records = dict()
             for index, record in enumerate(records):
                 json_records[str(index)] = record.get('record')
-            return JsonResponse(json_records, status=200)
+            return JsonResponse(json_records, status=HTTPStatus.OK)
 
 
 class StroopGame(View):
 
     def get(self, request):
+        records = None
+        if request.user.is_authenticated:
+            records = StroopModel.objects.values('record').filter(
+                user_id=request.user.id)
         template = 'games/stroop/index.html'
-        context = {}
+        context = {'records': records}
         return render(request, template, context)
+
+    def post(self, request):
+        if request.user.is_authenticated and is_ajax(request):
+            record = request.POST.get('record')
+            StroopModel(record=record, user=request.user).save()
+            records = list(StroopModel.objects.values('record').filter(
+                user_id=request.user.id))[:20]
+            json_records = dict()
+            for index, record in enumerate(records):
+                json_records[str(index)] = record.get('record')
+            return JsonResponse(json_records, status=HTTPStatus.OK)
+
+
 
 
 class AllGames(View):

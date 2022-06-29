@@ -14,3 +14,16 @@ class SchulteModel(models.Model):
         max_length=10,
         verbose_name='Время',
     )
+
+
+class StroopModel(models.Model):
+    user = models.ForeignKey(
+        CustomerUser,
+        verbose_name='Пользователь',
+        on_delete=models.CASCADE,
+    )
+
+    record = models.CharField(
+        max_length=15,
+        verbose_name='Время',
+    )

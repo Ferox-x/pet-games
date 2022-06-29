@@ -47,6 +47,45 @@ body {
   background-color: #fff;
 }
 
+/*generic styles*/
+.records_list {
+  counter-reset: myCounter;
+  display: none;
+  margin-left: 40px;
+  background: #FFFFFF;
+  border-width: 5px 1px;
+  border-top: 0;
+  border-style: solid;
+  border-color: #D8D5D5;
+  animation: ani 0.5s forwards;
+  overflow: auto;
+}
+
+@keyframes ani {
+  0% {height: 0;}
+  100% {height: 420px;}
+}
+
+.record {
+  list-style: none;
+  height: 30px;
+}
+
+.record:before {
+  width: 64px;
+  height: 30px;
+  counter-increment: myCounter;
+  content: counter(myCounter);
+  color: rgba(20, 33, 61, 0.65);
+  background: rgba(237, 236, 236, 0.5);
+  display: inline-block;
+  text-align: center;
+  line-height: normal;
+  margin: 0 20px 0 0;
+  padding: 0 8px;
+}
+/*end of generic styles*/
+
 .background-img {
   background-image: url("../img/light_theme/rectangle_all.svg");
   background-repeat: no-repeat;
@@ -398,17 +437,55 @@ body {
 /*end schulte css*/
 
 /*stroop-css*/
+.stroop_inline {
+  display:flex;
+  width: 100%;
+  margin: 0 auto 184px;
+}
+
+.stroop_right_container {
+  margin: 100px 0 0 0;
+  width: 20%;
+}
+.stroop_left_container {
+  margin: 100px 0 0 0;
+  width: 20%;
+}
+.stroop_table {
+  width: 330px;
+  height: 45px;
+  margin-left: 40px;
+  background: #FFFFFF;
+  border-width: 5px 1px;
+  border-style: solid;
+  border-color: #D8D5D5;
+}
+
+.stroop_table:hover {
+  cursor: pointer;
+}
+
+.stroop_achievements_p {
+  margin-top: 9px;
+  text-align: center;
+  user-select: none;
+}
+
+.stroop_l {
+  width: 330px;
+  height: 420px;
+}
 
 .stroop_container {
   background-color: #fff;
   font-family: Poppins;
   position: relative;
-  margin: 0 auto;
-  margin-top: 100px;
-  width: 800px;
+  margin: 100px 0 0 0;
+  width: 60%;
   height: 465px;
-  border: 1px solid rgba(199, 195, 195, 0.7);
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-width: 5px 1px;
+  border-style: solid;
+  border-color: #D8D5D5;
 }
 
 .stroop_timer-block {
@@ -521,6 +598,7 @@ body {
 
 .stroop_color_block:hover {
   transform: scale(1.05);
+  cursor: pointer;
 }
 
 .stroop_start-block {
@@ -547,6 +625,7 @@ body {
 .stroop_start_game:hover {
   transform: scale(1.05);
   background-color: rgb(250, 250, 250);
+  cursor: pointer;
 }
 
 .stroop_score-block {
@@ -557,5 +636,6 @@ body {
   font-size: 20px;
   line-height: 30px;
 }
+
 
 /*end stroop-css*/
