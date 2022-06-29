@@ -47,7 +47,155 @@ body {
   background-color: #fff;
 }
 
-/*generic styles*/
+/*auth styles*/
+.auth_container {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  margin-top: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: scale(0.7);
+}
+
+.log_in_form {
+  width: 560px;
+  height: 430px;
+}
+
+.sigin_form {
+  width: 815px;
+  height: 615px;
+}
+
+.auth_header {
+  height: 70px;
+  display: flex;
+  align-items: center;
+  vertical-align: middle;
+}
+
+.p {
+  user-select: none;
+  font-size: 48px;
+  line-height: 72px;
+  color: #14213D;
+  margin-right: 190px;
+}
+
+.sign_in_p {
+  margin-right: 530px;
+}
+
+.top_right_elem {
+  width: 120px;
+  height: 45px;
+  background: #FFFFFF;
+  border: 3px solid #14213D;
+  border-radius: 5px;
+  user-select: none;
+}
+
+.top_right_elem_btn {
+  margin-top: 6px;
+  display: flex;
+  text-decoration: none;
+  justify-content: center;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 30px;
+  color: #14213D;
+
+}
+
+.input {
+  margin-top: 20px;
+  padding-left: 120px;
+  height: 80px;
+  width: 434px;
+  font-size: 24px;
+  line-height: 36px;
+  color: rgba(20, 33, 61, 0.7);
+  border: 3px solid #14213D;
+  border-radius: 5px;
+  background-repeat: no-repeat;
+  background-position: 30px;
+}
+
+.username_input {
+  background-image: url("../img/auth_imgs/Profile.svg");
+}
+
+.username_input_long {
+  width: 689px;
+  background-image: url("../img/auth_imgs/Profile.svg");
+}
+
+.first_name_input_long {
+  width: 689px;
+  background-image: url("../img/auth_imgs/Your_name.svg");
+}
+
+.email_input_short {
+  width: 265px;
+  background-image: url("../img/auth_imgs/Email.svg");
+}
+
+.country_input_short {
+  width: 265px;
+  background-image: url("../img/auth_imgs/Country.svg");
+}
+
+.password_input_short {
+  margin-right: 28px;
+  width: 265px;
+  background-image: url("../img/auth_imgs/Lock.svg");
+}
+
+.password_input {
+  background-image: url("../img/auth_imgs/Lock.svg");
+}
+
+.entry {
+  margin-top: 20px;
+  height: 80px;
+  width: 554px;
+  background: #FFFFFF;
+  border: 3px solid #14213D;
+  border-radius: 10px;
+}
+
+.entry_btn {
+  user-select: none;
+  margin-top: 12px;
+  display: flex;
+  text-decoration: none;
+  justify-content: center;
+  font-size: 36px;
+  line-height: 54px;
+  color: #14213D;
+}
+
+.sign_in {
+  width: 809px;
+}
+
+.password_reset {
+  margin-top: 15px;
+}
+
+.forgot_ur_pswrd {
+  text-decoration: none;
+  font-size: 20px;
+  line-height: 30px;
+  color: rgba(20, 33, 61, 0.66);
+}
+
+/*end auth styles*/
+
+
+/*generic games styles*/
 .records_list {
   counter-reset: myCounter;
   display: none;
@@ -62,8 +210,12 @@ body {
 }
 
 @keyframes ani {
-  0% {height: 0;}
-  100% {height: 420px;}
+  0% {
+    height: 0;
+  }
+  100% {
+    height: 420px;
+  }
 }
 
 .record {
@@ -84,7 +236,8 @@ body {
   margin: 0 20px 0 0;
   padding: 0 8px;
 }
-/*end of generic styles*/
+
+/*end of generic games styles*/
 
 .background-img {
   background-image: url("../img/light_theme/rectangle_all.svg");
@@ -280,7 +433,7 @@ body {
   margin-right: 45px;
 }
 
-.footer_div_ul_li:last-child{
+.footer_div_ul_li:last-child {
   margin-right: 0;
 }
 
@@ -438,7 +591,7 @@ body {
 
 /*stroop-css*/
 .stroop_inline {
-  display:flex;
+  display: flex;
   width: 100%;
   margin: 0 auto 184px;
 }
@@ -447,10 +600,12 @@ body {
   margin: 100px 0 0 0;
   width: 20%;
 }
+
 .stroop_left_container {
   margin: 100px 0 0 0;
   width: 20%;
 }
+
 .stroop_table {
   width: 330px;
   height: 45px;
