@@ -83,7 +83,7 @@
     - Язык Python
     - Фреймворк Django
     - Фреймворк RestAPI
-    - БД SQLite
+    - БД SQLite/PostgreSQL
     - Django ORM
 * Фронтенд:
     - JavaScript
