@@ -30,7 +30,7 @@
       </div>
       <ol class="stroop_l records_list" id="recordsList">
         {% if not user.is_authenticated %}
-          <li class="stroop_r record" id="record">Log In</li>
+          <li class="stroop_r record" id="not_auth_record">Log In</li>
         {% else %}
           {% for record in records %}
             <li class="stroop_r record" id="record">{{ record.record }}</li>
