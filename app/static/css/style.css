@@ -237,6 +237,20 @@ body {
   padding: 0 8px;
 }
 
+.not_auth_alert{
+  height: 50px;
+  margin-top: 10px;
+  text-align: center;
+  vertical-align: center;
+}
+.not_auth_link {
+  display: block;
+  text-align: center;
+  vertical-align: center;
+  font-size: 20px;
+  color: #000000;
+}
+
 /*end of generic games styles*/
 
 .background-img {
