@@ -2,7 +2,7 @@ const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
 const mainDiv = document.getElementById('mainDiv')
 const timerDiv = document.getElementById('timer')
 const startButton = document.getElementById('schulte_start')
-const table_of_records_li = document.getElementById('schulte_table_of_records')
+const tableOfRecords = document.getElementById('schulte_table_of_records_ol')
 
 let pTimer = document.createElement('p')
 
@@ -56,6 +56,19 @@ function reloadGame() {
     time = 0
 }
 
+function addingResultToLeaderboard(result) {
+    let tableOfRecordsLi = tableOfRecords.getElementsByTagName('li')
+    let new_result = document.createElement('li')
+    new_result.innerHTML = result
+    new_result.className = 'schulte_table_of_records_li'
+    tableOfRecords.prepend(new_result)
+
+    if (tableOfRecordsLi.length > 20) {
+        let last = tableOfRecordsLi[tableOfRecordsLi.length - 1]
+        last.parentNode.removeChild(last)
+    }
+}
+
 function sendData() {
     let formData = new FormData()
     formData.append('HTTP_X_REQUESTED_WITH', 'XMLHttpRequest')
@@ -63,26 +76,9 @@ function sendData() {
     formData.append('time', format_time)
     xhr.open("POST", "/games/schulte/")
     xhr.send(formData)
-    xhr.onreadystatechange = function () {
-        if (this.readyState === 4 && this.status === 200) {
-            let table_of_records_ol = document.getElementById('schulte_table_of_records_ol')
-            table_of_records_ol.remove()
-            let new_ol = document.createElement('ol')
-            new_ol.id = 'schulte_table_of_records_ol'
-            new_ol.className = 'schulte_table_of_records_ol'
-            table_of_records_li.insertBefore(new_ol, null)
 
-            const json_records = JSON.parse(this.responseText)
-            for (let i = 0; i < json_records.keys(); i++) {
-                let new_li = document.createElement('li')
-                new_li.className = 'schulte_table_of_records_li'
-                new_li.innerText = json_records[String(i)]
-                new_ol.insertBefore(new_li, null)
-            }
-        }
+    addingResultToLeaderboard(format_time)
 }
-}
-
 
 function correctClick(event) {
     let divId = event.target.id

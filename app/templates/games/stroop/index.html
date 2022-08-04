@@ -30,7 +30,10 @@
       </div>
       <ol class="stroop_l records_list" id="recordsList">
         {% if not user.is_authenticated %}
-          <li class="stroop_r record" id="not_auth_record">Log In</li>
+          <div class="not_auth">
+            <div class="not_auth_alert">You must be authentication to see results</div>
+            <a class="not_auth_link" href="{% url 'users:login' %}">LogIn</a>
+          </div>
         {% else %}
           {% for record in records %}
             <li class="stroop_r record" id="record">{{ record.record }}</li>
