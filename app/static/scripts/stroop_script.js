@@ -49,6 +49,15 @@ function sendData(data) {
 
     xhr.open("POST", "/games/stroop/");
     xhr.send(formData);
+
+    let new_result = document.createElement('li')
+    new_result.innerHTML = data
+    new_result.className = 'stroop_r record'
+    recordsList.prepend(new_result)
+
+    if (recordsList.getElementsByTagName('li').length > 20) {
+        document.getElementById('record').remove()
+    }
 }
 
 function saveResult(total, correct, incorrect) {
@@ -160,7 +169,7 @@ function timerDisplay() {
 function mainMenu() {
     achievementsBlock()
 
-    if (sliderValue === 2) {
+    if (sliderValue === 60) {
         saveResult(totalCounter, correctCounter, incorrectCounter)
     }
 
@@ -182,9 +191,9 @@ function mainMenu() {
     slider.id = 'slider';
     slider.className = 'stroop_slider';
     slider.type = 'range';
-    slider.min = '2';
+    slider.min = '10';
     slider.max = '120';
-    slider.step = '2';
+    slider.step = '10';
     slider.value = '60';
     slider.oninput = timerSetting;
     sliderBlock.appendChild(slider);
