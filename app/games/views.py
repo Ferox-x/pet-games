@@ -31,8 +31,11 @@ class StroopGame(View):
     def get(self, request):
         records = None
         if request.user.is_authenticated:
-            records = list(reversed(StroopModel.objects.values('record').
-                                    filter(user_id=request.user.id)))[:20]
+            records = list(reversed(
+                StroopModel.objects.values('record').filter(
+                    user_id=request.user.id
+                ))
+            )[:20]
         template = 'games/stroop/index.html'
         context = {'records': records}
         return render(request, template, context)
