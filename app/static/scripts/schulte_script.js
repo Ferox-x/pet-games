@@ -73,7 +73,7 @@ function sendData() {
             table_of_records_li.insertBefore(new_ol, null)
 
             const json_records = JSON.parse(this.responseText)
-            for (let i = 0; i < 20; i++) {
+            for (let i = 0; i < json_records.keys(); i++) {
                 let new_li = document.createElement('li')
                 new_li.className = 'schulte_table_of_records_li'
                 new_li.innerText = json_records[String(i)]
