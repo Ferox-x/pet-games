@@ -181,7 +181,7 @@ function timerDisplay() {
 function mainMenu() {
     achievementsBlock()
 
-    if (sliderValue === 60) {
+    if (sliderValue === 2) {
         let result = formatResult(
             totalCounter,
             correctCounter,
@@ -215,9 +215,9 @@ function mainMenu() {
     slider.id = 'slider'
     slider.className = 'stroop_slider'
     slider.type = 'range'
-    slider.min = '10'
+    slider.min = '2'
     slider.max = '120'
-    slider.step = '10'
+    slider.step = '2'
     slider.value = '60'
     slider.oninput = timerSetting
     sliderBlock.appendChild(slider)

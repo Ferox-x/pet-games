@@ -32,7 +32,7 @@ class StroopGame(View):
         records = None
         if request.user.is_authenticated:
             records = list(reversed(
-                StroopModel.objects.values('record').filter(
+                StroopModel.objects.values('result').filter(
                     user_id=request.user.id
                 ))
             )[:20]
@@ -42,8 +42,8 @@ class StroopGame(View):
 
     def post(self, request):
         if request.user.is_authenticated and is_ajax(request):
-            record = request.POST.get('record')
-            StroopModel(record=record, user=request.user).save()
+            result = request.POST.get('record')
+            StroopModel(result=result, user=request.user).save()
             return HttpResponse(HTTPStatus.OK)
 
 
