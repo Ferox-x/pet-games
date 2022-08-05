@@ -6,5 +6,5 @@ urlpatterns = [
     path('schulte/', SchulteGame.as_view(), name='schulte'),
     path('stroop/', StroopGame.as_view(), name='stroop'),
     path('allgames/', AllGames.as_view(), name='allgames'),
-    path('leaderboards/', LeaderboardsView.as_view(), name='leaderboards'),
+    path('leaderboards/<str:game>', LeaderboardsView.as_view(), name='leaderboards'),
 ]
