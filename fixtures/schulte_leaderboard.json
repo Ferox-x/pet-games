@@ -1,0 +1,263 @@
+[
+  {
+    "model": "games.schultemodel",
+    "pk": 4,
+    "fields": {
+      "user": 1,
+      "record": "00:18:82",
+      "date": "2022-08-05T06:06:10.455Z"
+    }
+  },
+  {
+    "model": "games.schultemodel",
+    "pk": 5,
+    "fields": {
+      "user": 1,
+      "record": "00:13:79",
+      "date": "2022-08-05T06:08:13.194Z"
+    }
+  },
+  {
+    "model": "games.schultemodel",
+    "pk": 6,
+    "fields": {
+      "user": 1,
+      "record": "00:12:61",
+      "date": "2022-08-05T06:09:42.020Z"
+    }
+  },
+  {
+    "model": "games.schultemodel",
+    "pk": 7,
+    "fields": {
+      "user": 1,
+      "record": "00:11:37",
+      "date": "2022-08-05T06:29:19.610Z"
+    }
+  },
+  {
+    "model": "games.schultemodel",
+    "pk": 8,
+    "fields": {
+      "user": 1,
+      "record": "00:11:67",
+      "date": "2022-08-05T06:31:37.441Z"
+    }
+  },
+  {
+    "model": "games.schultemodel",
+    "pk": 9,
+    "fields": {
+      "user": 1,
+      "record": "00:13:55",
+      "date": "2022-08-05T06:34:21.649Z"
+    }
+  },
+  {
+    "model": "games.schultemodel",
+    "pk": 10,
+    "fields": {
+      "user": 1,
+      "record": "00:15:18",
+      "date": "2022-08-05T06:41:33.534Z"
+    }
+  },
+  {
+    "model": "games.schultemodel",
+    "pk": 11,
+    "fields": {
+      "user": 1,
+      "record": "00:14:49",
+      "date": "2022-08-05T09:20:08.722Z"
+    }
+  },
+  {
+    "model": "games.schultemodel",
+    "pk": 12,
+    "fields": {
+      "user": 1,
+      "record": "00:13:85",
+      "date": "2022-08-05T09:20:35.733Z"
+    }
+  },
+  {
+    "model": "games.schultemodel",
+    "pk": 13,
+    "fields": {
+      "user": 1,
+      "record": "00:15:27",
+      "date": "2022-08-05T09:21:06.082Z"
+    }
+  },
+  {
+    "model": "games.schultemodel",
+    "pk": 14,
+    "fields": {
+      "user": 1,
+      "record": "00:11:60",
+      "date": "2022-08-05T09:54:36.708Z"
+    }
+  },
+  {
+    "model": "games.schultemodel",
+    "pk": 15,
+    "fields": {
+      "user": 1,
+      "record": "00:18:82",
+      "date": "2022-08-05T06:06:10.455Z"
+    }
+  },
+  {
+    "model": "games.schultemodel",
+    "pk": 16,
+    "fields": {
+      "user": 1,
+      "record": "00:13:79",
+      "date": "2022-08-05T06:08:13.194Z"
+    }
+  },
+  {
+    "model": "games.schultemodel",
+    "pk": 17,
+    "fields": {
+      "user": 1,
+      "record": "00:12:61",
+      "date": "2022-08-05T06:09:42.020Z"
+    }
+  },
+  {
+    "model": "games.schultemodel",
+    "pk": 18,
+    "fields": {
+      "user": 1,
+      "record": "00:11:37",
+      "date": "2022-08-05T06:29:19.610Z"
+    }
+  },
+  {
+    "model": "games.schultemodel",
+    "pk": 19,
+    "fields": {
+      "user": 1,
+      "record": "00:11:67",
+      "date": "2022-08-05T06:31:37.441Z"
+    }
+  },
+  {
+    "model": "games.schultemodel",
+    "pk": 20,
+    "fields": {
+      "user": 1,
+      "record": "00:13:55",
+      "date": "2022-08-05T06:34:21.649Z"
+    }
+  },
+  {
+    "model": "games.schultemodel",
+    "pk": 21,
+    "fields": {
+      "user": 1,
+      "record": "00:15:18",
+      "date": "2022-08-05T06:41:33.534Z"
+    }
+  },
+  {
+    "model": "games.schultemodel",
+    "pk": 22,
+    "fields": {
+      "user": 2,
+      "record": "00:14:49",
+      "date": "2022-08-05T09:20:08.722Z"
+    }
+  },
+  {
+    "model": "games.schultemodel",
+    "pk": 23,
+    "fields": {
+      "user": 1,
+      "record": "00:13:85",
+      "date": "2022-08-05T09:20:35.733Z"
+    }
+  },
+  {
+    "model": "games.schultemodel",
+    "pk": 24,
+    "fields": {
+      "user": 3,
+      "record": "00:15:27",
+      "date": "2022-08-05T09:21:06.082Z"
+    }
+  },
+  {
+    "model": "games.schultemodel",
+    "pk": 25,
+    "fields": {
+      "user": 2,
+      "record": "00:11:60",
+      "date": "2022-08-05T09:54:36.708Z"
+    }
+  },
+  {
+    "model": "games.schultemodel",
+    "pk": 26,
+    "fields": {
+      "user": 2,
+      "record": "00:11:60",
+      "date": "2022-08-05T09:54:36.708Z"
+    }
+  },
+  {
+    "model": "games.schultemodel",
+    "pk": 26,
+    "fields": {
+      "user": 2,
+      "record": "00:11:60",
+      "date": "2022-08-05T09:54:36.708Z"
+    }
+  },
+  {
+    "model": "games.schultemodel",
+    "pk": 27,
+    "fields": {
+      "user": 2,
+      "record": "00:11:60",
+      "date": "2022-08-05T09:54:36.708Z"
+    }
+  },
+  {
+    "model": "games.schultemodel",
+    "pk": 29,
+    "fields": {
+      "user": 2,
+      "record": "00:11:60",
+      "date": "2022-08-05T09:54:36.708Z"
+    }
+  },
+  {
+    "model": "games.schultemodel",
+    "pk": 30,
+    "fields": {
+      "user": 2,
+      "record": "00:11:60",
+      "date": "2022-08-05T09:54:36.708Z"
+    }
+  },
+  {
+    "model": "games.schultemodel",
+    "pk": 31,
+    "fields": {
+      "user": 2,
+      "record": "00:11:60",
+      "date": "2022-08-05T09:54:36.708Z"
+    }
+  },
+  {
+    "model": "games.schultemodel",
+    "pk": 32,
+    "fields": {
+      "user": 2,
+      "record": "00:11:60",
+      "date": "2022-08-05T09:54:36.708Z"
+    }
+  }
+]

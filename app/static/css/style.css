@@ -856,6 +856,7 @@ body {
 
 .games_current {
   font-weight: 700;
+  text-decoration: underline;
 }
 
 .leaderboards_games_ol {
@@ -902,13 +903,11 @@ body {
   display: flex;
   justify-content: left;
   align-items: center;
-  
 }
 
-.leaderboards_games_ol_li_span_nickname {
+.leaderboards_games_ol_li_span_result {
   padding-left: 60px;
   margin-right: 20px;
-  display: flex;
   width: 1010px;
   height: 50px;
   background: #FFFFFF;
@@ -921,10 +920,34 @@ body {
 }
 
 .leaderboards_games_ol_li_span_time {
+  display: inline-block;
   font-style: normal;
   font-weight: 400;
   font-size: 30px;
   line-height: 150%;
+}
+
+.leaderboards_a {
+  display: flex;
+  justify-content: center;
+  vertical-align: middle;
+  align-items: center;
+  text-decoration: none;
+  color: #19294b;
+}
+
+.leaderboards_games_a {
+  text-decoration: none;
+  color: #19294b;
+}
+
+
+.leaderboards_games_ol_li_span_score {
+  display: inline-block;
+}
+
+.leaderboards_games_ol_li_span_nickname {
+  margin-right: 325px;
 }
 
 .leaderboards_paginator {
@@ -957,17 +980,5 @@ body {
   margin-right: 10px;
 }
 
-.leaderboards_a {
-  display: flex;
-  justify-content: center;
-  vertical-align: middle;
-  align-items: center;
-}
 
-.leaderboards_a.text:active,
-.leaderboards_a.text:hover,
-.leaderboards_a.text {
-  text-decoration: none;
-  color: #14213D;
-}
 /* end leaderboards-css */
