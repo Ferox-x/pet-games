@@ -33,7 +33,7 @@ class StroopModel(models.Model):
         on_delete=models.CASCADE,
     )
 
-    result = models.CharField(
+    record = models.CharField(
         max_length=32,
         verbose_name='Результат'
     )
