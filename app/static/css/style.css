@@ -806,5 +806,141 @@ body {
   line-height: 30px;
 }
 
+/* end stroop-css */
 
-/*end stroop-css*/
+/* start leaderboards-css */
+
+.leaderboards {
+  max-width: 1360px;
+  max-height: 1664px;
+  background: #FFFFFF;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  padding-bottom: 60px;
+  margin: 84px auto 60px;
+}
+
+.leaderboards_games_ul {
+  display: flex;
+  justify-content: left;
+  margin-left: 126px;
+  margin-bottom: 40px;
+}
+
+.games_current {
+  font-weight: 700;
+}
+
+.leaderboards_games_ol {
+  margin-left: 75px;
+  counter-reset: myCounter;
+}
+
+.leaderboards_games_ol_li {
+  display: flex;
+  margin-bottom: 5px;
+  list-style: none;
+}
+
+.leaderboards_games_ol_li:before {
+  display: inline-block;
+  width: 53px;
+  height: 38px;
+  counter-increment: myCounter;
+  content: counter(myCounter);
+  font-size: 30px;
+  line-height: 150%;
+  color: #14213D;
+  padding-top: 5px;
+  text-align: center;
+  margin-right: 15px;
+}
+
+.leaderboards_stick {
+  font-size: 20px;
+}
+
+.leaderboards_games_ul_li {
+  display: flex;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 48px;
+  line-height: 72px;
+  align-items: center;
+  color: #14213D;
+  margin-right: 25px;
+}
+
+.leaderboards_games_ol_div {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  
+}
+
+.leaderboards_games_ol_li_span_nickname {
+  padding-left: 60px;
+  margin-right: 20px;
+  display: flex;
+  width: 1010px;
+  height: 50px;
+  background: #FFFFFF;
+  border: 2px solid #14213D;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 48px;
+
+}
+
+.leaderboards_games_ol_li_span_time {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 150%;
+}
+
+.leaderboards_paginator {
+  display: flex;
+  justify-items: center;
+  justify-content: center;
+  margin-bottom: 60px;
+}
+
+.leaderboards_paginator_page {
+  display: flex;
+  width: 50px;
+  height: 50px;
+  background: #FFFFFF;
+  border: 2px solid #14213D;
+  border-radius: 10px;
+  justify-content: center;
+  vertical-align: middle;
+  align-items: center;
+  color: #14213D;
+  margin-right: 10px;
+}
+
+.leaderboards_paginator_prev_next {
+  width: 25px;
+  height: 25px;
+}
+
+.leaderboards_paginator_prev {
+  margin-right: 10px;
+}
+
+.leaderboards_a {
+  display: flex;
+  justify-content: center;
+  vertical-align: middle;
+  align-items: center;
+}
+
+.leaderboards_a.text:active,
+.leaderboards_a.text:hover,
+.leaderboards_a.text {
+  text-decoration: none;
+  color: #14213D;
+}
+/* end leaderboards-css */

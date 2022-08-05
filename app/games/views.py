@@ -13,16 +13,22 @@ class SchulteGame(View):
 
     def get(self, request):
         records = None
+
         if request.user.is_authenticated:
-            records = list(reversed(SchulteModel.objects.values('record').filter(
-                user_id=request.user.id)))[:20]
-        return render(request, 'games/schulte/index.html',
-                      {'records': records})
+            records = list(
+                reversed(SchulteModel.objects.values('record').filter(
+                    user_id=request.user.id)))[:20]
+
+        context = {'records': records}
+
+        return render(request, 'games/schulte/index.html', context)
 
     def post(self, request):
+
         if request.user.is_authenticated and is_ajax(request):
             time = request.POST.get('time')
             SchulteModel(record=time, user=request.user).save()
+
             return HttpResponse(HTTPStatus.OK)
 
 
@@ -30,20 +36,23 @@ class StroopGame(View):
 
     def get(self, request):
         records = None
+
         if request.user.is_authenticated:
             records = list(reversed(
-                StroopModel.objects.values('result').filter(
-                    user_id=request.user.id
-                ))
-            )[:20]
+                StroopModel.objects.values('record').filter(
+                    user_id=request.user.id)))[:20]
+
         template = 'games/stroop/index.html'
         context = {'records': records}
+
         return render(request, template, context)
 
     def post(self, request):
+
         if request.user.is_authenticated and is_ajax(request):
-            result = request.POST.get('record')
-            StroopModel(result=result, user=request.user).save()
+            record = request.POST.get('record')
+            StroopModel(record=record, user=request.user).save()
+
             return HttpResponse(HTTPStatus.OK)
 
 
@@ -55,5 +64,29 @@ class AllGames(View):
 
 class LeaderboardsView(View):
 
-    def get(self, request):
-        return render(request, 'leaderboards/leaderboard.html', {})
+    def get(self, request, game):
+        model = None
+        values = ['record', 'user__username']
+        order_by = 'record'
+
+        if game == 'schulte':
+            model = SchulteModel
+        elif game == 'stroop':
+            model = StroopModel
+            values.append('score')
+            order_by = 'score'
+
+        if model:
+            leaderboards = model.objects.select_related(
+                'user'
+            ).values(
+                *values
+            ).order_by(
+                order_by
+            )
+            context = {'leaderboards': leaderboards}
+
+            return render(request, 'games/leaderboards/leaderboards.html',
+                          context)
+
+        return HttpResponse(status=404)
