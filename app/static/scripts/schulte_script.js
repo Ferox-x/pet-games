@@ -2,7 +2,8 @@ const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
 const mainDiv = document.getElementById('mainDiv')
 const timerDiv = document.getElementById('timer')
 const startButton = document.getElementById('schulte_start')
-const tableOfRecords = document.getElementById('schulte_table_of_records_ol')
+const recordsList = document.getElementById('recordsList')
+const table = document.getElementById('table')
 
 let pTimer = document.createElement('p')
 
@@ -57,14 +58,14 @@ function reloadGame() {
 }
 
 function addingResultToLeaderboard(result) {
-    let tableOfRecordsLi = tableOfRecords.getElementsByTagName('li')
+    let tableOfRecordsLi = recordsList.getElementsByTagName('li')
     let new_result = document.createElement('li')
     new_result.innerHTML = result
-    new_result.className = 'schulte_table_of_records_li'
-    tableOfRecords.prepend(new_result)
+    new_result.className = 'stroop_r record'
+    recordsList.prepend(new_result)
 
     if (tableOfRecordsLi.length > 20) {
-        let last = tableOfRecordsLi[tableOfRecordsLi.length - 1]
+        let last = recordsList[tableOfRecordsLi.length - 1]
         last.parentNode.removeChild(last)
     }
 }
@@ -80,6 +81,18 @@ function sendData() {
     addingResultToLeaderboard(format_time)
 }
 
+function achievementsBlock() {
+    table.onclick = showHide;
+
+    function showHide() {
+        if (recordsList.style.display !== 'block') {
+            recordsList.style.display = 'block'
+        } else {
+            recordsList.style.display = 'none'
+        }
+    }
+}
+
 function correctClick(event) {
     let divId = event.target.id
     let flag = correctQuery(divId)
@@ -89,7 +102,8 @@ function correctClick(event) {
     });
 
     if (flag === true) {
-        selectedDiv.style.backgroundColor = '#14213D'
+        selectedDiv.style.backgroundColor = 'rgb(216, 213, 213)'
+        selectedDiv.style.color = 'rgb(216, 213, 213)'
         selectedDiv.classList.remove('schulte_shake')
     } else {
         selectedDiv.className = 'schulte_main_div__button schulte_shake'
@@ -163,7 +177,7 @@ function startGame() {
 }
 
 function schulteManager() {
-
+    achievementsBlock()
     startButton.onclick = reloadGame
     startButton.style.userSelect = 'none'
     pTimer.className = 'schulte_ptimer'
