@@ -1,4 +1,6 @@
 from http import HTTPStatus
+
+from django.core.paginator import Paginator
 from django.views import View
 from django.shortcuts import render
 from django.http import HttpResponse
@@ -67,14 +69,15 @@ class LeaderboardsView(View):
     def get(self, request, game):
         model = None
         values = ['record', 'user__username']
-        order_by = 'record'
+        order_by = ['user__id']
 
         if game == 'schulte':
             model = SchulteModel
+            order_by.append('record')
         elif game == 'stroop':
             model = StroopModel
             values.append('score')
-            order_by = 'score'
+            order_by.append('score')
 
         if model:
             leaderboards = model.objects.select_related(
@@ -82,9 +85,17 @@ class LeaderboardsView(View):
             ).values(
                 *values
             ).order_by(
-                order_by
+                *order_by
             )
-            context = {'leaderboards': leaderboards}
+
+            paginator = Paginator(leaderboards, 25)
+            page = request.GET.get('page')
+            leaderboards = paginator.get_page(page)
+            pages = paginator.page_range
+
+            context = {'leaderboards': leaderboards,
+                       'pages': pages,
+                       'game': game}
 
             return render(request, 'games/leaderboards/leaderboards.html',
                           context)
