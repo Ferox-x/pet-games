@@ -1,11 +1,11 @@
 from django.db import models
 
-from core.models import CustomerUser
+from users.models import Users
 
 
 class SchulteModel(models.Model):
     user = models.ForeignKey(
-        CustomerUser,
+        Users,
         verbose_name='Пользователь',
         on_delete=models.CASCADE,
     )
@@ -28,7 +28,7 @@ class SchulteModel(models.Model):
 
 class StroopModel(models.Model):
     user = models.ForeignKey(
-        CustomerUser,
+        Users,
         verbose_name='Пользователь',
         on_delete=models.CASCADE,
     )

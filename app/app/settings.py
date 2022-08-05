@@ -128,7 +128,7 @@ STATIC_URL = '/static/'
 
 LOGIN_URL = 'users:login'
 LOGIN_REDIRECT_URL = 'core:main'
-AUTH_USER_MODEL = 'core.CustomerUser'
+AUTH_USER_MODEL = 'users.Users'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
