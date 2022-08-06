@@ -847,6 +847,19 @@ body {
   margin: 84px auto 60px;
 }
 
+.leaderboards_number {
+  display: inline-block;
+  text-align: right;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 35px;
+  line-height: 150%;
+  color: #14213D;
+  margin-right: 30px;
+  width: 100px;
+  letter-spacing: 0.02em;
+}
+
 .leaderboards_games_ul {
   display: flex;
   justify-content: left;
@@ -868,20 +881,6 @@ body {
   display: flex;
   margin-bottom: 5px;
   list-style: none;
-}
-
-.leaderboards_games_ol_li:before {
-  display: inline-block;
-  width: 53px;
-  height: 38px;
-  counter-increment: myCounter;
-  content: counter(myCounter);
-  font-size: 30px;
-  line-height: 150%;
-  color: #14213D;
-  padding-top: 5px;
-  text-align: center;
-  margin-right: 15px;
 }
 
 .leaderboards_stick {
@@ -908,7 +907,7 @@ body {
 .leaderboards_games_ol_li_span_result {
   padding-left: 60px;
   margin-right: 20px;
-  width: 1010px;
+  width: 900px;
   height: 50px;
   background: #FFFFFF;
   border: 2px solid #14213D;
@@ -947,7 +946,8 @@ body {
 }
 
 .leaderboards_games_ol_li_span_nickname {
-  margin-right: 325px;
+  width: 400px;
+  display: inline-block;
 }
 
 .leaderboards_paginator {

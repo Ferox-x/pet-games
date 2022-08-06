@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load leaderboards_tags %}
 {% block content %}
 <div class="leaderboards">
     <div class="leaderboards_games">
@@ -9,9 +10,10 @@
         <li class="leaderboards_games_ul_li {% if game == 'stroop' %}games_current{% endif %}"><a class="leaderboards_games_a" href="{% url 'leaderboards' 'stroop' %}">Stroop</a></li>
       </ul>
     </div>
-    <ol class="leaderboards_games_ol">
+    <ul class="leaderboards_games_ol">
       {% for result in leaderboards %}
         <li class="leaderboards_games_ol_li">
+        <div class="leaderboards_number">{% rating_position forloop.counter page %}</div>
         <div class="leaderboards_games_ol_div">
           <div class="leaderboards_games_ol_div">
             <div class="leaderboards_games_ol_li_span_result">
@@ -21,13 +23,13 @@
               {% endif %}
             </div>
             <div class="leaderboards_games_ol_li_span_time">
-              {{ result.record }}
+              {% format_schulte result.record game %}
             </div>
           </div>
         </div>
       </li>
       {% endfor %}
-    </ol>
+    </ul>
   </div>
   <div class="leaderboards_paginator">
     <a href="/games/leaderboards/{{ game }}/?page={% if leaderboards.has_previous %}{{ leaderboards.previous_page_number }}{% else %}1{% endif %}" class="leaderboards_a"><img class="leaderboards_paginator_prev_next leaderboards_paginator_prev" src="{% static 'img/paginator/ChevronLeft.svg' %}" alt=""></a>
