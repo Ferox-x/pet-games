@@ -69,23 +69,27 @@ class LeaderboardsView(View):
     def get(self, request, game):
         model = None
         values = ['record', 'user__username']
-        order_by = ['user__id']
-
+        order_by = ''
+        distinct = ''
         if game == 'schulte':
             model = SchulteModel
-            order_by.append('record')
+            order_by = 'record'
+            distinct = 'record'
         elif game == 'stroop':
             model = StroopModel
             values.append('score')
-            order_by.append('score')
+            order_by = 'score'
+            distinct = 'score'
 
         if model:
             leaderboards = model.objects.select_related(
                 'user'
             ).values(
                 *values
+            ).distinct(
+                distinct
             ).order_by(
-                *order_by
+                order_by
             )
 
             paginator = Paginator(leaderboards, 25)
