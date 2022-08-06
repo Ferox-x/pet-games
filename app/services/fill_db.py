@@ -1,3 +1,4 @@
+import datetime
 from json import dumps
 from os import path
 from random import randint
@@ -6,7 +7,8 @@ fixtures_dir = path.join(path.abspath(__file__), '../../../')
 
 
 def write_file(file_name, data_list):
-    with open(path.join(fixtures_dir, 'fixtures', file_name), 'w', encoding='utf-8') as file:
+    with open(path.join(fixtures_dir, 'fixtures', file_name), 'w',
+              encoding='utf-8') as file:
         json_list = dumps(data_list)
         file.write(json_list)
 
@@ -16,18 +18,18 @@ schulte_list = list()
 stroop_list = list()
 
 for index in range(1, 101):
-
-    minutes = randint(0, 60)
-    sec = randint(0, 60)
-    milsec = randint(0, 100)
+    correct = randint(10, 100)
+    incorrect = randint(10, 100)
+    all_answers = correct + incorrect
     score = randint(100, 10000)
+    record = randint(1000, 10000)
 
     default_dict_schulte = {
         "model": "games.schultemodel",
         "pk": index,
         "fields": {
             "user": index,
-            "record": f"{minutes}:{sec}:{milsec}",
+            "record": record,
             "date": "2022-08-05T09:54:36.708Z"
         }
     }
@@ -56,10 +58,10 @@ for index in range(1, 101):
         "model": "games.stroopmodel",
         "pk": index,
         "fields": {
-          "user": index,
-          "record": f"{minutes} - {sec} - {milsec}",
-          "score": score,
-          "date": "2022-08-05T05:18:40.794Z"
+            "user": index,
+            "record": f"{correct} - {incorrect} - {all_answers}",
+            "score": score,
+            "date": "2022-08-05T05:18:40.794Z"
         }
     }
 
