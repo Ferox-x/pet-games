@@ -28,7 +28,8 @@ class SchulteGame(View):
     def post(self, request):
 
         if request.user.is_authenticated and is_ajax(request):
-            time = request.POST.get('time')
+            time = request.POST.get('time').split(':')
+            time = time[0] * 60 * 100 + time[1] * 100 + time[0]
             SchulteModel(record=time, user=request.user).save()
 
             return HttpResponse(HTTPStatus.OK)
@@ -68,40 +69,45 @@ class LeaderboardsView(View):
 
     def get(self, request, game):
         model = None
-        values = ['record', 'user__username']
         order_by = ''
         distinct = ''
-        if game == 'schulte':
-            model = SchulteModel
-            order_by = 'record'
-            distinct = 'record'
-        elif game == 'stroop':
-            model = StroopModel
-            values.append('score')
-            order_by = 'score'
-            distinct = 'score'
+        if game:
+            values = ['record', 'user__username']
 
-        if model:
-            leaderboards = model.objects.select_related(
-                'user'
-            ).values(
-                *values
-            ).distinct(
-                distinct
-            ).order_by(
-                order_by
-            )
+            if game == 'schulte':
+                model = SchulteModel
+                order_by = 'record'
+                distinct = 'record'
+            elif game == 'stroop':
+                model = StroopModel
+                values.append('score')
+                order_by = 'score'
+                distinct = 'score'
 
-            paginator = Paginator(leaderboards, 25)
-            page = request.GET.get('page')
-            leaderboards = paginator.get_page(page)
-            pages = paginator.page_range
+            if model:
+                leaderboards = model.objects.select_related(
+                    'user'
+                ).values(
+                    *values
+                ).distinct(
+                    distinct
+                ).order_by(
+                    order_by
+                )
 
-            context = {'leaderboards': leaderboards,
-                       'pages': pages,
-                       'game': game}
+                paginator = Paginator(leaderboards, 25)
+                page = request.GET.get('page') or 1
+                leaderboards = paginator.get_page(page)
+                pages = paginator.page_range
 
-            return render(request, 'games/leaderboards/leaderboards.html',
-                          context)
+                context = {
+                    'leaderboards': leaderboards,
+                    'page': int(page),
+                    'pages': pages,
+                    'game': game
+                }
+
+                return render(request, 'games/leaderboards/leaderboards.html',
+                              context)
 
         return HttpResponse(status=404)
