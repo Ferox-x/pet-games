@@ -242,7 +242,6 @@ option {
 .records_list {
   counter-reset: myCounter;
   display: none;
-  margin-left: 40px;
   background: #FFFFFF;
   border-width: 5px 1px;
   border-top: 0;
@@ -252,12 +251,34 @@ option {
   overflow: auto;
 }
 
+.record_table {
+  width: 330px;
+  height: 45px;
+  background: #FFFFFF;
+  border-width: 5px 1px;
+  border-style: solid;
+  border-color: #D8D5D5;
+}
+
+.record_list_schulte {
+  animation: ani_schulte 0.5s forwards;
+}
+
 @keyframes ani {
   0% {
     height: 0;
   }
   100% {
     height: 420px;
+  }
+}
+
+@keyframes ani_schulte {
+  0% {
+    height: 0;
+  }
+  100% {
+    height: 380px;
   }
 }
 
@@ -510,6 +531,20 @@ body {
   background-image: url("../img/light_theme/rectangle_top.svg");
 }
 
+.schulte_l {
+  width: 330px;
+  height: 380px;
+}
+
+.schulte_table {
+  width: 330px;
+  height: 45px;
+  background: #FFFFFF;
+  border-width: 5px 1px;
+  border-style: solid;
+  border-color: #D8D5D5;
+}
+
 .schulte_container {
   display: flex;
   flex-direction: row;
@@ -525,12 +560,12 @@ body {
   margin-left: 375px;
   width: 600px;
   height: 600px;
-  border: 15px solid #14213D;
+  border: 15px solid rgb(216, 213, 213);
   border-radius: 2%;
   display: inline-grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(5, 1fr);
-  background-color: #14213D;
+  background-color: rgb(216, 213, 213);
 }
 
 .schulte_main_div__button {
@@ -538,7 +573,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 2px solid #14213D;
+  border: 2px solid rgb(216, 213, 213);
   border-collapse: collapse;
   background-color: #fff;
   border-radius: 5%;
@@ -624,8 +659,7 @@ body {
   height: 320px;
   border-width: 5px 0;
   border-style: solid;
-  border-color: #14213D;
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  border-color: rgb(216, 213, 213);
   overflow: auto;
 }
 
@@ -664,13 +698,7 @@ body {
 }
 
 .stroop_table {
-  width: 330px;
-  height: 45px;
-  margin-left: 40px;
-  background: #FFFFFF;
-  border-width: 5px 1px;
-  border-style: solid;
-  border-color: #D8D5D5;
+    margin-left: 40px;
 }
 
 .stroop_table:hover {
@@ -686,11 +714,11 @@ body {
 .stroop_l {
   width: 330px;
   height: 420px;
+  margin-left: 40px;
 }
 
 .stroop_container {
   background-color: #fff;
-  font-family: Poppins;
   position: relative;
   margin: 100px 0 0 0;
   width: 60%;
@@ -727,7 +755,7 @@ body {
   width: 90px;
   height: 90px;
   background: #FFFFFF;
-  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
   border-radius: 50%;
 }
 
@@ -828,7 +856,7 @@ body {
   line-height: 30px;
   letter-spacing: 0.15em;
   text-align: center;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 7px;
   background-color: #fff;
   transition: all ease 0.1s;
@@ -863,6 +891,19 @@ body {
   margin: 84px auto 60px;
 }
 
+.leaderboards_number {
+  display: inline-block;
+  text-align: right;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 35px;
+  line-height: 150%;
+  color: #14213D;
+  margin-right: 30px;
+  width: 100px;
+  letter-spacing: 0.02em;
+}
+
 .leaderboards_games_ul {
   display: flex;
   justify-content: left;
@@ -872,6 +913,7 @@ body {
 
 .games_current {
   font-weight: 700;
+  text-decoration: underline;
 }
 
 .leaderboards_games_ol {
@@ -883,20 +925,6 @@ body {
   display: flex;
   margin-bottom: 5px;
   list-style: none;
-}
-
-.leaderboards_games_ol_li:before {
-  display: inline-block;
-  width: 53px;
-  height: 38px;
-  counter-increment: myCounter;
-  content: counter(myCounter);
-  font-size: 30px;
-  line-height: 150%;
-  color: #14213D;
-  padding-top: 5px;
-  text-align: center;
-  margin-right: 15px;
 }
 
 .leaderboards_stick {
@@ -918,14 +946,12 @@ body {
   display: flex;
   justify-content: left;
   align-items: center;
-
 }
 
-.leaderboards_games_ol_li_span_nickname {
+.leaderboards_games_ol_li_span_result {
   padding-left: 60px;
   margin-right: 20px;
-  display: flex;
-  width: 1010px;
+  width: 900px;
   height: 50px;
   background: #FFFFFF;
   border: 2px solid #14213D;
@@ -937,10 +963,35 @@ body {
 }
 
 .leaderboards_games_ol_li_span_time {
+  display: inline-block;
   font-style: normal;
   font-weight: 400;
   font-size: 30px;
   line-height: 150%;
+}
+
+.leaderboards_a {
+  display: flex;
+  justify-content: center;
+  vertical-align: middle;
+  align-items: center;
+  text-decoration: none;
+  color: #19294b;
+}
+
+.leaderboards_games_a {
+  text-decoration: none;
+  color: #19294b;
+}
+
+
+.leaderboards_games_ol_li_span_score {
+  display: inline-block;
+}
+
+.leaderboards_games_ol_li_span_nickname {
+  width: 400px;
+  display: inline-block;
 }
 
 .leaderboards_paginator {
@@ -973,17 +1024,5 @@ body {
   margin-right: 10px;
 }
 
-.leaderboards_a {
-  display: flex;
-  justify-content: center;
-  vertical-align: middle;
-  align-items: center;
-}
 
-.leaderboards_a.text:active,
-.leaderboards_a.text:hover,
-.leaderboards_a.text {
-  text-decoration: none;
-  color: #14213D;
-}
 /* end leaderboards-css */

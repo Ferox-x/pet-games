@@ -1,225 +1,41 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load leaderboards_tags %}
 {% block content %}
 <div class="leaderboards">
     <div class="leaderboards_games">
       <ul class="leaderboards_games_ul">
-        <li class="leaderboards_games_ul_li games_current">Stroop</li>
+        <li class="leaderboards_games_ul_li {% if game == 'schulte' %}games_current{% endif %}"><a class="leaderboards_games_a" href="{% url 'leaderboards' 'schulte' %}">Schulte</a></li>
         <li class="leaderboards_games_ul_li leaderboards_stick">|</li>
-        <li class="leaderboards_games_ul_li">Schulte</li>
+        <li class="leaderboards_games_ul_li {% if game == 'stroop' %}games_current{% endif %}"><a class="leaderboards_games_a" href="{% url 'leaderboards' 'stroop' %}">Stroop</a></li>
       </ul>
     </div>
-    <ol class="leaderboards_games_ol">
-      <li class="leaderboards_games_ol_li">
+    <ul class="leaderboards_games_ol">
+      {% for result in leaderboards %}
+        <li class="leaderboards_games_ol_li">
+        <div class="leaderboards_number">{% rating_position forloop.counter page %}</div>
         <div class="leaderboards_games_ol_div">
-          <div class="leaderboards_games_ol_li_span_nickname">
-            Nickname
-          </div>
-          <div class="leaderboards_games_ol_li_span_time">
-            00:00:50
+          <div class="leaderboards_games_ol_div">
+            <div class="leaderboards_games_ol_li_span_result">
+              <div class="leaderboards_games_ol_li_span_nickname">{{ result.user__username }}</div>
+              {% if result.score %}
+                <div class="leaderboards_games_ol_li_span_score">{{ result.score }}</div>
+              {% endif %}
+            </div>
+            <div class="leaderboards_games_ol_li_span_time">
+              {% format_schulte result.record game %}
+            </div>
           </div>
         </div>
       </li>
-      <li class="leaderboards_games_ol_li">
-        <div class="leaderboards_games_ol_div">
-          <div class="leaderboards_games_ol_li_span_nickname">
-            Nickname
-          </div>
-          <div class="leaderboards_games_ol_li_span_time">
-            00:00:50
-          </div>
-        </div>
-      </li>
-      <li class="leaderboards_games_ol_li">
-        <div class="leaderboards_games_ol_div">
-          <div class="leaderboards_games_ol_li_span_nickname">
-            Nickname
-          </div>
-          <div class="leaderboards_games_ol_li_span_time">
-            00:00:50
-          </div>
-        </div>
-      </li>
-      <li class="leaderboards_games_ol_li">
-        <div class="leaderboards_games_ol_div">
-          <div class="leaderboards_games_ol_li_span_nickname">
-            Nickname
-          </div>
-          <div class="leaderboards_games_ol_li_span_time">
-            00:00:50
-          </div>
-        </div>
-      </li>
-      <li class="leaderboards_games_ol_li">
-        <div class="leaderboards_games_ol_div">
-          <div class="leaderboards_games_ol_li_span_nickname">
-            Nickname
-          </div>
-          <div class="leaderboards_games_ol_li_span_time">
-            00:00:50
-          </div>
-        </div>
-      </li>
-      <li class="leaderboards_games_ol_li">
-        <div class="leaderboards_games_ol_div">
-          <div class="leaderboards_games_ol_li_span_nickname">
-            Nickname
-          </div>
-          <div class="leaderboards_games_ol_li_span_time">
-            00:00:50
-          </div>
-        </div>
-      </li>
-      <li class="leaderboards_games_ol_li">
-        <div class="leaderboards_games_ol_div">
-          <div class="leaderboards_games_ol_li_span_nickname">
-            Nickname
-          </div>
-          <div class="leaderboards_games_ol_li_span_time">
-            00:00:50
-          </div>
-        </div>
-      </li>
-      <li class="leaderboards_games_ol_li">
-        <div class="leaderboards_games_ol_div">
-          <div class="leaderboards_games_ol_li_span_nickname">
-            Nickname
-          </div>
-          <div class="leaderboards_games_ol_li_span_time">
-            00:00:50
-          </div>
-        </div>
-      </li>
-      <li class="leaderboards_games_ol_li">
-        <div class="leaderboards_games_ol_div">
-          <div class="leaderboards_games_ol_li_span_nickname">
-            Nickname
-          </div>
-          <div class="leaderboards_games_ol_li_span_time">
-            00:00:50
-          </div>
-        </div>
-      </li>
-      <li class="leaderboards_games_ol_li">
-        <div class="leaderboards_games_ol_div">
-          <div class="leaderboards_games_ol_li_span_nickname">
-            Nickname
-          </div>
-          <div class="leaderboards_games_ol_li_span_time">
-            00:00:50
-          </div>
-        </div>
-      </li>
-      <li class="leaderboards_games_ol_li">
-        <div class="leaderboards_games_ol_div">
-          <div class="leaderboards_games_ol_li_span_nickname">
-            Nickname
-          </div>
-          <div class="leaderboards_games_ol_li_span_time">
-            00:00:50
-          </div>
-        </div>
-      </li>
-      <li class="leaderboards_games_ol_li">
-        <div class="leaderboards_games_ol_div">
-          <div class="leaderboards_games_ol_li_span_nickname">
-            Nickname
-          </div>
-          <div class="leaderboards_games_ol_li_span_time">
-            00:00:50
-          </div>
-        </div>
-      </li>
-      <li class="leaderboards_games_ol_li">
-        <div class="leaderboards_games_ol_div">
-          <div class="leaderboards_games_ol_li_span_nickname">
-            Nickname
-          </div>
-          <div class="leaderboards_games_ol_li_span_time">
-            00:00:50
-          </div>
-        </div>
-      </li>
-      <li class="leaderboards_games_ol_li">
-        <div class="leaderboards_games_ol_div">
-          <div class="leaderboards_games_ol_li_span_nickname">
-            Nickname
-          </div>
-          <div class="leaderboards_games_ol_li_span_time">
-            00:00:50
-          </div>
-        </div>
-      </li>
-      <li class="leaderboards_games_ol_li">
-        <div class="leaderboards_games_ol_div">
-          <div class="leaderboards_games_ol_li_span_nickname">
-            Nickname
-          </div>
-          <div class="leaderboards_games_ol_li_span_time">
-            00:00:50
-          </div>
-        </div>
-      </li>
-      <li class="leaderboards_games_ol_li">
-        <div class="leaderboards_games_ol_div">
-          <div class="leaderboards_games_ol_li_span_nickname">
-            Nickname
-          </div>
-          <div class="leaderboards_games_ol_li_span_time">
-            00:00:50
-          </div>
-        </div>
-      </li>
-      <li class="leaderboards_games_ol_li">
-        <div class="leaderboards_games_ol_div">
-          <div class="leaderboards_games_ol_li_span_nickname">
-            Nickname
-          </div>
-          <div class="leaderboards_games_ol_li_span_time">
-            00:00:50
-          </div>
-        </div>
-      </li>
-      <li class="leaderboards_games_ol_li">
-        <div class="leaderboards_games_ol_div">
-          <div class="leaderboards_games_ol_li_span_nickname">
-            Nickname
-          </div>
-          <div class="leaderboards_games_ol_li_span_time">
-            00:00:50
-          </div>
-        </div>
-      </li>
-      <li class="leaderboards_games_ol_li">
-        <div class="leaderboards_games_ol_div">
-          <div class="leaderboards_games_ol_li_span_nickname">
-            Nickname
-          </div>
-          <div class="leaderboards_games_ol_li_span_time">
-            00:00:50
-          </div>
-        </div>
-      </li>
-      <li class="leaderboards_games_ol_li">
-        <div class="leaderboards_games_ol_div">
-          <div class="leaderboards_games_ol_li_span_nickname">
-            Nickname
-          </div>
-          <div class="leaderboards_games_ol_li_span_time">
-            00:00:50
-          </div>
-        </div>
-      </li>
-
-    </ol>
+      {% endfor %}
+    </ul>
   </div>
   <div class="leaderboards_paginator">
-    <a href="#" class="leaderboards_a"><img class="leaderboards_paginator_prev_next leaderboards_paginator_prev" src="{% static 'img/paginator/ChevronLeft.svg' %}" alt=""></a>
-    <a href="#" class="leaderboards_a"><div class="leaderboards_paginator_page">1</div></a>
-    <a href="#" class="leaderboards_a"><div class="leaderboards_paginator_page">2</div></a>
-    <a href="#" class="leaderboards_a"><div class="leaderboards_paginator_page">3</div></a>
-    <a href="#" class="leaderboards_a"><div class="leaderboards_paginator_page">4</div></a>
-    <a href="#" class="leaderboards_a"><div class="leaderboards_paginator_page">5</div></a>
-    <a href="#" class="leaderboards_a"><img class="leaderboards_paginator_prev_next" src="{% static 'img/paginator/ChevronRight.svg' %}" alt=""></a>
+    <a href="/games/leaderboards/{{ game }}/?page={% if leaderboards.has_previous %}{{ leaderboards.previous_page_number }}{% else %}1{% endif %}" class="leaderboards_a"><img class="leaderboards_paginator_prev_next leaderboards_paginator_prev" src="{% static 'img/paginator/ChevronLeft.svg' %}" alt=""></a>
+    {% for page in pages %}
+      <a href="/games/leaderboards/{{ game }}/?page={{ page }}" class="leaderboards_a"><div class="leaderboards_paginator_page">{{ page }}</div></a>
+    {% endfor %}
+    <a href="/games/leaderboards/{{ game }}/?page={% if leaderboards.has_next %}{{ leaderboards.next_page_number }}{% else %}{{ leaderboards.paginator.pages }}{% endif %}" class="leaderboards_a"><img class="leaderboards_paginator_prev_next" src="{% static 'img/paginator/ChevronRight.svg' %}" alt=""></a>
   </div>
 {% endblock %}
