@@ -1,4 +1,3 @@
-import datetime
 from json import dumps
 from os import path
 from random import randint
@@ -38,17 +37,16 @@ for index in range(1, 101):
         "model": "users.users",
         "pk": index,
         "fields": {
-            "password": "pbkdf2_sha256$320000$MWT1VCzCYFgQIA3usacJVk$kyHuGLX64nRSDzDSbGmNcnR7o135xgTJBe/qL9/pzac=",
-            "last_login": "2022-08-05T05:18:30.323Z",
+            "password": "pbkdf2_sha256$320000$S5aJbRBdL3D0VscCbK3afH$6FocU9aBoWxVBydEDTGAiMJ7eBk31h9GOr+w4mQRds0=",
+            "last_login": None,
             "username": f"User{index}",
-            "country": "",
+            "country": "RU",
             "description": None,
-            "email": None,
-            "first_name": None,
-            "last_name": None,
+            "email": f"admin{index}@mail.com",
+            "full_name": "Admin Admin",
             "is_active": True,
-            "is_admin": False,
-            "is_superuser": False,
+            "is_admin": True,
+            "is_superuser": True,
             "groups": [],
             "user_permissions": []
         }

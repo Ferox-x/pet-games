@@ -29,7 +29,7 @@ class SchulteGame(View):
 
         if request.user.is_authenticated and is_ajax(request):
             time = request.POST.get('time').split(':')
-            time = time[0] * 60 * 100 + time[1] * 100 + time[0]
+            time = int(time[0]) * 60 * 100 + int(time[1]) * 100 + int(time[2])
             SchulteModel(record=time, user=request.user).save()
 
             return HttpResponse(HTTPStatus.OK)
