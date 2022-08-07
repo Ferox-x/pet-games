@@ -1,20 +1,23 @@
 from django.shortcuts import render
-from django.views import View
+from django.views.generic.base import TemplateView
 
 
-class MainPage(View):
-
-    def get(self, request):
-        return render(request, 'core/main_page/main_page.html', {})
+class MainPageView(TemplateView):
+    template_name = 'core/main_page/main_page.html'
 
 
-class ContactsView(View):
+def page_not_found(request, exception):
+    template = 'core/error_page/404.html'
+    return render(request, template, {'path': request.path}, status=404)
 
-    def get(self, request):
-        return render(request, 'core/main_page/contacts.html', {})
+
+def server_error(request):
+    return render(request, 'core/error_page/500.html', status=500)
 
 
-class AboutView(View):
+def permission_denied(request, exception):
+    return render(request, 'core/error_page/403.html', status=403)
 
-    def get(self, request):
-        return render(request, 'core/main_page/about.html', {})
+
+def csrf_failure(request, reason=''):
+    return render(request, 'core/error_page/403csrf.html')
