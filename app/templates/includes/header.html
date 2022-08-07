@@ -16,14 +16,18 @@
         <a href="{% url 'leaderboards' 'schulte' %}" class="header_li_a">Leaderboards</a>
       </li>
       <li class="header_li">
-        <a href="#" class="header_li_a">About</a>
+        <a href="{% url 'about:about' %}" class="header_li_a">About</a>
       </li>
       <li class="header_li">
-        <a href="#" class="header_li_a">Contacts</a>
+        <a href="{% url 'about:contact' %}" class="header_li_a">Contacts</a>
       </li>
       <div class="header_div_right">
         <li class="header_li">RU</li>
-        <li class="header_li">Logout</li>
+        {% if request.user.is_authenticated %}
+          <a href="#" class="header_li">{{ user.username }}</a>
+        {% else %}
+          <a class="header_li" href="{% url 'users:login' %}">Login</a>
+        {% endif %}
       </div>
     </ul>
   </nav>

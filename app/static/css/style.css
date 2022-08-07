@@ -38,7 +38,7 @@ h6 {
 html,
 body {
   margin: 0 auto;
-  width: 1903px;
+  width: 100vw;
   line-height: 1;
   font-size: 17px;
   font-family: 'Poppins', sans-serif;
@@ -46,22 +46,35 @@ body {
   font-weight: 400;
   background-color: #fff;
 }
-
 /*auth styles*/
 .auth_container {
-  font-family: 'Poppins';
+  min-height: calc(100vh - 190px);
   font-style: normal;
   font-weight: 400;
-  margin-top: 100px;
   display: flex;
   align-items: center;
   justify-content: center;
   transform: scale(0.7);
 }
+.message {
+  padding-top: 50px;
+  display: block;
+  text-align: center;
+}
+.message_text{
+  padding-top: 35px;
+  font-size: 40px;
+  vertical-align: center;
+}
 
 .log_in_form {
-  width: 560px;
+  width: 550px;
   height: 430px;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
 }
 
 .sigin_form {
@@ -82,6 +95,7 @@ body {
   line-height: 72px;
   color: #14213D;
   margin-right: 190px;
+  width: 550px;
 }
 
 .sign_in_p {
@@ -89,7 +103,7 @@ body {
 }
 
 .top_right_elem {
-  width: 120px;
+  width: 220px;
   height: 45px;
   background: #FFFFFF;
   border: 3px solid #14213D;
@@ -108,12 +122,15 @@ body {
   color: #14213D;
 
 }
-
+select,
+option {
+  width: 100px;
+}
 .input {
-  margin-top: 20px;
+  margin-top: 10px;
   padding-left: 120px;
   height: 80px;
-  width: 434px;
+  width: 550px;
   font-size: 24px;
   line-height: 36px;
   color: rgba(20, 33, 61, 0.7);
@@ -123,33 +140,42 @@ body {
   background-position: 30px;
 }
 
+.third_line {
+  display: flex;
+}
+.four_line {
+  display: flex;
+}
+
 .username_input {
   background-image: url("../img/auth_imgs/Profile.svg");
 }
 
 .username_input_long {
-  width: 689px;
+  width: 809px;
   background-image: url("../img/auth_imgs/Profile.svg");
 }
 
 .first_name_input_long {
-  width: 689px;
+  width: 809px;
   background-image: url("../img/auth_imgs/Your_name.svg");
 }
 
 .email_input_short {
-  width: 265px;
+  width: 389px;
   background-image: url("../img/auth_imgs/Email.svg");
 }
-
+.reset{
+  width: 550px;
+}
 .country_input_short {
-  width: 265px;
+  width: 389px;
   background-image: url("../img/auth_imgs/Country.svg");
 }
 
 .password_input_short {
   margin-right: 28px;
-  width: 265px;
+  width: 389px;
   background-image: url("../img/auth_imgs/Lock.svg");
 }
 
@@ -160,7 +186,7 @@ body {
 .entry {
   margin-top: 20px;
   height: 80px;
-  width: 554px;
+  width: 550px;
   background: #FFFFFF;
   border: 3px solid #14213D;
   border-radius: 10px;
@@ -169,16 +195,20 @@ body {
 .entry_btn {
   user-select: none;
   margin-top: 12px;
-  display: flex;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
   text-decoration: none;
-  justify-content: center;
   font-size: 36px;
   line-height: 54px;
   color: #14213D;
+  background: none;
+  cursor: pointer;
 }
 
 .sign_in {
   width: 809px;
+  cursor: pointer;
 }
 
 .password_reset {
@@ -192,6 +222,19 @@ body {
   color: rgba(20, 33, 61, 0.66);
 }
 
+.field_error {
+  margin-top: 15px;
+  text-decoration: none;
+  font-size: 20px;
+  line-height: 30px;
+  color: rgb(161, 0, 0);
+}
+.field_error_small {
+  margin-top: 3px;
+  text-decoration: none;
+  font-size: 20px;
+  color: rgb(161, 0, 0);
+}
 /*end auth styles*/
 
 
@@ -875,7 +918,7 @@ body {
   display: flex;
   justify-content: left;
   align-items: center;
-  
+
 }
 
 .leaderboards_games_ol_li_span_nickname {

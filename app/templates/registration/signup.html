@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}Create Account{% endblock %}
+{% block content %}
+  {% load user_filters %}
+  <div class="auth_container">
+    <div class="sigin_form">
+      <div class="auth_header">
+        <div class="sign_in_p p">Sign In</div>
+        <div class="top_right_elem">
+          <a href="{% url 'users:login' %}" class="top_right_elem_btn">Login</a>
+        </div>
+      </div>
+      <form method="post" action="{% url 'users:signup' %}">
+        {% csrf_token %}
+        <div class="first_line">
+          {{ form.username | addclass:'username_input_long input' }}
+          <div class="field_error_small">{{ form.username.errors }}</div>
+        </div>
+        <div class="second_line">
+          {{ form.full_name | addclass:'first_name_input_long input' }}
+          <div class="field_error_small">{{ form.full_name.errors }}</div>
+        </div>
+        <div class="third_line">
+          <div class="inner-block">
+            {{ form.password1 | addclass:'password_input_short input' }}
+            <div class="field_error_small">{{ form.password1.errors }}</div>
+          </div>
+          <div class="inner-block">
+            {{ form.email | addclass:'email_input_short input' }}
+            <div class="field_error_small">{{ form.email.errors }}</div>
+          </div>
+        </div>
+        <div class="four_line">
+          <div class="inner-block">
+            {{ form.password2 | addclass:'password_input_short input' }}
+            <div class="field_error_small">{{ form.password2.errors }}</div>
+          </div>
+          <div class="inner-block">
+            {{ form.country | addclass:'country_input_short input' }}
+            <div class="field_error_small">{{ form.country.errors }}</div>
+          </div>
+        </div>
+        <div class="sign_in entry">
+          <input type="submit" value="Sign In" class="sign_in entry_btn">
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock %}
