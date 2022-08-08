@@ -1,6 +1,7 @@
 from http import HTTPStatus
 
 from django.core.paginator import Paginator
+from django.db.models import Subquery
 from django.views import View
 from django.shortcuts import render
 from django.http import HttpResponse
@@ -68,46 +69,72 @@ class AllGames(View):
 class LeaderboardsView(View):
 
     def get(self, request, game):
-        model = None
-        order_by = ''
-        distinct = ''
-        if game:
-            values = ['record', 'user__username']
+        leaderboards = SchulteModel.objects.raw(
+            """ WITH table1 AS (SELECT MIN("games_schulte"."record") as "record", "Users"."username"
+                FROM games_schulte
+                JOIN "Users"
+                ON "games_schulte"."user_id" = "Users"."id"
+                GROUP BY "Users"."username")
+                SELECT 1 as id, record, username FROM table1
+                ORDER BY "record"
+            """
+        )
 
-            if game == 'schulte':
-                model = SchulteModel
-                order_by = 'record'
-                distinct = 'record'
-            elif game == 'stroop':
-                model = StroopModel
-                values.append('score')
-                order_by = 'score'
-                distinct = 'score'
+        paginator = Paginator(leaderboards, 25)
+        page = request.GET.get('page') or 1
+        leaderboards = paginator.get_page(page)
+        pages = paginator.page_range
 
-            if model:
-                leaderboards = model.objects.select_related(
-                    'user'
-                ).values(
-                    *values
-                ).distinct(
-                    distinct
-                ).order_by(
-                    order_by
-                )
+        context = {
+            'leaderboards': leaderboards,
+            'page': int(page),
+            'pages': pages,
+            'game': game
+        }
 
-                paginator = Paginator(leaderboards, 25)
-                page = request.GET.get('page') or 1
-                leaderboards = paginator.get_page(page)
-                pages = paginator.page_range
+        return render(request, 'games/leaderboards/leaderboards.html', context)
 
-                context = {
-                    'leaderboards': leaderboards,
-                    'page': int(page),
-                    'pages': pages,
-                    'game': game
-                }
-
-                return render(request, 'games/leaderboards/leaderboards.html',
-                              context)
-
-        return HttpResponse(status=404)
+    # def get(self, request, game):
+    #     model = None
+    #     order_by = list()
+    #     distinct = ['user__username']
+    #     if game:
+    #         values = ['record', 'user__username']
+    #         if game == 'schulte':
+    #             model = SchulteModel
+    #             order_by.append('record')
+    #             distinct.append('record')
+    #         elif game == 'stroop':
+    #             model = StroopModel
+    #             values.append('score')
+    #             order_by.append('score')
+    #             distinct.append('score')
+    #
+    #
+    #         if model:
+    #             leaderboards = model.objects.select_related(
+    #                 'user'
+    #             ).values(
+    #                 'user__username', 'record'
+    #             ).distinct(
+    #                 'record', 'user__username',
+    #             ).order_by(
+    #                 'record'
+    #             ).all()
+    #
+    #             paginator = Paginator(leaderboards, 25)
+    #             page = request.GET.get('page') or 1
+    #             leaderboards = paginator.get_page(page)
+    #             pages = paginator.page_range
+    #
+    #             context = {
+    #                 'leaderboards': leaderboards,
+    #                 'page': int(page),
+    #                 'pages': pages,
+    #                 'game': game
+    #             }
+    #
+    #             return render(request, 'games/leaderboards/leaderboards.html',
+    #                           context)
+    #
+    #     return HttpResponse(status=404)
