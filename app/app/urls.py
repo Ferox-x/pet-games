@@ -7,6 +7,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('games/', include('games.urls')),
     path('users/', include('users.urls', namespace='users')),
+    path('', include('api.urls')),
     path('', include('about.urls', namespace='about')),
     path('', include('core.urls', namespace='core')),
     path('__debug__/', include('debug_toolbar.urls'))
