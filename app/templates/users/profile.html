@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Profile{% endblock %}
+{% block content %}
+<div class="profile_container">
+  <div class="profile_left">
+    <div class="profile_info">
+      <div class="profile_info_username">Ferox</div>
+      <div class="profile_info_description">
+        I love Pitsa I love Pitsa I love Pitsa I love Pitsa I love Pitsa I love Pitsa I love Pitsa
+      </div>
+      <div class="profile_info_addinfo">
+        <div class="profile_addinfo_string">
+          <div class="profile_addinfo_left">Name:</div>
+          <div class="profile_addinfo_right">Egor Malov</div>
+        </div>
+        <div class="profile_addinfo_string">
+          <div class="profile_addinfo_left">E-mail:</div>
+          <div class="profile_addinfo_right">egor.malov2014@gmail.com</div>
+        </div>
+        <div class="profile_addinfo_string">
+          <div class="profile_addinfo_left">Country</div>
+          <div class="profile_addinfo_right">Russia</div>
+        </div>
+      </div>
+    </div>
+    <div class="profile_edit">
+      <a href="">Edit Profile</a>
+    </div>
+  </div>
+  <img class="profile_avatar_img" src="{% static 'img/SlevaDgHK5phQn-Q.png' %}" alt="avatar">
+</div>
+{% endblock %}

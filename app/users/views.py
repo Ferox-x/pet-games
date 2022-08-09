@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.urls import reverse_lazy
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
+from django.views import View
 from django.views.generic import CreateView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import (
@@ -56,3 +57,9 @@ class CustomPasswordResetView(PasswordResetView):
     success_url = reverse_lazy('users:password_reset_done')
     email_template_name = 'registration/password_reset_email.html'
     from_email = settings.ADMIN_EMAIL
+
+
+class ProfileView(View):
+
+    def get(self, request):
+        return render(request, 'users/profile.html')
