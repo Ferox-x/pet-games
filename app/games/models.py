@@ -37,8 +37,7 @@ class StroopModel(models.Model):
         verbose_name='Результат'
     )
 
-    score = models.CharField(
-        max_length=32,
+    score = models.IntegerField(
         verbose_name='Счет',
     )
 
