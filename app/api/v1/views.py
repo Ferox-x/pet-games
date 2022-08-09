@@ -1,35 +1,41 @@
-from rest_framework import generics
-
+from rest_framework.generics import GenericAPIView
+from rest_framework.mixins import ListModelMixin, RetrieveModelMixin
 
 from api.v1.serializers import SchulteSerializer, StroopSerializer
 from games.models import SchulteModel, StroopModel
 
 
-class SchulteApiView(generics.ListCreateAPIView):
+class SchulteApiView(ListModelMixin, GenericAPIView):
 
     queryset = SchulteModel.objects.raw(
-            """ WITH table1 AS (SELECT MIN("games_schulte"."record") as "record", "Users"."username"
-                FROM "games_schulte"
-                JOIN "Users"
-                ON "games_schulte"."user_id" = "Users"."id"
-                GROUP BY "Users"."username")
-                SELECT 1 as id, record, username FROM table1
-                ORDER BY "record"
+            """
+            WITH table1 AS (SELECT DISTINCT ON (user_id) user_id, games_schulte.id, record, date, username FROM games_schulte
+            INNER JOIN "Users" ON user_id = "Users"."id"
+            ORDER BY user_id, record)
+            SELECT id, record, date, username FROM table1
+            ORDER BY record
+            LIMIT 100
             """
         )
     serializer_class = SchulteSerializer
 
+    def get(self, request):
+        return self.list(request)
 
-class StroopApiView(generics.ListCreateAPIView):
 
+class StroopApiView(ListModelMixin, GenericAPIView):
     queryset = StroopModel.objects.raw(
-            """ WITH table1 AS (SELECT MIN("games_stroop"."score") as "score", "Users"."username", "games_stroop"."record"
-                FROM "games_stroop"
-                JOIN "Users" ON "games_stroop"."user_id" = "Users"."id"
-                GROUP BY "Users"."username", "games_stroop"."record")
-                SELECT 1 as id, score, record, username FROM table1
-                ORDER BY "score" DESC
-            """
-        )
+        """
+        WITH table1 AS (SELECT DISTINCT ON (user_id) user_id, games_stroop.id, score,record, date, username FROM games_stroop
+        INNER JOIN "Users" ON user_id = "Users"."id"
+        ORDER BY user_id, score DESC)
+        SELECT id, score, record, date, username FROM table1
+        ORDER BY score DESC
+        LIMIT 100
+        """
+    )
     serializer_class = StroopSerializer
+
+    def get(self, request):
+        return self.list(request)
 

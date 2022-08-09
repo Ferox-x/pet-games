@@ -1,7 +1,5 @@
 from http import HTTPStatus
-
 from django.core.paginator import Paginator
-from django.db.models import Subquery
 from django.views import View
 from django.shortcuts import render
 from django.http import HttpResponse
@@ -69,72 +67,47 @@ class AllGames(View):
 class LeaderboardsView(View):
 
     def get(self, request, game):
-        leaderboards = SchulteModel.objects.raw(
-            """ WITH table1 AS (SELECT MIN("games_schulte"."record") as "record", "Users"."username"
-                FROM games_schulte
-                JOIN "Users"
-                ON "games_schulte"."user_id" = "Users"."id"
-                GROUP BY "Users"."username")
-                SELECT 1 as id, record, username FROM table1
-                ORDER BY "record"
-            """
-        )
 
-        paginator = Paginator(leaderboards, 25)
-        page = request.GET.get('page') or 1
-        leaderboards = paginator.get_page(page)
-        pages = paginator.page_range
+        leaderboards = False
 
-        context = {
-            'leaderboards': leaderboards,
-            'page': int(page),
-            'pages': pages,
-            'game': game
-        }
+        if game == 'schulte':
 
-        return render(request, 'games/leaderboards/leaderboards.html', context)
+            leaderboards = SchulteModel.objects.raw(
+                """
+                WITH table1 AS (SELECT DISTINCT ON (user_id) user_id, games_schulte.id, record, date, username FROM games_schulte
+                INNER JOIN "Users" ON user_id = "Users"."id"
+                ORDER BY user_id, record)
+                SELECT id, record, date, username FROM table1
+                ORDER BY record
+                LIMIT 100
+                """
+            )
 
-    # def get(self, request, game):
-    #     model = None
-    #     order_by = list()
-    #     distinct = ['user__username']
-    #     if game:
-    #         values = ['record', 'user__username']
-    #         if game == 'schulte':
-    #             model = SchulteModel
-    #             order_by.append('record')
-    #             distinct.append('record')
-    #         elif game == 'stroop':
-    #             model = StroopModel
-    #             values.append('score')
-    #             order_by.append('score')
-    #             distinct.append('score')
-    #
-    #
-    #         if model:
-    #             leaderboards = model.objects.select_related(
-    #                 'user'
-    #             ).values(
-    #                 'user__username', 'record'
-    #             ).distinct(
-    #                 'record', 'user__username',
-    #             ).order_by(
-    #                 'record'
-    #             ).all()
-    #
-    #             paginator = Paginator(leaderboards, 25)
-    #             page = request.GET.get('page') or 1
-    #             leaderboards = paginator.get_page(page)
-    #             pages = paginator.page_range
-    #
-    #             context = {
-    #                 'leaderboards': leaderboards,
-    #                 'page': int(page),
-    #                 'pages': pages,
-    #                 'game': game
-    #             }
-    #
-    #             return render(request, 'games/leaderboards/leaderboards.html',
-    #                           context)
-    #
-    #     return HttpResponse(status=404)
+        elif game == 'stroop':
+            leaderboards = StroopModel.objects.raw(
+                """
+                WITH table1 AS (SELECT DISTINCT ON (user_id) user_id, games_stroop.id, score,record, date, username FROM games_stroop
+                INNER JOIN "Users" ON user_id = "Users"."id"
+                ORDER BY user_id, score DESC)
+                SELECT id, score, record, date, username FROM table1
+                ORDER BY score DESC
+                LIMIT 100
+                """
+            )
+
+        if leaderboards:
+            paginator = Paginator(leaderboards, 25)
+            page = request.GET.get('page') or 1
+            leaderboards = paginator.get_page(page)
+            pages = paginator.page_range
+
+            context = {
+                'leaderboards': leaderboards,
+                'page': int(page),
+                'pages': pages,
+                'game': game
+            }
+
+            return render(request, 'games/leaderboards/leaderboards.html', context)
+
+        return HttpResponse(404)
