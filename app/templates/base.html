@@ -1,4 +1,5 @@
 {% load static %}
+{% load cache %}
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -15,9 +16,11 @@
 </head>
 <body class="background-img">
   <div class="container">
-    <header>{% include 'includes/header.html' %}</header>
+      <header>{% include 'includes/header.html' %}</header>
     {% block content %}
     {% endblock %}
   </div>
-  {% include 'includes/footer.html' %}
+  {% cache 500 games_footer %}
+    {% include 'includes/footer.html' %}
+  {% endcache %}
 </body>
