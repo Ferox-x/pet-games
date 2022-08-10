@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
+{% load static %}
+{% load cache %}
 {% block title %}Pet Games{% endblock %}
-
 {% block content %}
-  {% load static %}
+  {% cache 500 'mainpage' %}
   <section class="main-content">
     <h1 class="main-content-h1 main-content-text">Brain Development
       Games</h1>
@@ -55,4 +56,5 @@
       </li>
     </ul>
   </section>
+  {% endcache %}
 {% endblock %}

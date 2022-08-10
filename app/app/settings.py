@@ -125,3 +125,11 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 10
 }
 
+SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'unique-snowflake',
+    }
+}
