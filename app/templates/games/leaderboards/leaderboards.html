@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load i18n %}
 {% load cache %}
 {% load leaderboards_tags %}
-{% block title %}Leaderboards{% endblock %}
+{% block title %}{% trans 'Leaderboards' %}{% endblock %}
 {% block content %}
 <div class="leaderboards">
     <div class="leaderboards_games">

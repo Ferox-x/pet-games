@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load leaderboards_tags %}
+{% load i18n %}
 {% block title %}Schulte{% endblock %}
 {% load static %}
 {% block content %}
@@ -9,17 +10,17 @@
   <ul class="schulte_right_side">
     <li id="timer" class="schulte_timer schulte_right_li"></li>
     <li class="schulte_start schulte_right_li">
-      <p id="schulte_start" class="schulte_right_li_p_start">START</p>
+      <p id="schulte_start" class="schulte_right_li_p_start">{% trans 'START' %}</p>
     </li>
       <div class="record_table" id="table">
         <p class="stroop_achievements_p" id="achievements">
-        Your achievements
+        {% trans 'Your achievements' %}
         </p>
       </div>
       <ol class="schulte_l records_list record_list_schulte" id="recordsList">
         {% if not user.is_authenticated %}
           <div class="not_auth">
-            <div class="not_auth_alert">You must be authentication to see results</div>
+            <div class="not_auth_alert">{% trans 'You must be authentication to see results' %}</div>
             <a class="not_auth_link" href="{% url 'users:login' %}">LogIn</a>
           </div>
         {% else %}
