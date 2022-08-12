@@ -107,7 +107,6 @@ class LeaderboardsView(View):
                 'pages': pages,
                 'game': game
             }
-
             return render(request, 'games/leaderboards/leaderboards.html', context)
 
         return HttpResponse(404)

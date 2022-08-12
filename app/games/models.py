@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 
 from users.models import Users
 
@@ -6,47 +7,47 @@ from users.models import Users
 class SchulteModel(models.Model):
     user = models.ForeignKey(
         Users,
-        verbose_name='Пользователь',
+        verbose_name=_('User'),
         on_delete=models.CASCADE,
     )
 
     record = models.IntegerField(
-        verbose_name='Время',
+        verbose_name=_('Record Time'),
     )
 
     date = models.DateTimeField(
-        verbose_name='Время',
+        verbose_name=_('Time'),
         auto_now=True,
         editable=False
     )
 
     class Meta:
         db_table = 'games_schulte'
-        verbose_name = 'Schulte'
+        verbose_name = _('Schulte')
 
 
 class StroopModel(models.Model):
     user = models.ForeignKey(
         Users,
-        verbose_name='Пользователь',
+        verbose_name=_('User'),
         on_delete=models.CASCADE,
     )
 
     record = models.CharField(
         max_length=32,
-        verbose_name='Результат'
+        verbose_name=_('Record')
     )
 
     score = models.IntegerField(
-        verbose_name='Счет',
+        verbose_name=_('Score'),
     )
 
     date = models.DateTimeField(
-        verbose_name='Время',
+        verbose_name=_('Time'),
         auto_now=True,
         editable=False
     )
 
     class Meta:
         db_table = 'games_stroop'
-        verbose_name = 'Stroop'
+        verbose_name = _('Stroop')

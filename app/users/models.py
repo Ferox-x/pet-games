@@ -5,6 +5,7 @@ from django.contrib.auth.models import (
     BaseUserManager,
     PermissionsMixin
 )
+from django.utils.translation import gettext_lazy as _
 
 
 class MyUserManager(BaseUserManager):
@@ -43,25 +44,25 @@ class Users(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(
         unique=True,
         max_length=50,
-        verbose_name='Username'
+        verbose_name=_('Username')
     )
     country = CountryField(
-        blank_label='select country',
-        verbose_name='Country'
+        blank_label=_('select country'),
+        verbose_name=_('Country')
     )
     description = models.CharField(
         max_length=256,
-        verbose_name='Description',
+        verbose_name=_('Description'),
         blank=True,
         null=True
     )
     email = models.EmailField(
         unique=True,
-        verbose_name='Email adress'
+        verbose_name=_('Email adress')
     )
     full_name = models.CharField(
         max_length=150,
-        verbose_name='Full name'
+        verbose_name=_('Full name')
     )
 
     is_active = models.BooleanField(default=True)
@@ -80,6 +81,6 @@ class Users(AbstractBaseUser, PermissionsMixin):
         return self.username
 
     class Meta:
-        verbose_name = 'User'
-        verbose_name_plural = 'Users'
+        verbose_name = _('User')
+        verbose_name_plural = _('Users')
         db_table = 'Users'
