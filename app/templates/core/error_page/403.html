@@ -1,7 +1,11 @@
 {% extends "base.html" %}
-{% block title %}Custom 403{% endblock %}
+{% block title %}Error 403{% endblock %}
 {% block content %}
-    <h1>Custom 403</h1>
-    <p>Доступ к странице с адресом {{ path }} запрещен.</p>
-    <a href="{% url 'core:main' %}">Идите на главную</a>
+  <div class="error_container">
+     <div class="error">
+        403
+      </div>
+      <div class="error_message">SORRY, IT’S NOT ALLOWED TO GO BEYOND THIS POINT</div>
+      <a class="button_home" href="{% url 'core:main' %}">Home</a>
+  </div>
 {% endblock %}

@@ -1,6 +1,11 @@
 {% extends "base.html" %}
-{% block title %}Custom CSRF check error{% endblock %}
+{% block title %}Error CSRF check{% endblock %}
 {% block content %}
-  <h1>Custom CSRF check error. 403</h1>
-  <a href="{% url 'core:main' %}">Идите на главную</a>
+  <div class="error_container">
+     <div class="error">
+        403 csrf
+      </div>
+      <div class="error_message">403 csrf: Custom CSRF check error</div>
+      <a class="button_home" href="{% url 'core:main' %}">Home</a>
+  </div>
 {% endblock %}
