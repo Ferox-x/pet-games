@@ -2,9 +2,10 @@
 {% load static %}
 {% load cache %}
 {% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
 {% block title %}Pet Games{% endblock %}
 {% block content %}
-  {% cache 500 'mainpage' %}
+  {% cache 500 'mainpage' LANGUAGE_CODE  %}
   <section class="main-content">
     <h1 class="main-content-h1 main-content-text">Brain Development
       Games</h1>

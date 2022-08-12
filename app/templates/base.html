@@ -1,5 +1,7 @@
 {% load static %}
 {% load cache %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -20,7 +22,7 @@
     {% block content %}
     {% endblock %}
   </div>
-  {% cache 500 games_footer %}
+  {% cache 500 games_footer LANGUAGE_CODE %}
     {% include 'includes/footer.html' %}
   {% endcache %}
 </body>

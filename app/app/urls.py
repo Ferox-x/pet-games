@@ -8,6 +8,7 @@ urlpatterns = [
     path('games/', include('games.urls')),
     path('users/', include('users.urls', namespace='users')),
     path('api/', include('api.urls')),
+    path('i18n', include('django.conf.urls.i18n')),
     path('', include('about.urls', namespace='about')),
     path('', include('core.urls', namespace='core')),
     path('__debug__/', include('debug_toolbar.urls'))
