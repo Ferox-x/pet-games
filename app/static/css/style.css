@@ -1096,3 +1096,39 @@ body {
 }
 
 /* end profile css */
+
+/* custom errors */
+.error_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column;
+  column-count: 1;
+  width: 510px;
+  margin: 250px auto 0;
+}
+
+.error {
+  font-weight: 600;
+  font-size: 128px;
+  margin-bottom: 20px;
+}
+
+.error_message {
+  font-weight: 500;
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.button_home {
+  background: #FFFFFF;
+  border: 1px solid #14213D;
+  border-radius: 10px;
+  width: 300px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* end custom errors */

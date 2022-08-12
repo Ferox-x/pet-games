@@ -1,7 +1,11 @@
 {% extends "base.html" %}
-{% block title %}Custom 500{% endblock %}
+{% block title %}Error 500{% endblock %}
 {% block content %}
-    <h1>Custom 500</h1>
-    <p>Internal server error</p>
-    <a href="{% url 'core:main' %}">Идите на главную</a>
+  <div class="error_container">
+     <div class="error">
+        500
+      </div>
+      <div class="error_message">WE ARE UNABLE TO FIND OUT WHAT’S HAPPENING! WE SUGGEST YOU TO</div>
+      <a class="button_home" href="{% url 'core:main' %}">Home</a>
+  </div>
 {% endblock %}
