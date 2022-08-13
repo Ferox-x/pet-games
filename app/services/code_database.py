@@ -44,7 +44,7 @@ class Leaderboards:
 
 
 class Achievements:
-    def __init__(self, game, user):
+    def __init__(self, game, user=None):
         self.game = game
         self.user = user
 
