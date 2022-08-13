@@ -9,7 +9,9 @@ from django.utils.translation import gettext_lazy as _
 
 
 class MyUserManager(BaseUserManager):
+    """Менеджер отвечающий за регистрацию пользователя."""
     def create_user(self, username, country, password, **kwargs):
+        """Создает обычного пользователя."""
         if not username:
             raise ValueError('Users must have an username')
 
@@ -26,6 +28,7 @@ class MyUserManager(BaseUserManager):
         return user
 
     def create_superuser(self, username, password, **kwargs):
+        """Создает супер юзера."""
         user = self.model(
             username=username,
             password=password,
@@ -41,6 +44,7 @@ class MyUserManager(BaseUserManager):
 
 
 class Users(AbstractBaseUser, PermissionsMixin):
+    """Кастомная модель пользователя."""
     username = models.CharField(
         unique=True,
         max_length=50,
@@ -74,10 +78,11 @@ class Users(AbstractBaseUser, PermissionsMixin):
     REQUIRED_FIELDS = ['country', 'email', 'full_name']
 
     @property
-    def is_staff(self):
+    def is_staff(self) -> bool:
+        """Свойство проверяющее админ ли пользователь."""
         return self.is_admin
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.username
 
     class Meta:

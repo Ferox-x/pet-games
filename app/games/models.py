@@ -5,6 +5,7 @@ from users.models import Users
 
 
 class SchulteModel(models.Model):
+    """Модель обработки результатов пользователя в игре Schulte."""
     user = models.ForeignKey(
         Users,
         verbose_name=_('User'),
@@ -27,6 +28,8 @@ class SchulteModel(models.Model):
 
 
 class StroopModel(models.Model):
+    """Модель обработки результатов пользователя в игре Stroop."""
+
     user = models.ForeignKey(
         Users,
         verbose_name=_('User'),

@@ -3,13 +3,15 @@ from django import template
 register = template.Library()
 
 
-def convert_time(time):
+def convert_time(time: int) -> str:
+    """Переводит время в нужный формат 00."""
     format_time = '0' + str(time) if time < 10 else str(time)
     return format_time
 
 
 @register.simple_tag
-def format_schulte(record, game):
+def format_schulte(record: int, game: str) -> str | int:
+    """Тег отвечающий за перевод времени в нужный формат 00:00:00."""
     if game == 'schulte':
         minute_raw = record // (60 * 100)
         record = record % (60 * 100)
@@ -30,7 +32,8 @@ def format_schulte(record, game):
 
 
 @register.simple_tag
-def rating_position(index, page):
+def rating_position(index: int, page: int) -> int:
+    """Тег отображающий корректно позицию пользователя на страницах рейтинга."""
     position = index + (25 * (page - 1))
     return position
 

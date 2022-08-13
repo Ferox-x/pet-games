@@ -6,6 +6,7 @@ fixtures_dir = path.join(path.abspath(__file__), '../../../')
 
 
 def write_file(file_name, data_list):
+    """Создает файл с фикстурой"""
     with open(path.join(fixtures_dir, 'fixtures', file_name), 'w',
               encoding='utf-8') as file:
         json_list = dumps(data_list)
@@ -17,6 +18,7 @@ schulte_list = list()
 stroop_list = list()
 
 for index in range(1, 101):
+    """Создание фикстур"""
     correct = randint(10, 100)
     incorrect = randint(10, 100)
     all_answers = correct + incorrect
