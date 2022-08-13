@@ -68,6 +68,8 @@ TEMPLATES = [
     },
 ]
 
+FIXTURE_DIRS = [os.path.join(BASE_DIR, 'fixtures')]
+
 WSGI_APPLICATION = 'app.wsgi.application'
 
 DATABASES = {
