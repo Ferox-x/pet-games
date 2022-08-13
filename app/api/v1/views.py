@@ -6,7 +6,7 @@ from services.code_database import Leaderboards
 
 
 class SchulteApiView(ListModelMixin, GenericAPIView):
-
+    """Класс отображения API Schulte."""
     queryset = Leaderboards('schulte').get_leaderboard()
     serializer_class = SchulteSerializer
 
@@ -15,6 +15,7 @@ class SchulteApiView(ListModelMixin, GenericAPIView):
 
 
 class StroopApiView(ListModelMixin, GenericAPIView):
+    """Класс отображения API Stroop."""
     queryset = Leaderboards('stroop').get_leaderboard()
     serializer_class = StroopSerializer
 

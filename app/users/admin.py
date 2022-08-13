@@ -8,6 +8,7 @@ from .models import Users
 
 
 class UserCreationForm(forms.ModelForm):
+    """Форма для создания нового пользователя через панель администратора."""
     password1 = forms.CharField(
         label='Password',
         widget=forms.PasswordInput
@@ -22,6 +23,7 @@ class UserCreationForm(forms.ModelForm):
         fields = ('username',)
 
     def clean_password2(self):
+        """Валидация пароля."""
         password1 = self.cleaned_data.get('password1')
         password2 = self.cleaned_data.get('password2')
         if password1 and password2 and password1 != password2:
@@ -29,6 +31,7 @@ class UserCreationForm(forms.ModelForm):
         return password2
 
     def save(self, commit=True):
+        """Сохранение пользователя."""
         user = super(UserCreationForm, self).save(commit=False)
         user.set_password(self.cleaned_data['password1'])
         if commit:
@@ -37,6 +40,7 @@ class UserCreationForm(forms.ModelForm):
 
 
 class UserChangeForm(forms.ModelForm):
+    """Форма изменения пароля."""
     password = ReadOnlyPasswordHashField()
 
     class Meta:
@@ -48,6 +52,7 @@ class UserChangeForm(forms.ModelForm):
 
 
 class UserAdmin(BaseUserAdmin):
+    """Админ панель пользователя."""
     form = UserChangeForm
     add_form = UserCreationForm
 

@@ -1,5 +1,4 @@
 from http import HTTPStatus
-from django.core.paginator import Paginator
 from django.views import View
 from django.shortcuts import render
 from django.http import HttpResponse
@@ -7,11 +6,12 @@ from services.code_database import Leaderboards, Achievements
 
 
 def is_ajax(request):
+    """Метод проверяющий запрос на ajax."""
     return request.POST.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest'
 
 
 class SchulteGame(View):
-
+    """Представление отображающее SchulteGame."""
     def get(self, request):
         records = None
 
@@ -34,7 +34,7 @@ class SchulteGame(View):
 
 
 class StroopGame(View):
-
+    """Представление отображающее StroopGame."""
     def get(self, request):
         records = None
 
@@ -59,29 +59,26 @@ class StroopGame(View):
 
 
 class AllGames(View):
-
+    """Представление отображающее AllGames."""
     def get(self, request):
         return render(request, 'games/allgames.html', {})
 
 
 class LeaderboardsView(View):
-
+    """Представление отображающее Leaderboard по конкретной игре,
+    у которой есть рейтинговая система."""
     def get(self, request, game):
-        leaderboards = Leaderboards(game).get_leaderboard()
+        page = request.GET.get('page') or 1
+        leaderboard = Leaderboards(game).get_leaderboard_with_paginator()
 
-        if leaderboards:
-            paginator = Paginator(leaderboards, 25)
-            page = request.GET.get('page') or 1
-            leaderboards = paginator.get_page(page)
-            pages = paginator.page_range
-
+        if leaderboard:
             context = {
-                'leaderboards': leaderboards,
+                'leaderboards': leaderboard.get_page(page),
                 'page': int(page),
-                'pages': pages,
+                'pages': leaderboard.page_range,
                 'game': game
             }
             return render(request, 'games/leaderboards/leaderboards.html',
                           context)
 
-        return HttpResponse(404)
+        return render(request, 'core/error_page/404.html')
