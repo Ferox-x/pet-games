@@ -6,21 +6,13 @@ from users.models import Users
 
 class SchulteModel(models.Model):
     """Модель обработки результатов пользователя в игре Schulte."""
-    user = models.ForeignKey(
-        Users,
-        verbose_name=_('User'),
-        on_delete=models.CASCADE,
-    )
+    user = models.ForeignKey(Users, verbose_name=_('User'),
+                             on_delete=models.CASCADE)
 
-    record = models.IntegerField(
-        verbose_name=_('Record Time'),
-    )
+    record = models.IntegerField(verbose_name=_('Record Time'), )
 
-    date = models.DateTimeField(
-        verbose_name=_('Time'),
-        auto_now=True,
-        editable=False
-    )
+    date = models.DateTimeField(verbose_name=_('Time'), auto_now=True,
+                                editable=False)
 
     class Meta:
         db_table = 'games_schulte'
@@ -30,26 +22,15 @@ class SchulteModel(models.Model):
 class StroopModel(models.Model):
     """Модель обработки результатов пользователя в игре Stroop."""
 
-    user = models.ForeignKey(
-        Users,
-        verbose_name=_('User'),
-        on_delete=models.CASCADE,
-    )
+    user = models.ForeignKey(Users, verbose_name=_('User'),
+                             on_delete=models.CASCADE)
 
-    record = models.CharField(
-        max_length=32,
-        verbose_name=_('Record')
-    )
+    record = models.CharField(max_length=32, verbose_name=_('Record'))
 
-    score = models.IntegerField(
-        verbose_name=_('Score'),
-    )
+    score = models.IntegerField(verbose_name=_('Score'))
 
-    date = models.DateTimeField(
-        verbose_name=_('Time'),
-        auto_now=True,
-        editable=False
-    )
+    date = models.DateTimeField(verbose_name=_('Time'), auto_now=True,
+                                editable=False)
 
     class Meta:
         db_table = 'games_stroop'
