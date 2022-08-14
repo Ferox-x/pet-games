@@ -108,7 +108,7 @@ class Achievements:
 
 
 class Support:
-    """Класс Support отвечает за формирование чатов службе поддержки."""
+    """Класс Support отвечает за формирование чатов службы поддержки."""
 
     def __init__(self, user, post):
         self.user = user
@@ -145,7 +145,7 @@ class Support:
             self._add_message_to_ticket()
         else:
             pass
-            # логирование не не правильную POST DATA
+            # логирование на не правильную POST DATA
 
     def _create_ticket_in_db(self) -> None:
         """Создает тикет."""
