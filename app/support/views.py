@@ -2,27 +2,25 @@ from django.shortcuts import render
 from django.views import View
 
 from services.code_database import Support
-
-
-def is_ajax(post):
-    if post.get('ajax'):
-        return True
-    return False
+from services.services import is_ajax
+from support.forms import CreateTicketForm, ChatMessageForm
 
 
 class SupportView(View):
-    """Отображение для службы поддержки"""
+    """Отображение для службы поддержки."""
 
     def get(self, request):
-        chats = Support(request.user, request.POST).get_chats()
+        # chats = Support(request.user, request.POST).get_chats()
+        # ticket_form = CreateTicketForm()
+        # chat_form = ChatMessageForm()
+        # context = {
+        #     'chats': chats,
+        #     'ticket_form': ticket_form,
+        #     'chat_form': chat_form
+        # }
 
-        context = {
-            'chats': chats
-        }
-
-        return render(request, 'support/support.html', context)
+        return render(request, 'support/support.html', {})
 
     def post(self, request):
-        if is_ajax:
+        if request.user.is_authenticated and is_ajax(request):
             Support(request.user, request.POST).create_ticket_or_add_message()
-
