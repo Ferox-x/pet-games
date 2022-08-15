@@ -98,8 +98,8 @@ class Achievements:
 
     def _save_schulte_achievement(self, achievement) -> None:
         """Сохраняет результат в бд games_schulte."""
-        time = achievement.split(':')
-        time = int(time[0]) * 60 * 100 + int(time[1]) * 100 + int(time[2])
+        minute, sec, milsec = map(int, achievement.split(':'))
+        time = minute * 60 * 100 + sec * 100 + milsec
         SchulteModel(record=time, user=self.user).save()
 
     def _save_stroop_achievement(self, achievement) -> None:
