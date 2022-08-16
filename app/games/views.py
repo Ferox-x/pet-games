@@ -3,11 +3,7 @@ from django.views import View
 from django.shortcuts import render
 from django.http import HttpResponse
 from services.code_database import Leaderboards, Achievements
-
-
-def is_ajax(request):
-    """Метод проверяющий запрос на ajax."""
-    return request.POST.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest'
+from services.services import is_ajax
 
 
 class SchulteGame(View):
@@ -30,6 +26,8 @@ class SchulteGame(View):
             achievement = request.POST.get('time')
             Achievements('schulte', request.user).save_achievement(achievement)
 
+            return HttpResponse(HTTPStatus.OK)
+        elif not request.user.is_authenticated:
             return HttpResponse(HTTPStatus.OK)
 
 
@@ -55,6 +53,8 @@ class StroopGame(View):
             achievement = request.POST.get('record')
             Achievements('stroop', request.user).save_achievement(achievement)
 
+            return HttpResponse(HTTPStatus.OK)
+        elif not request.user.is_authenticated:
             return HttpResponse(HTTPStatus.OK)
 
 
