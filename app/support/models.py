@@ -16,10 +16,11 @@ class SupportTicket(models.Model):
     user = models.ForeignKey(Users, verbose_name=_('User'),
                              on_delete=models.CASCADE)
     header = models.CharField(max_length=32, verbose_name=_('Header'))
-    date = models.DateTimeField(auto_created=True, editable=False,
+    date = models.DateTimeField(auto_now_add=True, editable=False,
                                 verbose_name=_('Date'))
     status = models.CharField(verbose_name=_('Status'), choices=TICKET_STATUS,
                               default='OP', max_length=2)
+    first_message = models.TextField(verbose_name='Первое сообщение')
 
     class Meta:
         db_table = 'tickets'
@@ -39,7 +40,7 @@ class Chat(models.Model):
     ticket = models.ForeignKey(SupportTicket, verbose_name=_('Ticket'),
                                on_delete=models.CASCADE)
     message = models.TextField(verbose_name=_('Message'))
-    date = models.DateTimeField(verbose_name=_('Date'), auto_created=True,
+    date = models.DateTimeField(verbose_name=_('Date'), auto_now_add=True,
                                 editable=False)
     user = models.ForeignKey(Users, verbose_name=_('User'),
                              on_delete=models.CASCADE)

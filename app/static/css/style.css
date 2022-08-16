@@ -1040,20 +1040,24 @@ body {
 /* support css */
 .support_container {
   display: flex;
-  width: 1050px;
-  height: 800px;
+  width: 1100px;
+  height: auto;
   margin: 0 auto;
+  flex-wrap: wrap;
 }
 
 .support_tickets {
-  width: 296px;
+  width: 350px;
   height: 796px;
   padding: 2px;
   background-color: #14213D;
+  overflow: auto;
 }
 
 .support_ticket_status {
   margin-bottom: 2px;
+  overflow: auto;
+  max-height: 500px;
 }
 
 .support_status {
@@ -1103,13 +1107,13 @@ body {
   font-size: 10px;
   font-weight: 500;
   height: 100%;
-  width: auto;
+  width: 85px;
   text-align: right;
   padding: 3px;
 }
 
 .support_message_info {
-  width: 162px;
+  width: 142px;
   height: 100%;
 }
 
@@ -1129,7 +1133,6 @@ body {
   width: 100%;
   height: 100%;
   position: relative;
-  display: none;
 }
 
 .support_label {
@@ -1145,6 +1148,7 @@ body {
   width: 200px;
   height: 40px;
   margin-bottom: 15px;
+  padding-left: 10px;
 }
 
 .support_input_long {
@@ -1167,6 +1171,7 @@ body {
   width: 100%;
   height: 100%;
   padding: 15px;
+  display: none;
 }
 
 .support_chat_message {
@@ -1210,16 +1215,27 @@ body {
   overflow: auto;
 }
 
-.support_history_messages::-webkit-scrollbar {
+.support_staff_history_messages{
+  height: 600px;
+}
+
+.support_history_messages::-webkit-scrollbar,
+.support_tickets::-webkit-scrollbar,
+.support_ticket_status::-webkit-scrollbar{
   width: 12px;
 }
 
-.support_history_messages::-webkit-scrollbar-track {
+.support_history_messages::-webkit-scrollbar-track,
+.support_tickets::-webkit-scrollbar-track,
+.support_ticket_status::-webkit-scrollbar-track{
   background: #FFFFFF;
 }
 
-.support_history_messages::-webkit-scrollbar-thumb {
+.support_history_messages::-webkit-scrollbar-thumb,
+.support_tickets::-webkit-scrollbar-thumb,
+.support_ticket_status::-webkit-scrollbar-thumb{
   background-color: #14213D;
+
   border-radius: 20px;
   border: 3px solid #FFFFFF;
 }
@@ -1234,4 +1250,29 @@ body {
   padding-top: 10px;
   resize: none;
 }
+
+.support_button {
+  margin-top: 20px;
+}
+
+.close_ticket_button {
+  margin-left: 70px;
+}
+
+.ticket_closed {
+  justify-content: center;
+  align-items: center;
+  height: 150px;
+  font-size: 30px;
+  display: none;
+}
+
+.ticket_closed_message {
+  padding: 35px;
+  border: 2px solid #14213D;
+  border-radius: 15px;
+  /*box-shadow: 4px 4px rgba(0, 0, 0, 0.25);*/
+  box-shadow:  0 12px 8px rgba(0, 0, 0, 0.25);
+}
+
 /* end support css */

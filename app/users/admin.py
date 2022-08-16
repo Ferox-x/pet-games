@@ -63,7 +63,7 @@ class UserAdmin(BaseUserAdmin):
             'fields': (
                 'username', 'email', 'country', 'password',
                 'full_name', 'description',
-                'is_admin', 'is_superuser', 'is_active'
+                'is_admin', 'is_superuser', 'is_active', 'is_support'
             )
         }),
     )
@@ -74,7 +74,7 @@ class UserAdmin(BaseUserAdmin):
             'fields': (
                 'username', 'email', 'country', 'password1',
                 'password2', 'full_name', 'description',
-                'is_admin', 'is_superuser', 'is_active'
+                'is_admin', 'is_superuser', 'is_active', 'is_support'
             )}
          ),
     )

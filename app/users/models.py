@@ -38,6 +38,7 @@ class MyUserManager(BaseUserManager):
         user.is_superuser = True
         user.is_admin = True
         user.is_active = True
+        user.is_support = True
         user.set_password(password)
         user.save(using=self._db)
         return user
@@ -72,6 +73,7 @@ class Users(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
+    is_support = models.BooleanField(default=False)
 
     objects = MyUserManager()
     USERNAME_FIELD = 'username'
@@ -81,6 +83,11 @@ class Users(AbstractBaseUser, PermissionsMixin):
     def is_staff(self) -> bool:
         """Свойство проверяющее админ ли пользователь."""
         return self.is_admin
+
+    @property
+    def is_support_staff(self) -> bool:
+        """Свойство проверяющее админ ли пользователь."""
+        return self.is_support
 
     def __str__(self) -> str:
         return self.username
