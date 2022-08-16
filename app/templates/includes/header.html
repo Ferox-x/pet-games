@@ -4,45 +4,44 @@
   <nav>
     <ul class="header-ul">
       <a href="{% url 'core:main' %}">
-        <img class="header_li header_img"
-           src="{% static '/img/fav/header-logo.svg' %}" alt="">
+        <img class="header_li header_img btn_animation"
+             src="{% static '/img/fav/header-logo.svg' %}" alt="">
       </a>
-      <li class="header_li">
+      <li class="header_li btn_animation">
         <a href="{% url 'core:main' %}" class="header_li_a">{% trans 'Home' %}</a>
       </li>
-      <li class="header_li">
+      <li class="header_li btn_animation">
         <a href="#" class="header_li_a">{% trans 'All games' %}</a>
       </li>
-      <li class="header_li">
+      <li class="header_li btn_animation">
         <a href="{% url 'leaderboards' 'schulte' %}" class="header_li_a">{% trans 'Leaderboards' %}</a>
       </li>
-      <li class="header_li">
+      <li class="header_li btn_animation">
         <a href="{% url 'about:about' %}" class="header_li_a">{% trans 'About' %}</a>
       </li>
-      <li class="header_li">
+      <li class="header_li btn_animation">
         <a href="{% url 'about:contact' %}" class="header_li_a">{% trans 'Contacts' %}</a>
       </li>
       <div class="header_div_right">
         <li class="header_li">
           <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
             <input name="next" type="hidden" value="{{ redirect_to }}">
-            <select name="language">
-                {% get_current_language as LANGUAGE_CODE %}
-                {% get_available_languages as LANGUAGES %}
-                {% get_language_info_list for LANGUAGES as languages %}
-                {% for language in languages %}
-                    <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
-                       {{ language.code }}
-                    </option>
-                {% endfor %}
+            <select name="language" onchange="this.form.submit();" class="language_select btn_animation">
+              {% get_current_language as LANGUAGE_CODE %}
+              {% get_available_languages as LANGUAGES %}
+              {% get_language_info_list for LANGUAGES as languages %}
+              {% for language in languages %}
+                <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+                  {{ language.name }}
+                </option>
+              {% endfor %}
             </select>
-            <input type="submit" value="Go">
-        </form>
+          </form>
         </li>
         {% if request.user.is_authenticated %}
-          <a href="#" class="header_li">{{ user.username }}</a>
+          <a href="{% url 'users:profile' %}" class="header_li btn_animation">{{ user.username }}</a>
         {% else %}
-          <a class="header_li" href="{% url 'users:login' %}">{% trans 'Login' %}</a>
+          <a class="header_li btn_animation" href="{% url 'users:login' %}">{% trans 'Login' %}</a>
         {% endif %}
       </div>
     </ul>

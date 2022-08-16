@@ -1,33 +1,63 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %}Profile{% endblock %}
+{% load user_filters %}
 {% block content %}
-<div class="profile_container">
-  <div class="profile_left">
-    <div class="profile_info">
-      <div class="profile_info_username">Ferox</div>
-      <div class="profile_info_description">
-        I love Pitsa I love Pitsa I love Pitsa I love Pitsa I love Pitsa I love Pitsa I love Pitsa
+  <div class="profile_container">
+    <form id="textForm" method="post" enctype="multipart/form-data" action="">
+      {% csrf_token %}
+      <input type="text" name="data" hidden>
+      <div class="profile_left">
+        <div class="profile_info">
+          <div class="profile_info_username displ">{{ user.username }}</div>
+          {{ form.username }}
+          <div class="field_error_small">{{ form.username.errors }}</div>
+          <div class="profile_info_description displ">{{ user.description }}</div>
+          {{ form.description }}
+          <div class="field_error_small">{{ form.description.errors }}</div>
+          <div class="profile_info_addinfo">
+            <div class="profile_addinfo_string">
+              <div class="profile_addinfo_left">Name:</div>
+              <div class="profile_addinfo_right displ">{{ user.full_name }}</div>
+              {{ form.full_name }}
+              <div class="field_error_small">{{ form.full_name.errors }}</div>
+            </div>
+            <div class="profile_addinfo_string">
+              <div class="profile_addinfo_left">E-mail:</div>
+              <div class="profile_addinfo_right displ">{{ user.email }}</div>
+              {{ form.email }}
+              <div class="field_error_small">{{ form.email.errors }}</div>
+            </div>
+            <div class="profile_addinfo_string">
+              <div class="profile_addinfo_left">Country</div>
+              <div class="profile_addinfo_right displ">{{ user.country.name }}</div>
+              {{ form.country }}
+              <div class="field_error_small">{{ form.country.errors }}</div>
+            </div>
+          </div>
+        </div>
+        <div class="flex">
+          <div class="profile_edit btn_animation" id="editOrSave">Edit Profile</div>
+          <div class="profile_edit btn_animation">
+            <a href="{% url 'users:logout' %}">Logout</a>
+          </div>
+        </div>
       </div>
-      <div class="profile_info_addinfo">
-        <div class="profile_addinfo_string">
-          <div class="profile_addinfo_left">Name:</div>
-          <div class="profile_addinfo_right">Egor Malov</div>
-        </div>
-        <div class="profile_addinfo_string">
-          <div class="profile_addinfo_left">E-mail:</div>
-          <div class="profile_addinfo_right">egor.malov2014@gmail.com</div>
-        </div>
-        <div class="profile_addinfo_string">
-          <div class="profile_addinfo_left">Country</div>
-          <div class="profile_addinfo_right">Russia</div>
-        </div>
+    </form>
+    <form method="post" id="imageForm" enctype="multipart/form-data">
+      <div class="profile_bg btn_animation">
+        {% csrf_token %}
+        {% if user.image %}
+          <label for="fileInput" class="overlay"></label>
+          <img class="profile_avatar_img" src="{{ user.image.url }}" alt="avatar">
+          {{ image }}
+        {% else %}
+          <label for="fileInput" class="overlay"></label>
+          <img class="profile_avatar_img" src="{% static 'img/profile/default.png' %}" alt="avatar">
+          {{ image }}
+        {% endif %}
       </div>
-    </div>
-    <div class="profile_edit">
-      <a href="">Edit Profile</a>
-    </div>
+    </form>
   </div>
-  <img class="profile_avatar_img" src="{% static 'img/SlevaDgHK5phQn-Q.png' %}" alt="avatar">
-</div>
+  <script src="{% static 'scripts/profile.js' %}"></script>
 {% endblock %}

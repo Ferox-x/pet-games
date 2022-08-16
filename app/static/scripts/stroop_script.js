@@ -232,7 +232,7 @@ function mainMenu() {
 
     let startGame = document.createElement('a')
     startGame.id = 'startGame'
-    startGame.className = 'stroop_start_game'
+    startGame.className = 'stroop_start_game btn_animation'
     startGame.innerHTML = 'START'
     startGame.style.userSelect = 'none'
     startBlock.appendChild(startGame)

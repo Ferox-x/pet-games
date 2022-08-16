@@ -10,6 +10,7 @@ from django.utils.translation import gettext_lazy as _
 
 class MyUserManager(BaseUserManager):
     """Менеджер отвечающий за регистрацию пользователя."""
+
     def create_user(self, username, country, password, **kwargs):
         """Создает обычного пользователя."""
         if not username:
@@ -69,6 +70,8 @@ class Users(AbstractBaseUser, PermissionsMixin):
         verbose_name=_('Full name')
     )
 
+    image = models.ImageField(upload_to='user_images')
+
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
@@ -88,4 +91,4 @@ class Users(AbstractBaseUser, PermissionsMixin):
     class Meta:
         verbose_name = _('User')
         verbose_name_plural = _('Users')
-        db_table = 'Users'
+        db_table = 'users'
