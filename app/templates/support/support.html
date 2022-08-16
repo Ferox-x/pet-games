@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load l10n %}
+{% load static %}
+{% block title %}
+  {% trans 'Support' %}
+{% endblock %}
+{% block content %}
+<div class="support_container">
+  <div class="support_tickets">
+    <div class="support_status">Open</div>
+    <div class="support_ticket_status">
+      {% for ticket in tickets.op %}
+        {% csrf_token %}
+        <div id="{{ ticket.id }}" onclick="getIdOnClick({{ ticket.id }}, 'OP')" class="support_message_chat">
+          <img src="#" alt="" class="support_avatar_ticket">
+          <div class="support_message_info">
+            <div class="support_title">{{ ticket.header }}</div>
+            <div class="support_short_message">{{ ticket.first_message }}</div>
+          </div>
+          <div class="support_date">{{ ticket.date }}</div>
+        </div>
+      {% endfor %}
+    </div>
+    <div class="support_status">In Progress</div>
+    <div class="support_ticket_status">
+      {% for ticket in tickets.ip %}
+        {% csrf_token %}
+        <div id="{{ ticket.id }}" onclick="getIdOnClick({{ ticket.id }}, 'IP')" class="support_message_chat">
+          <img src="#" alt="" class="support_avatar_ticket">
+          <div class="support_message_info">
+            <div class="support_title">{{ ticket.header }}</div>
+            <div class="support_short_message">{{ ticket.first_message }}</div>
+          </div>
+          <div class="support_date">{{ ticket.date }}</div>
+        </div>
+      {% endfor %}
+    </div>
+    <div class="support_status">Closed</div>
+    <div class="support_ticket_status">
+       {% for ticket in tickets.cl %}
+        {% csrf_token %}
+        <div id="{{ ticket.id }}" onclick="getIdOnClick({{ ticket.id }}, 'CL')" class="support_message_chat">
+          <img src="#" alt="" class="support_avatar_ticket">
+          <div class="support_message_info">
+            <div class="support_title">{{ ticket.header }}</div>
+            <div class="support_short_message">{{ ticket.first_message }}</div>
+          </div>
+          <div class="support_date">{{ ticket.date }}</div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="support_right_aria">
+    <div id="support_new_ticket" class="support_new_ticket">
+      <form method="post">
+        {% csrf_token %}
+        <div class="support_create_ticket">
+          <input type="hidden" name="create_ticket" value="True">
+          <label class="support_label" for="header">Title</label>
+          <input required class="support_input" name="header" id="header" type="text">
+          <label class="support_label" for="chat_message">Message</label>
+          <textarea required name="chat_message" class="support_input support_input_long" id="chat_message" cols="30" rows="10"></textarea>
+        </div>
+        <button type="submit" class="play_game_button support_send_data">
+          Send
+        </button>
+      </form>
+    </div>
+    <div id="support_chat" class="support_chat">
+      <div id="support_history_messages" class="support_history_messages support_staff_history_messages">
+        {% for message in chat %}
+          <div class="support_chat_message">
+            <img src="#" alt="" class="support_avatar_ticket">
+            <div class="support_chat_message_info">
+              <div class="support_chat_username_and_date">
+                <div class="support_chat_username">{{ message.user__username }}</div>
+                <div class="support_chat_message_date">{{ message.date }}</div>
+              </div>
+              <div class="support_chat_message_text">{{ message.message }}</div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+      <div id="input_message_chat" class="support_input_message">
+        <form id="formMessage" method="post">
+          {% csrf_token %}
+          <input type="hidden" name="add_message_to_chat" value="True">
+          <textarea id="textarea_message" name="chat_message" class="support_chat_textarea" placeholder="Write message" aria-multiline="true" type="text"></textarea>
+          <div id="senddata" class="play_game_button">Send</div>
+        </form>
+      </div>
+      <div id="ticket_closed_message" class="support_input_message ticket_closed">
+        <div class="ticket_closed_message">
+          Ticket Closed
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="support_button" class="btn_animation play_game_button support_button">Chats</div>
+<script src="{% static 'scripts/support_script.js' %}"></script>
+</div>
+{% endblock %}
