@@ -1,7 +1,7 @@
+from django.views import View
 from django.conf import settings
 from django.urls import reverse_lazy
 from django.shortcuts import redirect, render
-from django.views import View
 from django.views.generic import CreateView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import (
@@ -18,8 +18,10 @@ from .forms import (
     UserLoginForm,
     UserSignupForm,
     UserPasswordChangeForm,
+    ProfileDataForm,
+    ProfileImageForm
 )
-
+from services.user_services import Profile
 
 @login_required()
 def logout(request):
@@ -65,6 +67,35 @@ class CustomPasswordResetView(PasswordResetView):
 
 
 class ProfileView(View):
-    """Представление отображающее профиль пользователя."""
     def get(self, request):
-        return render(request, 'users/profile.html')
+        data_form = ProfileDataForm(instance=request.user)
+        image_form = ProfileImageForm()
+
+        context = {
+            'form': data_form,
+            'image': image_form
+        }
+        return render(request, 'users/profile.html', context)
+
+    def post(self, request):
+        data = ProfileDataForm(
+            request.POST,
+            instance=request.user
+        )
+        image = ProfileImageForm()
+
+        if 'data' in request.POST:
+            if data.is_valid():
+                data.save()
+
+            context = {
+                'form': data,
+                'image': image
+            }
+            return render(request, 'users/profile.html', context)
+
+        if 'image' in request.FILES:
+            post_image = request.FILES.get('image')
+            Profile.post_update_or_create_image(post_image, request)
+
+            return redirect('users:profile')

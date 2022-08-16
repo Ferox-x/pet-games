@@ -97,6 +97,7 @@ function correctClick(event) {
     let divId = event.target.id
     let flag = correctQuery(divId)
     let selectedDiv = document.getElementById(divId)
+
     selectedDiv.addEventListener('animationend', function () {
         selectedDiv.classList.remove('schulte_shake')
     });

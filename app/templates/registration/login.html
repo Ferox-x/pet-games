@@ -7,7 +7,7 @@
     <div class="log_in_form">
       <div class="auth_header">
         <div class="login_now_p p">{% trans 'Login Now' %}</div>
-        <div class="top_right_elem">
+        <div class="top_right_elem btn_animation">
           <a href="{% url 'users:signup' %}" class="top_right_elem_btn">
             {% trans 'Register' %}
           </a>
@@ -15,15 +15,21 @@
       </div>
       <form method="post" action="{% url 'users:login' %}">
         {% csrf_token %}
-        {{ form.username | addclass:'username_input input' }}
-        {{ form.password | addclass:'password_input input'}}
+        <div class="input_border flex">
+          <div class="left_icon username"></div>
+          {{ form.username | addclass:'input' }}
+        </div>
+        <div class="input_border flex">
+          <div class="left_icon password"></div>
+          {{ form.password | addclass:'input' }}
+        </div>
         {% if form.errors %}
           {% for error in form.non_field_errors %}
             <div class="field_error">{{ error|escape }}
             </div>
           {% endfor %}
         {% endif %}
-        <div class="log_in entry">
+        <div class="log_in entry btn_animation">
           <input type="submit" value="{% trans 'Login Now' %}" class="log_in entry_btn">
         </div>
       </form>

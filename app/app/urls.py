@@ -5,9 +5,9 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/', include('api.urls')),
     path('games/', include('games.urls')),
     path('users/', include('users.urls', namespace='users')),
-    path('api/', include('api.urls')),
     path('support/', include('support.urls')),
     path('i18n', include('django.conf.urls.i18n')),
     path('', include('about.urls', namespace='about')),
