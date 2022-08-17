@@ -48,5 +48,7 @@ urlpatterns = [
          name='password_reset_complete'
          ),
     path('profile/', login_required(views.ProfileView.as_view()),
-         name='profile')
+         name='profile'),
+    path('<str:slug>/', views.ProfileDetailView.as_view(),
+         name='profile_detail')
 ]

@@ -25,7 +25,7 @@ sendData1.addEventListener('click', () => {
         xhr.onreadystatechange = function () {
             if (this.readyState === 4 && this.status === 200) {
                 const jsonMessage = JSON.parse(this.responseText)
-                addMessageToChat(jsonMessage.username, jsonMessage.date, jsonMessage.message)
+                addMessageToChat(jsonMessage.username, jsonMessage.date, jsonMessage.message, jsonMessage.image)
                 supportHistoryMessages.scrollTop = supportHistoryMessages.scrollHeight - supportHistoryMessages.clientHeight;
             }
         }
@@ -56,7 +56,7 @@ function getIdOnClick(ticketId, status) {
             currentTicketStatus = status
             addHeaderToChat(jsonMessage.ticket.header, jsonMessage.ticket.date, jsonMessage.ticket.first_message)
             for (let index = 0, len = jsonMessage.len; index < len; ++index) {
-                addMessageToChat(jsonMessage[index].user__username, jsonMessage[index].date, jsonMessage[index].message);
+                addMessageToChat(jsonMessage[index].user__username, jsonMessage[index].date, jsonMessage[index].message, jsonMessage[index].user__image);
             }
             supportHistoryMessages.scrollTop = supportHistoryMessages.scrollHeight - supportHistoryMessages.clientHeight;
         }
@@ -85,7 +85,6 @@ function displayMessageInput() {
 }
 
 function changeStatus(status) {
-    console.log('123')
     let xhr = new XMLHttpRequest()
     let formDataNew = new FormData()
     formDataNew.append('csrfmiddlewaretoken', csrftoken);
@@ -96,9 +95,9 @@ function changeStatus(status) {
     xhr.send(formDataNew)
 }
 
-function addMessageToChat(username, date, message) {
+function addMessageToChat(username, date, message, image) {
     let htmlCodeMessage = '<div class="support_chat_message">\n' +
-        '            <img src="#" alt="" class="support_avatar_ticket">\n' +
+        '            <img src="/media/' + image + '" alt="" class="support_avatar_ticket">\n' +
         '            <div class="support_chat_message_info">\n' +
         '              <div class="support_chat_username_and_date">\n' +
         '                <div class="support_chat_username">' + username + '</div>\n' +

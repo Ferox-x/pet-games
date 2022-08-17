@@ -13,7 +13,7 @@
       {% for ticket in tickets.op %}
         {% csrf_token %}
         <div id="{{ ticket.id }}" onclick="getIdOnClick({{ ticket.id }}, 'OP')" class="support_message_chat">
-          <img src="#" alt="" class="support_avatar_ticket">
+          <img src="{{ user.image.url }}" alt="" class="support_avatar_ticket">
           <div class="support_message_info">
             <div class="support_title">{{ ticket.header }}</div>
             <div class="support_short_message">{{ ticket.first_message }}</div>
@@ -27,7 +27,7 @@
       {% for ticket in tickets.ip %}
         {% csrf_token %}
         <div id="{{ ticket.id }}" onclick="getIdOnClick({{ ticket.id }}, 'IP')" class="support_message_chat">
-          <img src="#" alt="" class="support_avatar_ticket">
+          <img src="{{ user.image.url }}" alt="" class="support_avatar_ticket">
           <div class="support_message_info">
             <div class="support_title">{{ ticket.header }}</div>
             <div class="support_short_message">{{ ticket.first_message }}</div>
@@ -41,7 +41,7 @@
        {% for ticket in tickets.cl %}
         {% csrf_token %}
         <div id="{{ ticket.id }}" onclick="getIdOnClick({{ ticket.id }}, 'CL')" class="support_message_chat">
-          <img src="#" alt="" class="support_avatar_ticket">
+          <img src="{{ user.image.url }}" alt="" class="support_avatar_ticket">
           <div class="support_message_info">
             <div class="support_title">{{ ticket.header }}</div>
             <div class="support_short_message">{{ ticket.first_message }}</div>
@@ -62,7 +62,7 @@
           <label class="support_label" for="chat_message">Message</label>
           <textarea required name="chat_message" class="support_input support_input_long" id="chat_message" cols="30" rows="10"></textarea>
         </div>
-        <button type="submit" class="play_game_button support_send_data">
+        <button type="submit" class="play_game_button support_send_data btn_animation">
           Send
         </button>
       </form>
@@ -71,7 +71,7 @@
       <div id="support_history_messages" class="support_history_messages support_staff_history_messages">
         {% for message in chat %}
           <div class="support_chat_message">
-            <img src="#" alt="" class="support_avatar_ticket">
+            <img src="{{ user.image.url }}" alt="" class="support_avatar_ticket">
             <div class="support_chat_message_info">
               <div class="support_chat_username_and_date">
                 <div class="support_chat_username">{{ message.user__username }}</div>
@@ -87,7 +87,7 @@
           {% csrf_token %}
           <input type="hidden" name="add_message_to_chat" value="True">
           <textarea id="textarea_message" name="chat_message" class="support_chat_textarea" placeholder="Write message" aria-multiline="true" type="text"></textarea>
-          <div id="senddata" class="play_game_button">Send</div>
+          <div id="senddata" class="play_game_button btn_animation">Send</div>
         </form>
       </div>
       <div id="ticket_closed_message" class="support_input_message ticket_closed">

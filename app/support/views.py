@@ -26,6 +26,7 @@ class SupportView(View):
 
 class SupportStaffView(View):
     """Отображение для службы поддержки (Служба поддержки)."""
+
     def get(self, request):
         if request.user.is_authenticated and request.user.is_support_staff:
             support_staff = SupportStaff(request.user, request.POST)
@@ -49,5 +50,8 @@ class SupportStaffView(View):
 class ChangeStatus(View):
     def post(self, request):
         if request.user.is_support_staff and is_ajax(request):
-            SupportStaff.change_status(request.POST.get('ticket_id'), request.POST.get('status'))
+            SupportStaff.change_status(
+                request.POST.get('ticket_id'),
+                request.POST.get('status')
+            )
             return HttpResponse(status=200)

@@ -11,29 +11,29 @@
         <div class="profile_info">
           <div class="profile_info_username displ">{{ user.username }}</div>
           {{ form.username }}
-          <div class="field_error_small">{{ form.username.errors }}</div>
+          <div class="field_error_profile">{{ form.username.errors }}</div>
           <div class="profile_info_description displ">{{ user.description }}</div>
           {{ form.description }}
-          <div class="field_error_small">{{ form.description.errors }}</div>
+          <div class="field_error_profile">{{ form.description.errors }}</div>
           <div class="profile_info_addinfo">
             <div class="profile_addinfo_string">
               <div class="profile_addinfo_left">Name:</div>
               <div class="profile_addinfo_right displ">{{ user.full_name }}</div>
               {{ form.full_name }}
-              <div class="field_error_small">{{ form.full_name.errors }}</div>
             </div>
+            <div class="field_error_profile">{{ form.full_name.errors }}</div>
             <div class="profile_addinfo_string">
               <div class="profile_addinfo_left">E-mail:</div>
               <div class="profile_addinfo_right displ">{{ user.email }}</div>
               {{ form.email }}
-              <div class="field_error_small">{{ form.email.errors }}</div>
             </div>
+              <div class="field_error_profile">{{ form.email.errors }}</div>
             <div class="profile_addinfo_string">
               <div class="profile_addinfo_left">Country</div>
               <div class="profile_addinfo_right displ">{{ user.country.name }}</div>
               {{ form.country }}
-              <div class="field_error_small">{{ form.country.errors }}</div>
             </div>
+            <div class="field_error_profile">{{ form.country.errors }}</div>
           </div>
         </div>
         <div class="flex">

@@ -21,4 +21,3 @@ class StroopApiView(ListModelMixin, GenericAPIView):
 
     def get(self, request):
         return self.list(request)
-

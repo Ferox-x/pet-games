@@ -1,8 +1,6 @@
-from json import dumps
 from typing import Dict
 
 from django.core.paginator import Paginator
-from django.core.serializers import serialize
 from django.shortcuts import render
 from django.utils.formats import localize
 
@@ -155,7 +153,7 @@ class BaseSupport:
         chat = Chat.objects.select_related(
             'user'
         ).values(
-            'message', 'date', 'user__username', 'id'
+            'message', 'date', 'user__username', 'id', 'user__image'
         ).filter(
             ticket_id=chat_id
         ).order_by(
