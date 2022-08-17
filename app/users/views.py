@@ -2,7 +2,7 @@ from django.views import View
 from django.conf import settings
 from django.urls import reverse_lazy
 from django.shortcuts import redirect, render
-from django.views.generic import CreateView
+from django.views.generic import CreateView, DetailView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import (
     PasswordChangeView,
@@ -11,7 +11,8 @@ from django.contrib.auth.views import (
 )
 from django.contrib.auth import (
     authenticate, login,
-    logout as auth_logout
+    logout as auth_logout,
+    get_user_model
 )
 
 from .forms import (
@@ -22,6 +23,8 @@ from .forms import (
     ProfileImageForm
 )
 from services.user_services import Profile
+
+User = get_user_model()
 
 @login_required()
 def logout(request):
@@ -67,6 +70,10 @@ class CustomPasswordResetView(PasswordResetView):
 
 
 class ProfileView(View):
+    """
+    Представление отображение профиля, смены данных и изображение пользователя.
+
+    """
     def get(self, request):
         data_form = ProfileDataForm(instance=request.user)
         image_form = ProfileImageForm()
@@ -78,10 +85,7 @@ class ProfileView(View):
         return render(request, 'users/profile.html', context)
 
     def post(self, request):
-        data = ProfileDataForm(
-            request.POST,
-            instance=request.user
-        )
+        data = ProfileDataForm(request.POST, instance=request.user)
         image = ProfileImageForm()
 
         if 'data' in request.POST:
@@ -97,5 +101,11 @@ class ProfileView(View):
         if 'image' in request.FILES:
             post_image = request.FILES.get('image')
             Profile.post_update_or_create_image(post_image, request)
-
             return redirect('users:profile')
+
+
+class ProfileDetailView(DetailView):
+    model = User
+    template_name = 'users/profile_detail.html'
+    slug_field = 'username'
+    context_object_name = 'user'

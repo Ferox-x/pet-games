@@ -37,7 +37,8 @@ def create_fixtures():
             "model": "users.users",
             "pk": index,
             "fields": {
-                "password": "pbkdf2_sha256$320000$S5aJbRBdL3D0VscCbK3afH$6FocU9aBoWxVBydEDTGAiMJ7eBk31h9GOr+w4mQRds0=",
+                "password": ("pbkdf2_sha256$320000$S5aJbRBdL3D0VscCbK3afH$"
+                             "6FocU9aBoWxVBydEDTGAiMJ7eBk31h9GOr+w4mQRds0="),
                 "last_login": None,
                 "username": f"User{index}",
                 "country": "RU",

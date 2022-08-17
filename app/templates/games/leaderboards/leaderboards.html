@@ -19,7 +19,9 @@
         <div class="leaderboards_games_ol_div">
           <div class="leaderboards_games_ol_div">
             <div class="leaderboards_games_ol_li_span_result">
-              <div class="leaderboards_games_ol_li_span_nickname">{{ result.username }}</div>
+              <div class="leaderboards_games_ol_li_span_nickname">
+                <a href="{% url 'users:profile_detail' result.username %}">{{ result.username }}</a>
+              </div>
               {% if result.score %}
                 <div class="leaderboards_games_ol_li_span_score">{{ result.score }}</div>
               {% endif %}

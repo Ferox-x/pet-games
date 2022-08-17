@@ -33,7 +33,10 @@ def format_schulte(record: int, game: str) -> str | int:
 
 @register.simple_tag
 def rating_position(index: int, page: int) -> int:
-    """Тег отображающий корректно позицию пользователя на страницах рейтинга."""
+    """
+    Тег отображающий корректно позицию
+    пользователя на страницах рейтинга.
+
+    """
     position = index + (25 * (page - 1))
     return position
-

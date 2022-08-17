@@ -283,6 +283,13 @@ textarea:focus, input:focus {
   color: rgb(161, 0, 0);
 }
 
+.field_error_profile {
+  margin-top: 3px;
+  text-decoration: none;
+  font-size: 5px;
+  color: rgb(161, 0, 0);
+}
+
 /*end auth styles*/
 
 
@@ -1195,6 +1202,7 @@ body {
 .profile_addinfo_left {
   width: 106px;
 }
+
 .profile_bg {
   position: relative;
   width: 400px;
@@ -1206,11 +1214,13 @@ body {
   box-shadow: 0 8px 8px rgba(0, 0, 0, 0.25);
   transition: all ease 0.2s;
 }
+
 .profile_avatar_img {
   width: 370px;
   height: 370px;
   border-radius: 50%;
 }
+
 .overlay {
   position: absolute;
   top: 0;
@@ -1222,6 +1232,7 @@ body {
   box-shadow: 0 0 0 10px rgba(255, 255, 255, 1);
   background-image: url("../img/profile/add_image.svg");
 }
+
 .overlay:hover {
   opacity: 0.6;
   transition: opacity 0.2s, visibility 0.7s;
@@ -1241,6 +1252,7 @@ body {
   cursor: pointer;
   transition: all ease 0.2s;
 }
+
 .display {
   padding-left: 20px;
   display: none;
@@ -1248,15 +1260,19 @@ body {
   border-top: 1px solid rgba(0, 0, 0, 0.5);
   color: #3f3f3f;
 }
+
 .display:hover {
 }
+
 .display:focus {
   border-bottom: 2px solid #153c88;
   border-top: 2px solid #153c88;
 }
+
 .displ {
   padding-left: 20px;
 }
+
 /* end profile css */
 
 /* support css */
@@ -1291,8 +1307,8 @@ body {
   height: 30px;
   font-weight: 500;
   font-size: 15px;
-  margin-bottom: 2px;
-  padding-left: 5px;
+  margin: 2px 0 2px 0;
+  padding-left: 15px;
 }
 
 .support_message_chat {
@@ -1311,6 +1327,7 @@ body {
   height: 55px;
   background-color: #14213D;
   margin-right: 5px;
+  border-radius: 50%;
 }
 
 .support_title {
@@ -1347,14 +1364,17 @@ body {
 }
 
 .support_create_ticket {
-  padding-left: 40px;
-  padding-top: 20px;
+  padding-left: 80px;
+  padding-top: 40px;
 }
 
 .support_new_ticket {
   width: 100%;
   height: 100%;
   position: relative;
+  border-width: 5px 2px;
+  border-style: solid;
+  border-color: #14213D;
 }
 
 .support_label {
@@ -1367,10 +1387,11 @@ body {
 .support_input {
   display: block;
   border: 1px solid #14213D;
-  width: 200px;
+  width: 580px;
   height: 40px;
   margin-bottom: 15px;
   padding-left: 10px;
+  border-radius: 5px;
 }
 
 .support_input_long {
@@ -1387,6 +1408,8 @@ body {
   position: absolute;
   margin-bottom: 20px;
   margin-right: 20px;
+  background-color: #14213D;
+  color: white;
 }
 
 .support_chat {
@@ -1394,6 +1417,9 @@ body {
   height: 100%;
   padding: 15px;
   display: none;
+  border-width: 5px 2px;
+  border-style: solid;
+  border-color: #14213D;
 }
 
 .support_chat_message {
@@ -1401,6 +1427,8 @@ body {
   flex-direction: row;
   min-height: 60px;
   margin-bottom: 15px;
+  box-shadow: 0px 18px 25px -10px rgba(34, 60, 80, 0.02);
+  border-radius: 10px;
 }
 
 .support_chat_message_info {
@@ -1417,7 +1445,8 @@ body {
   height: 30px;
   align-items: baseline;
 }
-.support_chat_message_date{
+
+.support_chat_message_date {
   font-weight: 400;
   font-size: 13px;
   color: rgba(20, 33, 61, 0.7);
@@ -1437,25 +1466,25 @@ body {
   overflow: auto;
 }
 
-.support_staff_history_messages{
+.support_staff_history_messages {
   height: 600px;
 }
 
 .support_history_messages::-webkit-scrollbar,
 .support_tickets::-webkit-scrollbar,
-.support_ticket_status::-webkit-scrollbar{
+.support_ticket_status::-webkit-scrollbar {
   width: 12px;
 }
 
 .support_history_messages::-webkit-scrollbar-track,
 .support_tickets::-webkit-scrollbar-track,
-.support_ticket_status::-webkit-scrollbar-track{
+.support_ticket_status::-webkit-scrollbar-track {
   background: #FFFFFF;
 }
 
 .support_history_messages::-webkit-scrollbar-thumb,
 .support_tickets::-webkit-scrollbar-thumb,
-.support_ticket_status::-webkit-scrollbar-thumb{
+.support_ticket_status::-webkit-scrollbar-thumb {
   background-color: #14213D;
 
   border-radius: 20px;
@@ -1471,6 +1500,7 @@ body {
   padding-left: 10px;
   padding-top: 10px;
   resize: none;
+  border-radius: 5px;
 }
 
 .support_button {
@@ -1490,11 +1520,11 @@ body {
 }
 
 .ticket_closed_message {
-  padding: 35px;
-  border: 2px solid #14213D;
-  border-radius: 15px;
+  padding: 25px;
+  border: 1px solid #14213D;
+  border-radius: 10px;
   /*box-shadow: 4px 4px rgba(0, 0, 0, 0.25);*/
-  box-shadow:  0 12px 8px rgba(0, 0, 0, 0.25);
+  box-shadow: 11px 14px 26px 0 rgba(34, 60, 80, 0.2);
 }
 
 /* end support css */
