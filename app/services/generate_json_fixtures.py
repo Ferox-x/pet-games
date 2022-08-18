@@ -5,8 +5,8 @@ from random import randint
 fixtures_dir = path.join(path.abspath(__file__), '../../')
 
 
-def create_fixtures():
-    def write_file(file_name, data_list):
+def create_fixtures() -> None:
+    def write_file(file_name: str, data_list: list):
         with open(path.join(fixtures_dir, 'fixtures', file_name), 'w',
                   encoding='utf-8') as file:
             json_list = dumps(data_list)

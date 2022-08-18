@@ -1,7 +1,6 @@
-
 from django.core.paginator import Paginator
 
-from games.models import StroopModel, SchulteModel
+from games.models import SchulteModel, StroopModel
 from users.models import Users
 
 

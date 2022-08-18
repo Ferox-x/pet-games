@@ -1,15 +1,16 @@
-from django.contrib import admin
-from django.urls import path, include
-from django.conf.urls.static import static
 from django.conf import settings
+from django.conf.urls.static import static
+from django.contrib import admin
+from django.urls import include, path
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('api.urls')),
     path('games/', include('games.urls')),
-    path('users/', include('users.urls', namespace='users')),
-    path('support/', include('support.urls')),
     path('i18n', include('django.conf.urls.i18n')),
+    path('support/', include('support.urls')),
+    path('users/', include('users.urls', namespace='users')),
     path('', include('about.urls', namespace='about')),
     path('', include('core.urls', namespace='core')),
     path('__debug__/', include('debug_toolbar.urls'))

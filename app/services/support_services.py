@@ -1,3 +1,4 @@
+from django.db.models import QuerySet
 from django.utils.formats import localize
 
 from support.models import Chat, SupportTicket
@@ -42,7 +43,7 @@ class BaseSupport:
         chat = self._chat_to_dict(chat, chat_id)
         return chat
 
-    def _chat_to_dict(self, chat: Chat, chat_id: int) -> dict:
+    def _chat_to_dict(self, chat: QuerySet, chat_id: int) -> dict:
         """Преобразовывает Chat в словарь."""
 
         chat = list(chat)
@@ -68,7 +69,7 @@ class BaseSupport:
         return ticket
 
     @staticmethod
-    def _get_sorted_tickets(tickets: SupportTicket) -> dict[str, list[SupportTicket]]:
+    def _get_sorted_tickets(tickets: QuerySet) -> dict[str, list[SupportTicket]]:
         """Сортирует тикеты по статусу."""
         open_tickets = list()
         in_progress_tickets = list()

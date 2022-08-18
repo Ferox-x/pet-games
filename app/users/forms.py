@@ -53,6 +53,7 @@ class UserPasswordChangeForm(PasswordChangeForm):
 
 
 class ProfileDataForm(forms.ModelForm):
+    """Форма данных в профиле."""
     class Meta:
         model = User
         fields = ('username', 'description', 'full_name', 'email', 'country')
@@ -67,6 +68,7 @@ class ProfileDataForm(forms.ModelForm):
 
 
 class ProfileImageForm(forms.ModelForm):
+    """Форма изображения в профиле."""
     image = forms.ImageField(required=False)
 
     class Meta:
