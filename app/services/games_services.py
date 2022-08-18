@@ -2,6 +2,7 @@
 from django.core.paginator import Paginator
 
 from games.models import StroopModel, SchulteModel
+from users.models import Users
 
 
 class Leaderboards:
@@ -65,7 +66,7 @@ class Achievements:
     """Класс Achievements отвечает за сохранение и извлечение
     результатов пользователя из бд."""
 
-    def __init__(self, game, user):
+    def __init__(self, game: str, user: Users):
         self.game = game
         self.user = user
 
@@ -76,7 +77,7 @@ class Achievements:
         elif self.game == 'stroop':
             return self._get_stroop_achievements()
 
-    def save_achievement(self, achievement) -> None:
+    def save_achievement(self, achievement: str) -> None:
         """Менеджер сохранения результатов."""
         if self.game == 'schulte':
             return self._save_schulte_achievement(achievement)
@@ -96,12 +97,12 @@ class Achievements:
             user_id=self.user.id).all().reverse()
         return records
 
-    def _save_schulte_achievement(self, achievement) -> None:
+    def _save_schulte_achievement(self, achievement: str) -> None:
         """Сохраняет результат в бд games_schulte."""
         minute, sec, milsec = map(int, achievement.split(':'))
         time = minute * 60 * 100 + sec * 100 + milsec
         SchulteModel(record=time, user=self.user).save()
 
-    def _save_stroop_achievement(self, achievement) -> None:
+    def _save_stroop_achievement(self, achievement: str) -> None:
         """Сохраняет результат в бд games_stroop."""
         StroopModel(record=achievement, user=self.user).save()
