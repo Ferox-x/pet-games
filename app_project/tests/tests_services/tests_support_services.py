@@ -36,6 +36,7 @@ class SupportTest(TestCase):
         self.ticket = SupportTicket.objects.get(header='TestHeader')
 
     def test_support_manager_get_chat_from_ticket(self):
+        """Тест на получение чата по тикету."""
 
         post_data = {
             'get_chat_from_ticket': 'True',
@@ -56,9 +57,10 @@ class SupportTest(TestCase):
                 'first_message': 'Test First Message', 'status': 'OP'
             }
         }
-        self.assertEqual(message, message_equal)
+        self.assertEqual(message, message_equal, '')
 
     def test_support_manager_create_ticket(self):
+        """Тест на создание тикета."""
         post_data = {
             'create_ticket': 'True',
             'header': 'Create Ticket Test',
@@ -69,6 +71,7 @@ class SupportTest(TestCase):
         self.assertEqual(first_message, post_data.get('chat_message'))
 
     def test_support_manager_add_message_to_chat(self):
+        """Тест на добавление сообщение к чату."""
         post_data = {
             'add_message_to_chat': 'True',
             'chat_message': 'Test Message',
@@ -78,6 +81,7 @@ class SupportTest(TestCase):
         self.assertEqual(message, post_data.get('chat_message'))
 
     def test_support_staff_manager_change_status(self):
+        """Тест на смену статуса тикета"""
         post_data = {
             'change_status': 'True',
             'status': 'IP',
