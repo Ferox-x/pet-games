@@ -3,7 +3,7 @@ from django.views import View
 from django.shortcuts import render
 from django.http import HttpResponse
 from services.games_services import Leaderboards, Achievements
-from services.services import is_ajax
+from services.generic_services import is_ajax
 
 
 class SchulteGame(View):

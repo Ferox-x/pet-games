@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.views import View
 
 from services.support_services import Support, SupportStaff
-from services.services import is_ajax
+from services.generic_services import is_ajax
 
 
 class SupportView(View):
