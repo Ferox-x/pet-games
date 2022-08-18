@@ -1444,14 +1444,16 @@ body {
 
 .support_chat_username_and_date {
   display: flex;
-  height: 30px;
+  min-height: 30px;
   align-items: baseline;
+  margin-bottom: 10px;
 }
 
 .support_chat_message_date {
   font-weight: 400;
   font-size: 13px;
   color: rgba(20, 33, 61, 0.7);
+  text-align: right;
 }
 
 .support_chat_username {

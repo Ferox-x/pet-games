@@ -15,7 +15,7 @@ class SupportTicket(models.Model):
 
     user = models.ForeignKey(Users, verbose_name=_('User'),
                              on_delete=models.CASCADE)
-    header = models.CharField(max_length=32, verbose_name=_('Header'))
+    header = models.CharField(max_length=64, verbose_name=_('Header'))
     date = models.DateTimeField(auto_now_add=True, editable=False,
                                 verbose_name=_('Date'))
     status = models.CharField(verbose_name=_('Status'), choices=TICKET_STATUS,

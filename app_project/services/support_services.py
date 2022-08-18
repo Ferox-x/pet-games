@@ -58,10 +58,12 @@ class BaseSupport:
     @staticmethod
     def _get_ticket_on_id(ticket_id: int) -> SupportTicket:
         """Достает тикет из базы данных по id."""
-        ticket = SupportTicket.objects.filter(
+        ticket = SupportTicket.objects.select_related(
+            'user'
+        ).filter(
             id=ticket_id
         ).values(
-            'header', 'date', 'first_message', 'status'
+            'header', 'date', 'first_message', 'status', 'user__image'
         ).first()
 
         ticket['date'] = localize(ticket.get('date'))
