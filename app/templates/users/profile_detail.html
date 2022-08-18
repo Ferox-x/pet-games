@@ -6,31 +6,30 @@
   <div class="profile_container">
     <div class="profile_left">
       <div class="profile_info">
-        <div class="profile_info_username displ">{{ user.username }}</div>
-        <div class="profile_info_description displ">{{ user.description }}</div>
+        <div class="profile_info_username displ">{{ profile.username }}</div>
+        <div class="profile_info_description displ">{{ profile.description }}</div>
         <div class="profile_info_addinfo">
           <div class="profile_addinfo_string">
             <div class="profile_addinfo_left">Name:</div>
-            <div class="profile_addinfo_right displ">{{ user.full_name }}</div>
+            <div class="profile_addinfo_right displ">{{ profile.full_name }}</div>
           </div>
           <div class="profile_addinfo_string">
             <div class="profile_addinfo_left">E-mail:</div>
-            <div class="profile_addinfo_right displ">{{ user.email }}</div>
+            <div class="profile_addinfo_right displ">{{ profile.email }}</div>
           </div>
           <div class="profile_addinfo_string">
             <div class="profile_addinfo_left">Country</div>
-            <div class="profile_addinfo_right displ">{{ user.country.name }}</div>
+            <div class="profile_addinfo_right displ">{{ profile.country.name }}</div>
           </div>
         </div>
       </div>
     </div>
     <div class="profile_bg btn_animation">
-      {% if user.image %}
-        <img class="profile_avatar_img" src="{{ user.image.url }}" alt="avatar">
+      {% if profile.image %}
+        <img class="profile_avatar_img" src="{{ profile.image.url }}" alt="avatar">
       {% else %}
         <img class="profile_avatar_img" src="{% static 'img/profile/default.png' %}" alt="avatar">
       {% endif %}
     </div>
   </div>
-  <script src="{% static 'scripts/profile.js' %}"></script>
 {% endblock %}

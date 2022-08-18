@@ -42,12 +42,13 @@ def create_fixtures():
                 "last_login": None,
                 "username": f"User{index}",
                 "country": "RU",
-                "description": None,
+                "description": f"description{index}",
                 "email": f"admin{index}@mail.com",
                 "full_name": "Admin Admin",
                 "is_active": True,
                 "is_admin": True,
                 "is_superuser": True,
+                "is_support": True,
                 "groups": [],
                 "user_permissions": []
             }

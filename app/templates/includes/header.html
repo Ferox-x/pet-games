@@ -19,9 +19,6 @@
       <li class="header_li btn_animation">
         <a href="{% url 'about:about' %}" class="header_li_a">{% trans 'About' %}</a>
       </li>
-      <li class="header_li btn_animation">
-        <a href="{% url 'about:contact' %}" class="header_li_a">{% trans 'Contacts' %}</a>
-      </li>
       <div class="header_div_right">
         <li class="header_li">
           <form action="{% url 'set_language' %}" method="post">{% csrf_token %}

@@ -108,4 +108,4 @@ class ProfileDetailView(DetailView):
     model = User
     template_name = 'users/profile_detail.html'
     slug_field = 'username'
-    context_object_name = 'user'
+    context_object_name = 'profile'
