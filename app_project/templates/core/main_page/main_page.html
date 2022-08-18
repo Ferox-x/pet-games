@@ -26,7 +26,7 @@
         <p class="game_description">
           {% trans 'The Stroop test promotes the development between reading words and their perception, and also increases the concentration of attention and its switchability. Changing the usual algorithm to read first, and then perceive, to a similar one, but the reverse - first perceive, and then read makes the brain do double work.' %}
         </p>
-        <a href="{% url 'stroop' %}" class="play_game_button btn_animation">
+        <a href="{% url 'game:stroop' %}" class="play_game_button btn_animation">
           {% trans 'PLAY GAME' %}
         </a>
       </li>
@@ -41,7 +41,7 @@
         <p class="game_description game_description_schulte">
           {% trans 'Schulte tables are a tool for training peripheral vision, concentration of attention and parallel perception of information. The development of these skills helps to master the technique of speed reading.' %}
         </p>
-        <a href="{% url 'schulte' %}" class="play_game_button btn_animation">
+        <a href="{% url 'game:schulte' %}" class="play_game_button btn_animation">
           {% trans 'PLAY GAME' %}
         </a>
       </li>

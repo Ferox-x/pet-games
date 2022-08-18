@@ -64,7 +64,7 @@ class Users(AbstractBaseUser, PermissionsMixin):
     )
     email = models.EmailField(
         unique=True,
-        verbose_name=_('Email adress')
+        verbose_name=_('Email address')
     )
     full_name = models.CharField(
         max_length=150,

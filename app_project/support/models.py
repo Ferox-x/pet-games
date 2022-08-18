@@ -20,7 +20,7 @@ class SupportTicket(models.Model):
                                 verbose_name=_('Date'))
     status = models.CharField(verbose_name=_('Status'), choices=TICKET_STATUS,
                               default='OP', max_length=2)
-    first_message = models.TextField(verbose_name='Первое сообщение')
+    first_message = models.TextField(verbose_name='First message')
 
     class Meta:
         db_table = 'tickets'
