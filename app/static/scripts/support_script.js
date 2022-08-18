@@ -56,9 +56,9 @@ function getIdOnClick(ticketId, status) {
             supportHistoryMessages.innerHTML = ''
             showChat()
             currentTicketStatus = status
-            addHeaderToChat(jsonMessage.ticket.header, jsonMessage.ticket.date, jsonMessage.ticket.first_message)
+            addHeaderToChat(jsonMessage.ticket.header, jsonMessage.ticket.date, jsonMessage.ticket.first_message, jsonMessage.ticket.user__image)
             for (let index = 0, len = jsonMessage.len; index < len; ++index) {
-                addMessageToChat(jsonMessage[index].user__username, jsonMessage[index].date, jsonMessage[index].message);
+                addMessageToChat(jsonMessage[index].user__username, jsonMessage[index].date, jsonMessage[index].message, jsonMessage[index].user__image);
             }
             supportHistoryMessages.scrollTop = supportHistoryMessages.scrollHeight - supportHistoryMessages.clientHeight;
         }
@@ -98,9 +98,9 @@ function changeStatus(status) {
     xhr.send(formDataNew)
 }
 
-function addMessageToChat(username, date, message) {
+function addMessageToChat(username, date, message, image) {
     let htmlCodeMessage = '<div class="support_chat_message">\n' +
-        '            <img src="' + imageUrl + '" alt="" class="support_avatar_ticket">\n' +
+        '            <img src="' + image + '" alt="" class="support_avatar_ticket">\n' +
         '            <div class="support_chat_message_info">\n' +
         '              <div class="support_chat_username_and_date">\n' +
         '                <div class="support_chat_username">' + username + '</div>\n' +
