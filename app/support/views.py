@@ -2,7 +2,7 @@ from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.views import View
 
-from services.support_services import Support, SupportStaff, render_support_page
+from services.support_services import Support, SupportStaff
 from services.services import is_ajax
 
 
@@ -11,7 +11,13 @@ class SupportView(View):
 
     def get(self, request):
         if request.user.is_authenticated:
-            return render_support_page(request)
+            support = Support(request.user, request.POST)
+            tickets = support.get_tickets()
+            context = {
+                'tickets': tickets,
+            }
+
+            return render(request, 'support/support.html', context)
         return render(request, 'core/error_page/403.html')
 
     def post(self, request):
@@ -44,6 +50,3 @@ class SupportStaffView(View):
             if is_ajax(request):
                 json_data = SupportStaff(request.user, request.POST).manager()
                 return JsonResponse(json_data, status=200)
-            Support(request.user, request.POST).manager()
-            return render_support_page(request)
-

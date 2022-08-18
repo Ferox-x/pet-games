@@ -1,22 +1,22 @@
-from typing import Dict
-
-from django.shortcuts import render
 from django.utils.formats import localize
 
 from support.models import Chat, SupportTicket
+from users.models import Users
 
 
 class BaseSupport:
+    """Базовый класс поддержки."""
 
-    def __init__(self, user, post):
+    def __init__(self, user: Users, post: dict):
         self.chat_message = None
         self.ticket_id = None
         self.last_message = None
         self.user = user
         self.post_data = post
 
-    def _convert_last_message_to_dict(self) -> Dict:
+    def _convert_last_message_to_dict(self) -> dict:
         """Преобразует последнее сообщение от пользователя в словарь."""
+
         date = localize(self.last_message.date)
         dict_last_message = {
             'username': self.user.username,
@@ -25,7 +25,7 @@ class BaseSupport:
         }
         return dict_last_message
 
-    def _get_chat(self, chat_id):
+    def _get_chat(self, chat_id: int) -> dict:
         """Достает из базы данных выбранный чат со службой поддержки,
          для конкретного пользователя."""
 
@@ -42,7 +42,7 @@ class BaseSupport:
         chat = self._chat_to_dict(chat, chat_id)
         return chat
 
-    def _chat_to_dict(self, chat, chat_id):
+    def _chat_to_dict(self, chat: Chat, chat_id: int) -> dict:
         """Преобразовывает Chat в словарь."""
 
         chat = list(chat)
@@ -55,7 +55,8 @@ class BaseSupport:
         return json_chat
 
     @staticmethod
-    def _get_ticket_on_id(ticket_id):
+    def _get_ticket_on_id(ticket_id: int) -> SupportTicket:
+        """Достает тикет из базы данных по id."""
         ticket = SupportTicket.objects.filter(
             id=ticket_id
         ).values(
@@ -67,8 +68,8 @@ class BaseSupport:
         return ticket
 
     @staticmethod
-    def _get_sorted_tickets(tickets):
-
+    def _get_sorted_tickets(tickets: SupportTicket) -> dict[str, list[SupportTicket]]:
+        """Сортирует тикеты по статусу."""
         open_tickets = list()
         in_progress_tickets = list()
         closed_tickets = list()
@@ -100,10 +101,10 @@ class Support(BaseSupport):
     """Класс Support отвечает за формирование чатов службы поддержки
     (для пользователя)."""
 
-    def __init__(self, user, post):
+    def __init__(self, user: Users, post: dict):
         super().__init__(user, post)
 
-    def manager(self):
+    def manager(self) -> dict:
         """Метод-менеджер."""
         if self.post_data.get('get_chat_from_ticket'):
             return self._get_chat(self.post_data.get('ticket_id'))
@@ -117,7 +118,7 @@ class Support(BaseSupport):
             self._add_message_to_ticket()
             return self._convert_last_message_to_dict()
 
-    def get_tickets(self):
+    def get_tickets(self) -> dict[str, list[SupportTicket]]:
         """Достает из БД все тикеты для конкретного пользователя."""
         tickets = SupportTicket.objects.select_related(
             'user'
@@ -129,7 +130,7 @@ class Support(BaseSupport):
 
         return self._get_sorted_tickets(tickets)
 
-    def _create_ticket_in_db(self, header, chat_message) -> None:
+    def _create_ticket_in_db(self, header: str, chat_message: str) -> None:
         """Создает тикет."""
         self.ticket = SupportTicket.objects.create(
             user=self.user, header=header, first_message=chat_message
@@ -138,10 +139,10 @@ class Support(BaseSupport):
 
 class SupportStaff(BaseSupport):
 
-    def __init__(self, user, post):
+    def __init__(self, user: Users, post: dict):
         super().__init__(user, post)
 
-    def manager(self):
+    def manager(self) -> dict:
         """Метод-менеджер. Возвращает Json"""
         if self.post_data.get('change_status'):
             ticket_id = self.post_data.get('ticket_id')
@@ -155,7 +156,7 @@ class SupportStaff(BaseSupport):
             self._add_message_to_ticket()
             return self._convert_last_message_to_dict()
 
-    def get_tickets(self):
+    def get_tickets(self) -> dict[str, list[SupportTicket]]:
         """Достает из БД все тикеты."""
         tickets = SupportTicket.objects.select_related(
             'user'
@@ -165,18 +166,10 @@ class SupportStaff(BaseSupport):
 
         return self._get_sorted_tickets(tickets)
 
-    def _change_status(self, ticket_id, status):
+    @staticmethod
+    def _change_status(ticket_id: int, status: str) -> dict:
+        """Меняет статус тикета."""
         ticket = SupportTicket.objects.get(id=ticket_id)
         ticket.status = status
         ticket.save(update_fields=['status'])
         return {}
-
-
-def render_support_page(request):
-    support = Support(request.user, request.POST)
-    tickets = support.get_tickets()
-    context = {
-        'tickets': tickets,
-    }
-
-    return render(request, 'support/support.html', context)
