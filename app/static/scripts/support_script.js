@@ -2,6 +2,7 @@ const supportButton = document.getElementById('support_button')
 const supportNewTicket = document.getElementById('support_new_ticket')
 const supportChat = document.getElementById('support_chat')
 const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
+const imageUrl = document.querySelector('[name=image_url]').value
 const formMessage = document.getElementById('formMessage')
 const sendData1 = document.getElementById('senddata')
 const textArea = document.getElementById('textarea_message')
@@ -16,7 +17,8 @@ sendData1.addEventListener('click', () => {
     if (formData.get('chat_message') !== '') {
         formData.append('HTTP_X_REQUESTED_WITH', 'XMLHttpRequest')
         formData.append('ticket_id', prevChat.id)
-        if (currentTicketStatus === 'OP') {
+        console.log(currentUrl)
+        if (currentTicketStatus === 'OP' && currentUrl === '/support/staff/') {
             changeStatus('IP')
         }
         xhr.open('POST', currentUrl)
@@ -56,7 +58,7 @@ function getIdOnClick(ticketId, status) {
             currentTicketStatus = status
             addHeaderToChat(jsonMessage.ticket.header, jsonMessage.ticket.date, jsonMessage.ticket.first_message)
             for (let index = 0, len = jsonMessage.len; index < len; ++index) {
-                addMessageToChat(jsonMessage[index].user__username, jsonMessage[index].date, jsonMessage[index].message, jsonMessage[index].user__image);
+                addMessageToChat(jsonMessage[index].user__username, jsonMessage[index].date, jsonMessage[index].message);
             }
             supportHistoryMessages.scrollTop = supportHistoryMessages.scrollHeight - supportHistoryMessages.clientHeight;
         }
@@ -89,15 +91,16 @@ function changeStatus(status) {
     let formDataNew = new FormData()
     formDataNew.append('csrfmiddlewaretoken', csrftoken);
     formDataNew.append('HTTP_X_REQUESTED_WITH', 'XMLHttpRequest');
+    formDataNew.append('change_status', 'status')
     formDataNew.append('status', status)
     formDataNew.append('ticket_id', prevChat.id)
-    xhr.open('POST', '/support/statuschange/')
+    xhr.open('POST', '/support/staff/')
     xhr.send(formDataNew)
 }
 
-function addMessageToChat(username, date, message, image) {
+function addMessageToChat(username, date, message) {
     let htmlCodeMessage = '<div class="support_chat_message">\n' +
-        '            <img src="/media/' + image + '" alt="" class="support_avatar_ticket">\n' +
+        '            <img src="' + imageUrl + '" alt="" class="support_avatar_ticket">\n' +
         '            <div class="support_chat_message_info">\n' +
         '              <div class="support_chat_username_and_date">\n' +
         '                <div class="support_chat_username">' + username + '</div>\n' +

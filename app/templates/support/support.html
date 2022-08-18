@@ -6,6 +6,7 @@
   {% trans 'Support' %}
 {% endblock %}
 {% block content %}
+<input type="hidden" name="image_url" value="{{ user.image.url }}">
 <div class="support_container">
   <div class="support_tickets">
     <div class="support_status">Open</div>
