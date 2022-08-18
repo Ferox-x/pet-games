@@ -47,15 +47,9 @@
     <form method="post" id="imageForm" enctype="multipart/form-data">
       <div class="profile_bg btn_animation">
         {% csrf_token %}
-        {% if user.image %}
           <label for="fileInput" class="overlay"></label>
           <img class="profile_avatar_img" src="{{ user.image.url }}" alt="avatar">
           {{ image }}
-        {% else %}
-          <label for="fileInput" class="overlay"></label>
-          <img class="profile_avatar_img" src="{% static 'img/profile/default.png' %}" alt="avatar">
-          {{ image }}
-        {% endif %}
       </div>
     </form>
   </div>
