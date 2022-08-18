@@ -71,7 +71,10 @@ class Users(AbstractBaseUser, PermissionsMixin):
         verbose_name=_('Full name')
     )
 
-    image = models.ImageField(upload_to='user_images')
+    image = models.ImageField(
+        upload_to='user_images',
+        default='default.png'
+    )
 
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
