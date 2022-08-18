@@ -9,6 +9,7 @@ from django.contrib.auth.views import (
     PasswordResetView,
     LoginView,
 )
+
 from django.contrib.auth import (
     authenticate, login,
     logout as auth_logout,
@@ -22,9 +23,11 @@ from .forms import (
     ProfileDataForm,
     ProfileImageForm
 )
+
 from services.user_services import Profile
 
 User = get_user_model()
+
 
 @login_required()
 def logout(request):

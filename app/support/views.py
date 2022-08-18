@@ -1,9 +1,9 @@
 from django.http import JsonResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect, render
 from django.views import View
 
-from services.support_services import Support, SupportStaff
 from services.generic_services import is_ajax
+from services.support_services import Support, SupportStaff
 
 
 class SupportView(View):
