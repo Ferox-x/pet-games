@@ -27,7 +27,7 @@ sendData1.addEventListener('click', () => {
         xhr.onreadystatechange = function () {
             if (this.readyState === 4 && this.status === 200) {
                 const jsonMessage = JSON.parse(this.responseText)
-                addMessageToChat(jsonMessage.username, jsonMessage.date, jsonMessage.message, jsonMessage.image)
+                addMessageToChat(jsonMessage.username, jsonMessage.date, jsonMessage.message)
                 supportHistoryMessages.scrollTop = supportHistoryMessages.scrollHeight - supportHistoryMessages.clientHeight;
             }
         }
@@ -56,9 +56,9 @@ function getIdOnClick(ticketId, status) {
             supportHistoryMessages.innerHTML = ''
             showChat()
             currentTicketStatus = status
-            addHeaderToChat(jsonMessage.ticket.header, jsonMessage.ticket.date, jsonMessage.ticket.first_message, jsonMessage.ticket.user__image)
+            addHeaderToChat(jsonMessage.ticket.header, jsonMessage.ticket.date, jsonMessage.ticket.first_message, jsonMessage.ticket.user__image.url)
             for (let index = 0, len = jsonMessage.len; index < len; ++index) {
-                addMessageToChat(jsonMessage[index].user__username, jsonMessage[index].date, jsonMessage[index].message, jsonMessage[index].user__image);
+                addMessageToChat(jsonMessage[index].user__username, jsonMessage[index].date, jsonMessage[index].message, jsonMessage[index].user__image.url);
             }
             supportHistoryMessages.scrollTop = supportHistoryMessages.scrollHeight - supportHistoryMessages.clientHeight;
         }
@@ -99,6 +99,9 @@ function changeStatus(status) {
 }
 
 function addMessageToChat(username, date, message, image) {
+    if (image === undefined){
+        image = imageUrl
+    }
     let htmlCodeMessage = '<div class="support_chat_message">\n' +
         '            <img src="' + image + '" alt="" class="support_avatar_ticket">\n' +
         '            <div class="support_chat_message_info">\n' +
@@ -116,7 +119,7 @@ function addHeaderToChat(header, date, message) {
     let htmlCodeMessage = '<div class="support_chat_message">\n' +
         '            <div class="support_chat_message_info">\n' +
         '              <div class="support_chat_username_and_date">\n' +
-        '                <div class="support_chat_username">' + header + '</div>\n' +
+        '                <div class="support_chat_username"><b>' + header + '</b></div>\n' +
         '                <div class="support_chat_message_date">' + date + '</div>\n' +
         '              </div>\n' +
         '              <div class="support_chat_message_text">' + message + '</div>\n' +
