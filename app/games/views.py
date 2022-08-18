@@ -2,7 +2,7 @@ from http import HTTPStatus
 from django.views import View
 from django.shortcuts import render
 from django.http import HttpResponse
-from services.code_database import Leaderboards, Achievements
+from services.games_services import Leaderboards, Achievements
 from services.services import is_ajax
 
 

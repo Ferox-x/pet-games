@@ -2,7 +2,7 @@ from rest_framework.generics import GenericAPIView
 from rest_framework.mixins import ListModelMixin
 
 from api.v1.serializers import SchulteSerializer, StroopSerializer
-from services.code_database import Leaderboards
+from services.games_services import Leaderboards
 
 
 class SchulteApiView(ListModelMixin, GenericAPIView):
