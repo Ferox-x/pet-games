@@ -7,9 +7,9 @@
 <div class="leaderboards">
     <div class="leaderboards_games">
       <ul class="leaderboards_games_ul">
-        <li class="leaderboards_games_ul_li {% if game == 'schulte' %}games_current{% endif %}"><a class="leaderboards_games_a" href="{% url 'leaderboards' 'schulte' %}">Schulte</a></li>
+        <li class="leaderboards_games_ul_li {% if game == 'schulte' %}games_current{% endif %}"><a class="leaderboards_games_a" href="{% url 'game:leaderboards' 'schulte' %}">Schulte</a></li>
         <li class="leaderboards_games_ul_li leaderboards_stick">|</li>
-        <li class="leaderboards_games_ul_li {% if game == 'stroop' %}games_current{% endif %}"><a class="leaderboards_games_a" href="{% url 'leaderboards' 'stroop' %}">Stroop</a></li>
+        <li class="leaderboards_games_ul_li {% if game == 'stroop' %}games_current{% endif %}"><a class="leaderboards_games_a" href="{% url 'game:leaderboards' 'stroop' %}">Stroop</a></li>
       </ul>
     </div>
     <ul class="leaderboards_games_ol">

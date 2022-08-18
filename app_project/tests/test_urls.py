@@ -10,8 +10,9 @@ User = get_user_model()
 class UrlTest(TestCase):
     @classmethod
     def setUpClass(cls):
-        super().setUpClass()
         """Загрузка фикстур в тестовую БД и создание пользователя."""
+
+        super().setUpClass()
         call_command('makefixtures')
         call_command('loaddata', 'fixtures/user.json')
         call_command('loaddata', 'fixtures/stroop_leaderboard.json')
@@ -103,8 +104,8 @@ class UrlTest(TestCase):
 
     def test_urls_correct_redirect_to_guest_clients(self):
         url_names_http_status = {
-            '/support/': HTTPStatus.MOVED_PERMANENTLY,
-            '/users/profile/': HTTPStatus.MOVED_PERMANENTLY,
+            '/support/': HTTPStatus.FOUND,
+            '/users/profile/': HTTPStatus.FOUND,
         }
         for url, http_status, in url_names_http_status.items():
             with self.subTest(url=url):
