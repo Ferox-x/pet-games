@@ -8,6 +8,7 @@ from users.models import Users
 
 
 class SupportTest(TestCase):
+    """Класс тестов службы поддержки."""
     date = timezone.now()
 
     @classmethod
