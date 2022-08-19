@@ -45,6 +45,11 @@ class LeaderboardsAchievementsTests(TestCase):
             'Неверное количество записей, должно быть 100'
         )
 
+    def test_get_leaderboards_wrong_game(self) -> None:
+        """Тест проверяющий на отсутствие таблицы лидеров."""
+        leaderboard = Leaderboards('1111111').get_leaderboard()
+        self.assertEqual(leaderboard, False)
+
     def test_get_leaderboard_with_paginator(self) -> None:
         """Тест проверяющий работу пагинатора, на первой странице должно быть 25 записей."""
         paginator = self.leaderboard_schulte.get_leaderboard_with_paginator()
@@ -52,6 +57,11 @@ class LeaderboardsAchievementsTests(TestCase):
         self.assertEqual(
             len_first_page, 25, 'Неверное количество записей, должно быть 25'
         )
+
+    def test_get_leaderboard_with_paginator_wrong_game(self):
+        """Тест проверяющий на отсутствие таблицы лидеров с пагинатором."""
+        leaderboard = Leaderboards('1111111').get_leaderboard_with_paginator()
+        self.assertEqual(leaderboard, False)
 
     def test_get_achievements_schulte(self) -> None:
         achievements = self.achievements_schulte.get_achievements()[0].get('record')
@@ -72,5 +82,6 @@ class LeaderboardsAchievementsTests(TestCase):
         self.assertEqual(achievement.record, 900)
 
     def test_save_achievement_stroop(self) -> None:
-        pass
-
+        self.achievements_stroop.save_achievement('999 - 0 - 1', 15000)
+        achievement = StroopModel.objects.filter(user_id=self.user.id, score=15000).first()
+        self.assertEqual(achievement.record, '999 - 0 - 1')

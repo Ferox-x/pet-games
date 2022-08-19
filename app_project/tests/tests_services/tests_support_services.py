@@ -44,21 +44,17 @@ class SupportTest(TestCase):
             'ticket_id': self.ticket.id
         }
         message = Support(self.user, post_data).manager()
-        message_equal = {
-            0: {
-                'message': 'Test Chat Message',
-                'date': localize(self.date),
-                'user__username': 'TestUser',
-                'id': 1, 'user__image': ''
-            },
-            'len': 1,
-            'ticket': {
-                'header': 'TestHeader',
-                'date': localize(self.date),
-                'first_message': 'Test First Message', 'status': 'OP'
-            }
+        self.assertEqual(message[0].get('message'), 'Test Chat Message')
+
+    def test_support_staff_manager_get_chat_from_ticket(self):
+        """Тест на получение чата по тикету."""
+
+        post_data = {
+            'get_chat_from_ticket': 'True',
+            'ticket_id': self.ticket.id
         }
-        self.assertEqual(message, message_equal, '')
+        message = SupportStaff(self.user, post_data).manager()
+        self.assertEqual(message[0].get('message'), 'Test Chat Message')
 
     def test_support_manager_create_ticket(self):
         """Тест на создание тикета."""
@@ -68,7 +64,7 @@ class SupportTest(TestCase):
             'chat_message': 'Create Ticket Test Message',
         }
         Support(self.user, post_data).manager()
-        first_message = SupportTicket.objects.get(id=2).first_message
+        first_message = SupportTicket.objects.get(first_message='Create Ticket Test Message').first_message
         self.assertEqual(first_message, post_data.get('chat_message'))
 
     def test_support_manager_add_message_to_chat(self):
@@ -81,6 +77,16 @@ class SupportTest(TestCase):
         message = Support(self.user, post_data).manager().get('message')
         self.assertEqual(message, post_data.get('chat_message'))
 
+    def test_support_staff_manager_add_message_to_chat(self):
+        """Тест на добавление сообщение к чату."""
+        post_data = {
+            'add_message_to_chat': 'True',
+            'chat_message': 'Test Message',
+            'ticket_id': 1,
+        }
+        message = SupportStaff(self.user, post_data).manager().get('message')
+        self.assertEqual(message, post_data.get('chat_message'))
+
     def test_support_staff_manager_change_status(self):
         """Тест на смену статуса тикета"""
         post_data = {
@@ -91,3 +97,26 @@ class SupportTest(TestCase):
         SupportStaff(self.user, post_data).manager()
         ticket = SupportTicket.objects.get(status='IP')
         self.assertEqual(ticket.status, 'IP')
+
+    def test_support_get_sorted_tickets(self):
+        op_ticket = SupportTicket.objects.create(
+            user=self.user, header='Test Open', status='OP',
+            first_message='Test OpenTest Open')
+        ip_ticket = SupportTicket.objects.create(
+            user=self.user, header='Test In Progress', status='IP',
+            first_message='Test In Progress Test In Progress')
+        cl_ticket = SupportTicket.objects.create(
+            user=self.user, header='Test Closed', status='CL',
+            first_message='Test ClosedTest Closed')
+
+        tickets = SupportTicket.objects.select_related(
+            'user'
+        ).values(
+            'header', 'date', 'status', 'first_message', 'id'
+        ).all()
+
+        sorted_tickets = Support._get_sorted_tickets(tickets)
+
+        self.assertEqual(sorted_tickets.get('op')[0].get('status'), 'OP')
+        self.assertEqual(sorted_tickets.get('ip')[0].get('status'), 'IP')
+        self.assertEqual(sorted_tickets.get('cl')[0].get('status'), 'CL')

@@ -71,7 +71,7 @@ class BaseSupport:
         return ticket
 
     @staticmethod
-    def _get_sorted_tickets(tickets: QuerySet) -> dict[str, list[SupportTicket]]:
+    def _get_sorted_tickets(tickets: QuerySet) -> dict[str, list[dict]]:
         """Сортирует тикеты по статусу."""
         open_tickets = list()
         in_progress_tickets = list()
@@ -107,7 +107,7 @@ class Support(BaseSupport):
     def __init__(self, user: Users, post: dict):
         super().__init__(user, post)
 
-    def manager(self) -> dict:
+    def manager(self) -> dict | None:
         """Метод-менеджер."""
         if self.post_data.get('get_chat_from_ticket'):
             return self._get_chat(self.post_data.get('ticket_id'))
