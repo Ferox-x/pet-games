@@ -26,10 +26,6 @@ class SupportTicket(models.Model):
         db_table = 'tickets'
         verbose_name = _('Ticket')
 
-    @property
-    def short_header(self):
-        return self.header[:15] + '...'
-
     def __str__(self):
         return self.header
 

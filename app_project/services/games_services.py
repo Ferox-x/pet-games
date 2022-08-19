@@ -11,6 +11,24 @@ class Leaderboards:
     def __init__(self, game):
         self.game = game
 
+    def get_leaderboard(self) -> RawQuerySet | bool:
+        """Возвращает таблицу лидеров."""
+        if self.game == 'schulte':
+            leaderboard = self._get_schulte_leaderboard()
+        elif self.game == 'stroop':
+            leaderboard = self._get_stroop_leaderboard()
+        else:
+            return False
+        return leaderboard
+
+    def get_leaderboard_with_paginator(self) -> Paginator | bool:
+        """Возвращает таблицу лидеров с пагинатором."""
+        leaderboard = self.get_leaderboard()
+        if leaderboard:
+            paginator = Paginator(leaderboard, 25)
+            return paginator
+        return False
+
     @staticmethod
     def _get_stroop_leaderboard() -> RawQuerySet:
         """Совершает запрос в базу данных в таблицу games_stroop, и получает рейтинг 100
@@ -43,24 +61,6 @@ class Leaderboards:
         )
         return schulte_leaderboard
 
-    def get_leaderboard(self) -> RawQuerySet | bool:
-        """Возвращает таблицу лидеров."""
-        if self.game == 'schulte':
-            leaderboard = self._get_schulte_leaderboard()
-        elif self.game == 'stroop':
-            leaderboard = self._get_stroop_leaderboard()
-        else:
-            return False
-        return leaderboard
-
-    def get_leaderboard_with_paginator(self) -> Paginator | bool:
-        """Возвращает таблицу лидеров с пагинатором."""
-        leaderboard = self.get_leaderboard()
-        if leaderboard:
-            paginator = Paginator(leaderboard, 25)
-            return paginator
-        return False
-
 
 class Achievements:
     """Класс Achievements отвечает за сохранение и извлечение
@@ -77,12 +77,12 @@ class Achievements:
         elif self.game == 'stroop':
             return self._get_stroop_achievements()
 
-    def save_achievement(self, achievement: str) -> None:
+    def save_achievement(self, achievement: str, score: int = None) -> None:
         """Менеджер сохранения результатов."""
         if self.game == 'schulte':
             return self._save_schulte_achievement(achievement)
         elif self.game == 'stroop':
-            return self._save_stroop_achievement(achievement)
+            return self._save_stroop_achievement(achievement, score)
 
     def _get_schulte_achievements(self) -> QuerySet:
         """Получает результаты пользователя в игре Schulte."""
@@ -103,6 +103,6 @@ class Achievements:
         time = minute * 60 * 100 + sec * 100 + milsec
         SchulteModel(record=time, user=self.user).save()
 
-    def _save_stroop_achievement(self, achievement: str) -> None:
+    def _save_stroop_achievement(self, achievement: str, score: int) -> None:
         """Сохраняет результат в бд games_stroop."""
-        StroopModel(record=achievement, user=self.user).save()
+        StroopModel(record=achievement, score=score, user=self.user).save()
