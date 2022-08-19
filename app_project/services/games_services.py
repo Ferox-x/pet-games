@@ -93,7 +93,7 @@ class Achievements:
 
     def _get_stroop_achievements(self) -> QuerySet:
         """Получает результаты пользователя в игре Stroop."""
-        records = StroopModel.objects.order_by('date').values('record').filter(
+        records = StroopModel.objects.order_by('date').values('record', 'score').filter(
             user_id=self.user.id).all().reverse()
         return records
 
