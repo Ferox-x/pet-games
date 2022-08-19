@@ -35,10 +35,10 @@ class Leaderboards:
          лучших результатов."""
         stroop_leaderboard = StroopModel.objects.raw(
             """
-            WITH table1 AS (SELECT DISTINCT ON (user_id) user_id, games_stroop.id, score,record, date, username FROM games_stroop
+            WITH table1 AS (SELECT DISTINCT ON (user_id) user_id, games_stroop.id, score,record, date, username, country FROM games_stroop
             INNER JOIN "users" ON user_id = "users"."id"
             ORDER BY user_id, score DESC)
-            SELECT id, score, record, date, username FROM table1
+            SELECT id, score, record, date, username, country FROM table1
             ORDER BY score DESC
             LIMIT 100
             """
@@ -51,10 +51,10 @@ class Leaderboards:
         лучших результатов."""
         schulte_leaderboard = SchulteModel.objects.raw(
             """
-            WITH table1 AS (SELECT DISTINCT ON (user_id) user_id, games_schulte.id, record, date, username FROM games_schulte
+            WITH table1 AS (SELECT DISTINCT ON (user_id) user_id, games_schulte.id, record, date, username, country FROM games_schulte
             INNER JOIN "users" ON user_id = "users"."id"
             ORDER BY user_id, record)
-            SELECT id, record, date, username FROM table1
+            SELECT id, record, date, username, country FROM table1
             ORDER BY record
             LIMIT 100
             """

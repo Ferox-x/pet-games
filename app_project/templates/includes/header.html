@@ -11,7 +11,7 @@
         <a href="{% url 'core:main' %}" class="header_li_a">{% trans 'Home' %}</a>
       </li>
       <li class="header_li btn_animation">
-        <a href="#" class="header_li_a">{% trans 'All games' %}</a>
+        <a href="{% url 'game:allgames' %}" class="header_li_a">{% trans 'All games' %}</a>
       </li>
       <li class="header_li btn_animation">
         <a href="{% url 'game:leaderboards' 'schulte' %}" class="header_li_a">{% trans 'Leaderboards' %}</a>

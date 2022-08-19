@@ -28,6 +28,7 @@ INSTALLED_APPS = [
 
     'debug_toolbar',
     'rest_framework',
+    'django_countries',
 
     'api',
     'about',
