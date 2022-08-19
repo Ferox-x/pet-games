@@ -71,7 +71,7 @@ class LeaderboardsView(View):
     def get(self, request, game):
         page = request.GET.get('page') or 1
         leaderboard = Leaderboards(game).get_leaderboard_with_paginator()
-
+        context = None
         if leaderboard:
             context = {
                 'leaderboards': leaderboard.get_page(page),
@@ -79,7 +79,6 @@ class LeaderboardsView(View):
                 'pages': leaderboard.page_range,
                 'game': game
             }
-            return render(request, 'games/leaderboards/leaderboards.html',
-                          context)
+        return render(request, 'games/leaderboards/leaderboards.html',
+                      context)
 
-        return render(request, 'core/error_page/404.html')

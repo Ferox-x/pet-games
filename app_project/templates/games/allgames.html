@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% block title %}
+  {% trans 'All Games' %}
+{% endblock %}
+{% block content %}
+  <div class="container_all_games">
+    <div class="all_games_game">
+      <a href="{% url 'game:stroop' %}">
+        <img class="all_games_img" src="" alt="">
+        <div class="all_games_name">Stroop</div>
+      </a>
+    </div>
+    <div class="all_games_game">
+      <a href="{% url 'game:schulte' %}">
+        <img class="all_games_img" src="" alt="">
+        <div class="all_games_name">Schulte</div>
+      </a>
+    </div>
+  </div>
+{% endblock %}
