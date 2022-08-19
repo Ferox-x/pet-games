@@ -8,8 +8,6 @@ from django.conf import settings
 from django.urls import reverse
 from django import forms
 
-from games.models import SchulteModel, StroopModel
-from support.models import SupportTicket, Chat
 from users.models import Users
 
 User = get_user_model()
@@ -77,6 +75,7 @@ class ViewsTests(TestCase):
                 self.assertTemplateUsed(response, template)
 
     def test_profile_page_show_correct_form_fields(self):
+        """Проверка соотвествия типов форм."""
         response = self.authorized_client.get(reverse('users:profile'))
         form_fields = {
             'username': forms.fields.CharField,
@@ -90,7 +89,8 @@ class ViewsTests(TestCase):
                 form_field = response.context.get('form').fields.get(value)
                 self.assertIsInstance(form_field, expected)
 
-    def test_profile_page_show_correct_image_fields(self):
+    def test_profile_page_show_correct_image_form_fields(self):
+        """Проверка соотвествия типов форм."""
         response = self.authorized_client.get(reverse('users:profile'))
         form_fields = {
             'image': forms.fields.FileField,
@@ -101,6 +101,7 @@ class ViewsTests(TestCase):
                 self.assertIsInstance(form_field, expected)
 
     def test_profile_page_show_correct_context(self):
+        """Проверка контекста."""
         response = self.authorized_client.get(reverse('users:profile'))
         get_context: Users = response.context.get('user')
 
@@ -115,6 +116,7 @@ class ViewsTests(TestCase):
         self.assertEqual(country, self.user.country)
 
     def test_image_exists_at_profile_page(self):
+        """Проверка контекста."""
         response = self.authorized_client.get(reverse('users:profile'))
         page = response.context.get('user').image
         self.assertTrue(page == 'user_images/small.gif')
