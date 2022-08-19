@@ -17,12 +17,19 @@
   <title>{% block title %}{% endblock %}</title>
 </head>
 <body class="background-img">
-  <div class="container">
-      <header>{% include 'includes/header.html' %}</header>
-    {% block content %}
-    {% endblock %}
+<div class="preloader">
+  <div class="preloader__row">
+    <div class="preloader__item"></div>
+    <div class="preloader__item"></div>
   </div>
-  {% cache 500 games_footer LANGUAGE_CODE %}
-    {% include 'includes/footer.html' %}
-  {% endcache %}
+</div>
+<div class="container">
+  <header>{% include 'includes/header.html' %}</header>
+  {% block content %}
+  {% endblock %}
+</div>
+{% cache 500 games_footer LANGUAGE_CODE %}
+  {% include 'includes/footer.html' %}
+{% endcache %}
+<script src="{% static 'scripts/preloader.js' %}"></script>
 </body>
