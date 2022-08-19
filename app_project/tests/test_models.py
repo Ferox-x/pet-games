@@ -18,7 +18,7 @@ class ModelTest(TestCase):
         cls.user = User.objects.create(
             username='TestUser',
             is_superuser=True,
-            id='1'
+            id='1',
         )
 
         cls.ticket = SupportTicket.objects.create(
@@ -48,6 +48,7 @@ class ModelTest(TestCase):
         )
 
     def test_models_have_correct_object_names(self):
+        """Проверка соотвествия имя объекта."""
         user = ModelTest.user
         expected_object_name = user.username
         self.assertEqual(expected_object_name, str(user))
@@ -57,6 +58,7 @@ class ModelTest(TestCase):
         self.assertEqual(expected_object_name, str(ticket))
 
     def test_user_verbose_name(self):
+        """Проверка соотвествия verbose_name."""
         user = User
         field_verboses = {
             'username': 'Username',
@@ -73,6 +75,7 @@ class ModelTest(TestCase):
                                  expected)
 
     def test_ticket_verbose_name(self):
+        """Проверка соотвествия verbose_name."""
         user = SupportTicket
         field_verboses = {
             'first_message': 'First message',
@@ -88,6 +91,7 @@ class ModelTest(TestCase):
                                  expected)
 
     def test_chat_verbose_name(self):
+        """Проверка соотвествия verbose_name."""
         user = Chat
         field_verboses = {
             'ticket': 'Ticket',
@@ -102,6 +106,7 @@ class ModelTest(TestCase):
                                  expected)
 
     def test_schulte_verbose_name(self):
+        """Проверка соотвествия verbose_name."""
         user = SchulteModel
         field_verboses = {
             'record': 'Record Time',
@@ -115,6 +120,7 @@ class ModelTest(TestCase):
                                  expected)
 
     def test_stroop_verbose_name(self):
+        """Проверка соотвествия verbose_name."""
         user = StroopModel
         field_verboses = {
             'record': 'Record',
