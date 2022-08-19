@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Error 500{% endblock %}
+{% block content %}
+  <div class="error_container">
+     <div class="error">
+        500
+      </div>
+      <div class="error_message">WE ARE UNABLE TO FIND OUT WHAT’S HAPPENING! WE SUGGEST YOU TO</div>
+      <a class="button_home btn_animation" href="{% url 'core:main' %}">Home</a>
+  </div>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% load static %}
+{% load cache %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="{% static 'img/fav/favicon.ico' %}" type="image">
+  <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/fav/apple-touch-icon.png' %}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{% static 'img/fav/favicon-32x32.png' %}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{% static 'img/fav/favicon-16x16.png' %}">
+  <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'flags/sprite-hq.css' %}">
+
+  <title>{% block title %}{% endblock %}</title>
+</head>
+<body class="background-img">
+<div class="preloader">
+  <div class="preloader__row">
+    <div class="preloader__item"></div>
+    <div class="preloader__item"></div>
+  </div>
+</div>
+<div class="container">
+  <header>{% include 'includes/header.html' %}</header>
+  {% block content %}
+  {% endblock %}
+</div>
+{% cache 500 games_footer LANGUAGE_CODE %}
+  {% include 'includes/footer.html' %}
+{% endcache %}
+<script src="{% static 'scripts/preloader.js' %}"></script>
+</body>

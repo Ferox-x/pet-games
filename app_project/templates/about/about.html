@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}About{% endblock %}
+{% block content %}
+  <div class="auth_container" style="display: inline-block">
+    <div class="main-content-h1 main-content-text">{% trans 'ABOUT US' %}</div>
+    <div class="main-content-h2" style="font-size: 30px; width: 900px">
+      {% trans 'A platform that includes mini-games aimed at developing intellectual abilities. The user of the platform can use the mini-games to customize their settings, as well as compete with other users of the platform by moving up the leaderboard.' %}
+    </div>
+  </div>
+{% endblock %}

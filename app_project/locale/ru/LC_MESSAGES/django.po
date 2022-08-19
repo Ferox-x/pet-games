@@ -1,0 +1,370 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-08-19 17:00+0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
+"%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: .\app\settings.py:106
+msgid "English"
+msgstr "Английский"
+
+#: .\app\settings.py:107
+msgid "Russian"
+msgstr "Русский"
+
+#: .\games\models.py:9 .\games\models.py:25 .\support\models.py:16
+#: .\support\models.py:41 .\users\models.py:102
+msgid "User"
+msgstr "Пользователь"
+
+#: .\games\models.py:12
+msgid "Record Time"
+msgstr "Рекордное время"
+
+#: .\games\models.py:14 .\games\models.py:32
+msgid "Time"
+msgstr "Время"
+
+#: .\games\models.py:19
+msgid "Schulte"
+msgstr "Schulte"
+
+#: .\games\models.py:28
+msgid "Record"
+msgstr "Рекорд"
+
+#: .\games\models.py:30
+msgid "Score"
+msgstr "Счет"
+
+#: .\games\models.py:37
+msgid "Stroop"
+msgstr "Stroop"
+
+#: .\support\models.py:18
+msgid "Header"
+msgstr "Заголовок"
+
+#: .\support\models.py:20 .\support\models.py:39
+msgid "Date"
+msgstr "Дата"
+
+#: .\support\models.py:21
+msgid "Status"
+msgstr "Статус"
+
+#: .\support\models.py:27 .\support\models.py:36
+msgid "Ticket"
+msgstr "Заявка"
+
+#: .\support\models.py:38 .\templates\support\support.html:64
+msgid "Message"
+msgstr "Сообщение"
+
+#: .\support\models.py:46
+msgid "Chat"
+msgstr "Чат"
+
+#: .\templates\about\about.html:6
+msgid "ABOUT US"
+msgstr "О НАС"
+
+#: .\templates\about\about.html:8
+msgid ""
+"A platform that includes mini-games aimed at developing intellectual "
+"abilities. The user of the platform can use the mini-games to customize "
+"their settings, as well as compete with other users of the platform by "
+"moving up the leaderboard."
+msgstr ""
+"Платформа, включающая в себя мини-игры, направленные на "
+"развитиеинтеллектуальных способностей. Пользователь платформы может "
+"пользоватьсямини-играми настраивать их параметры, а так же соревноваться с "
+"другимипользователями платформы, путем продвижения по таблице лидеров"
+
+#: .\templates\core\main_page\main_page.html:13
+msgid "High-quality games with different tasks necessary for brain development"
+msgstr ""
+"Высококачественные игры с различными заданиями, необходимыми для развития "
+"мозга"
+
+#: .\templates\core\main_page\main_page.html:14
+#: .\templates\includes\header.html:14
+msgid "All games"
+msgstr "Все игры"
+
+#: .\templates\core\main_page\main_page.html:26
+msgid ""
+"The Stroop test promotes the development between reading words and their "
+"perception, and also increases the concentration of attention and its "
+"switchability. Changing the usual algorithm to read first, and then "
+"perceive, to a similar one, but the reverse - first perceive, and then read "
+"makes the brain do double work."
+msgstr ""
+"Тест Струпа способствует развитию связи между чтением слов и их восприятием,"
+"а также повышает концентрацию внимания и его переключаемость. Смена обычного "
+"алгоритма- сначала читать, а потом воспринимать - на аналогичный, но "
+"обратный- сначала воспринимать, а потом читать - заставляет мозг выполнять "
+"двойную работу."
+
+#: .\templates\core\main_page\main_page.html:29
+#: .\templates\core\main_page\main_page.html:44
+msgid "PLAY GAME"
+msgstr "ИГРАТЬ"
+
+#: .\templates\core\main_page\main_page.html:41
+msgid ""
+"Schulte tables are a tool for training peripheral vision, concentration of "
+"attention and parallel perception of information. The development of these "
+"skills helps to master the technique of speed reading."
+msgstr ""
+"Таблицы Шульте - это инструмент для тренировки периферического зрения,"
+"концентрации внимания и параллельного восприятия информации.Развитие этих "
+"навыков помогает овладеть техникой скорочтения."
+
+#: .\templates\games\allgames.html:5
+#, fuzzy
+#| msgid "All games"
+msgid "All Games"
+msgstr "Все игры"
+
+#: .\templates\games\leaderboards\leaderboards.html:6
+#: .\templates\includes\header.html:17
+msgid "Leaderboards"
+msgstr "Таблица лидеров"
+
+#: .\templates\games\leaderboards\leaderboards.html:42
+msgid "No results"
+msgstr "Результаты не найдены"
+
+#: .\templates\games\schulte\index.html:13
+msgid "START"
+msgstr "СТАРТ"
+
+#: .\templates\games\schulte\index.html:17
+#: .\templates\games\stroop\index.html:19
+msgid "Your achievements"
+msgstr "Твои результаты"
+
+#: .\templates\games\schulte\index.html:23
+#: .\templates\games\stroop\index.html:25
+msgid "You must be authentication to see results"
+msgstr "Вы должны быть авторизированны, чтобы увидеть результаты"
+
+#: .\templates\includes\footer.html:6
+msgid "Consent to&nbsp;data processing"
+msgstr "Согласие на&nbsp;обработку данных"
+
+#: .\templates\includes\footer.html:8
+msgid "Support team"
+msgstr "Служба поддержки"
+
+#: .\templates\includes\footer.html:10
+msgid "Privacy Policy"
+msgstr "Политика конфиденциальности"
+
+#: .\templates\includes\header.html:11
+msgid "Home"
+msgstr "Домой"
+
+#: .\templates\includes\header.html:20
+msgid "About"
+msgstr "О Нас"
+
+#: .\templates\includes\header.html:42 .\templates\registration\login.html:4
+msgid "Login"
+msgstr "Войти"
+
+#: .\templates\registration\change_password.html:8
+msgid "Change Password"
+msgstr "Сменить пароль"
+
+#: .\templates\registration\login.html:10
+#: .\templates\registration\login.html:34
+#: .\templates\registration\password_reset_complete.html:10
+msgid "Login Now"
+msgstr "Войти"
+
+#: .\templates\registration\login.html:13
+msgid "Register"
+msgstr "Зарегистрироваться"
+
+#: .\templates\registration\login.html:39
+msgid "forgot your password?"
+msgstr "забыли пароль?"
+
+#: .\templates\registration\password_change_done.html:3
+#: .\templates\registration\password_reset_complete.html:3
+#: .\templates\registration\password_reset_done.html:3
+msgid "Password change done"
+msgstr "Смена пароля выполнена"
+
+#: .\templates\registration\password_change_done.html:7
+msgid "Password changed."
+msgstr "Пароль изменен."
+
+#: .\templates\registration\password_change_done.html:8
+msgid "You successfully changed your password!"
+msgstr "Вы успешно изменили свой пароль!"
+
+#: .\templates\registration\password_reset_complete.html:8
+msgid "Your password has been saved. Use it to login."
+msgstr "Ваш пароль был сохранен. Используйте его для входа."
+
+#: .\templates\registration\password_reset_confirm.html:3
+#: .\templates\registration\password_reset_confirm.html:9
+#: .\templates\registration\password_reset_form.html:3
+#: .\templates\registration\password_reset_form.html:8
+msgid "Reset Password"
+msgstr "Сброс пароля"
+
+#: .\templates\registration\password_reset_confirm.html:29
+msgid "Error"
+msgstr "Ошибка"
+
+#: .\templates\registration\password_reset_confirm.html:30
+msgid "Password reset link is invalid or out of date"
+msgstr "Ссылка на сброс пароля недействительна или устарела"
+
+#: .\templates\registration\password_reset_done.html:7
+msgid "Message sent to your email."
+msgstr "Сообщение отправлено на вашу электронную почту."
+
+#: .\templates\registration\password_reset_done.html:8
+msgid ""
+"Check your email, you should receive an email with a link to reset your "
+"password."
+msgstr ""
+"Проверьте свою электронную почту, вы должны получить письмо со ссылкой для "
+"сброса пароля."
+
+#: .\templates\registration\password_reset_email.html:2
+#, python-format
+msgid ""
+"You're receiving this email because you requested a password reset for your "
+"user account at\n"
+"    %(site_name)s."
+msgstr ""
+
+#: .\templates\registration\password_reset_email.html:4
+msgid "Please go to the following page and choose a new password:"
+msgstr "Пожалуйста, перейдите на следующую страницу и выберите новый пароль"
+
+#: .\templates\registration\password_reset_email.html:8
+msgid "Your username, in case you’ve forgotten:"
+msgstr "Ваше имя пользователя, если вы забыли:"
+
+#: .\templates\registration\password_reset_email.html:9
+msgid "Thanks for using our site!"
+msgstr "Спасибо, что пользуетесь нашим сайтом!"
+
+#: .\templates\registration\password_reset_email.html:10
+#, fuzzy
+#| msgid "The Pet-Games Team"
+msgid "The Pet-Games Team "
+msgstr "The Pet-Games Team"
+
+#: .\templates\registration\signup.html:3
+msgid "Create Account"
+msgstr "Создать учетную запись"
+
+#: .\templates\support\support.html:7 .\templates\support\support_staff.html:7
+#, fuzzy
+#| msgid "Support team"
+msgid "Support"
+msgstr "Служба поддержки"
+
+#: .\templates\support\support.html:13
+#: .\templates\support\support_staff.html:13
+msgid "Open"
+msgstr "Открытые"
+
+#: .\templates\support\support.html:27
+#: .\templates\support\support_staff.html:27
+msgid "In Progress"
+msgstr "В прогрессе"
+
+#: .\templates\support\support.html:41
+#: .\templates\support\support_staff.html:41
+msgid "Closed"
+msgstr "Закрытые"
+
+#: .\templates\support\support.html:62
+msgid "Title"
+msgstr "Тема"
+
+#: .\templates\support\support.html:80
+#: .\templates\support\support_staff.html:67
+msgid "Send"
+msgstr "Отправить"
+
+#: .\templates\support\support.html:85
+#: .\templates\support\support_staff.html:73
+#, fuzzy
+#| msgid "Ticket"
+msgid "Ticket Closed"
+msgstr "Заявка"
+
+#: .\templates\support\support.html:90
+#, fuzzy
+#| msgid "Chat"
+msgid "Chats"
+msgstr "Чат"
+
+#: .\templates\support\support_staff.html:68
+#, fuzzy
+#| msgid "Ticket"
+msgid "Close Ticket"
+msgstr "Заявка"
+
+#: .\users\models.py:53
+#, fuzzy
+#| msgid "User"
+msgid "Username"
+msgstr "Пользователь"
+
+#: .\users\models.py:56
+msgid "select country"
+msgstr "выберите страну"
+
+#: .\users\models.py:57
+msgid "Country"
+msgstr "Страна"
+
+#: .\users\models.py:61
+msgid "Description"
+msgstr "Описание"
+
+#: .\users\models.py:67
+#, fuzzy
+#| msgid "Email adress"
+msgid "Email address"
+msgstr "Электронная почта"
+
+#: .\users\models.py:71
+msgid "Full name"
+msgstr "Полное имя"
+
+#: .\users\models.py:103
+#, fuzzy
+#| msgid "User"
+msgid "Users"
+msgstr "Пользователи"
+
+#~ msgid "Contacts"
+#~ msgstr "Контакты"
