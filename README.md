@@ -39,7 +39,15 @@ ____
 
 `python manage.py createsuperuser`
 
+7) Запустить сервер:
+
+`python manage.py runserver`
+
 ## **Разработчики группового проекта:**
 
+Frontend and Backend:
 - Егор Малов: https://github.com/Ferox-x
 - Александр Кондратьев: https://github.com/anywindblows
+
+Дизайн:
+- Юлия Конохова: https://github.com/cantchoosecolor

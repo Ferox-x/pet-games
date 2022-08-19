@@ -156,10 +156,12 @@ function clickColorBlock(event) {
         correctCounter++
         streak++
         timer = timer/100
-
+        let between_coef = correctCounter / (incorrectCounter * 5)
+        if (between_coef === Infinity) {
+            between_coef = correctCounter / (5)
+        }
         if (timer < 5) {
-            score = score + 5 * (5 - timer) * streak * correctCounter / (incorrectCounter * 5)
-            console.log(score)
+            score = score + 5 * (5 - timer) * streak * between_coef
         }
         timer = 0
     } else {
