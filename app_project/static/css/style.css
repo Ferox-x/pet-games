@@ -958,6 +958,13 @@ body {
   line-height: 30px;
 }
 
+.stroop_score{
+  float: right;
+  text-align: right;
+  padding-right: 30px;
+  padding-top: 4px;
+}
+
 /* end stroop-css */
 
 /* start leaderboards-css */

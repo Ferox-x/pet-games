@@ -5,10 +5,18 @@ const colorElemBlock = document.getElementById('colorElemBlock')
 const startBlock = document.getElementById('startBlock')
 const scoreBlock = document.getElementById('scoreBlock')
 
+
 const table = document.getElementById('table')
 const recordsList = document.getElementById('recordsList')
 
-const colorsNames = ['Yellow', 'Red', 'Green', 'Blue', 'Black']
+const language = document.querySelector('[name=LANGUAGE_CODE]').value
+
+let colorsNames = ['Yellow', 'Red', 'Green', 'Blue', 'Black']
+
+if (language === 'ru') {
+    colorsNames = ['Жёлтый', 'Красный', 'Зелёный', 'Синий', 'Чёрный']
+}
+
 const colorsTypes = [
     'rgba(250, 212, 15, 0.5)',
     'rgba(255, 0, 0, 0.5)',
@@ -22,6 +30,9 @@ let totalCounter = 0
 let correctCounter = 0
 let incorrectCounter = 0
 let prevColorName = undefined
+let score = 0
+let streak = 0
+let timer = 0
 
 window.addEventListener('keydown', (hotkey) => {
     const hotkeys = {
@@ -39,7 +50,7 @@ window.addEventListener('keydown', (hotkey) => {
 function addingResultToLeaderboard(result) {
     let recordListLi = recordsList.getElementsByTagName('li')
     let new_result = document.createElement('li')
-    new_result.innerHTML = result
+    new_result.innerHTML = result + '<b class="stroop_score">'+ score + '</b>'
     new_result.className = 'stroop_r record'
     new_result.id = 'record'
     recordsList.prepend(new_result)
@@ -50,7 +61,7 @@ function addingResultToLeaderboard(result) {
     }
 }
 
-function sendData(data) {
+function sendData(data, score) {
     const csrftoken = document.querySelector(
         '[name=csrfmiddlewaretoken]'
     ).value
@@ -60,6 +71,7 @@ function sendData(data) {
     formData.append('HTTP_X_REQUESTED_WITH', 'XMLHttpRequest')
     formData.append('csrfmiddlewaretoken', csrftoken)
     formData.append('record', data)
+    formData.append('score', score)
 
     xhr.open("POST", "/games/stroop/")
     xhr.send(formData)
@@ -115,27 +127,44 @@ function wordColorGenerator(colorType, colorName) {
     wordColor.id = 'wordColor'
     wordBlock.appendChild(wordColor)
     prevColorName = colorName
+    document.recordTimer = setInterval(scoreTimer, 10)
+
+}
+
+function scoreTimer(){
+    timer++
 }
 
 function clickColorBlock(event) {
     const colorTypeName = {
-        'rgba(250, 212, 15, 0.5)': 'Yellow',
-        'rgba(255, 0, 0, 0.5)': 'Red',
-        'rgba(66, 255, 0, 0.47)': 'Green',
-        'rgba(0, 133, 255, 0.5)': 'Blue',
-        'rgba(0, 0, 0, 0.5)': 'Black',
+        'rgba(250, 212, 15, 0.5)': colorsNames[0],
+        'rgba(255, 0, 0, 0.5)': colorsNames[1],
+        'rgba(66, 255, 0, 0.47)': colorsNames[2],
+        'rgba(0, 133, 255, 0.5)': colorsNames[3],
+        'rgba(0, 0, 0, 0.5)': colorsNames[4],
     }
 
     let colorNameText = document.getElementById(
         'wordColor'
     ).textContent
     let selectedBlockElem = document.getElementById(event.target.id)
+
     let colorBlockElem = colorTypeName[selectedBlockElem.style.backgroundColor]
 
+    clearInterval(document.recordTimer)
     if (colorBlockElem === colorNameText) {
         correctCounter++
+        streak++
+        timer = timer/100
+
+        if (timer < 5) {
+            score = score + 5 * (5 - timer) * streak * correctCounter / (incorrectCounter * 5)
+            console.log(score)
+        }
+        timer = 0
     } else {
         incorrectCounter++
+        streak = 0
     }
 
     totalCounter++
@@ -180,14 +209,15 @@ function timerDisplay() {
 
 function mainMenu() {
     achievementsBlock()
+    score = Math.floor(score)
 
-    if (sliderValue === 2) {
+    if (sliderValue === 60) {
         let result = formatResult(
             totalCounter,
             correctCounter,
             incorrectCounter
         )
-        sendData(result)
+        sendData(result, score)
     } else if (incorrectCounter + correctCounter + totalCounter !== 0) {
         let result = formatResult(
             totalCounter,
@@ -197,6 +227,7 @@ function mainMenu() {
         addingResultToLeaderboard(result)
     }
 
+    score = 0
     incorrectCounter = 0
     correctCounter = 0
     totalCounter = 0
@@ -215,9 +246,9 @@ function mainMenu() {
     slider.id = 'slider'
     slider.className = 'stroop_slider'
     slider.type = 'range'
-    slider.min = '2'
+    slider.min = '10'
     slider.max = '120'
-    slider.step = '2'
+    slider.step = '10'
     slider.value = '60'
     slider.oninput = timerSetting
     sliderBlock.appendChild(slider)

@@ -51,7 +51,8 @@ class StroopGame(View):
 
         if request.user.is_authenticated and is_ajax(request):
             achievement = request.POST.get('record')
-            Achievements('stroop', request.user).save_achievement(achievement)
+            score = request.POST.get('score')
+            Achievements('stroop', request.user).save_achievement(achievement, score)
 
             return HttpResponse(HTTPStatus.OK)
         elif not request.user.is_authenticated:
