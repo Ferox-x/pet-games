@@ -487,7 +487,7 @@ textarea:focus, input:focus {
 
 .game_present_stroop {
   height: 600px;
-  margin-bottom: 400px;
+  margin-bottom: 450px;
 }
 
 .game_present_schulte {
@@ -1617,19 +1617,33 @@ body {
   border-radius: 15px 15px 0 0;
 }
 
+.all_games_img_stroop {
+  background-image: url("/static/img/games_images/stroop.PNG");
+  background-repeat: no-repeat;
+  background-position: 0 -10px;
+  background-size: 300px;
+}
+
+.all_games_img_schulte {
+    background-image: url("/static/img/games_images/schulte.PNG");
+   background-repeat: no-repeat;
+  background-position: 0;
+  background-size: 300px;
+}
+
 .all_games_game:nth-child(4n) {
   margin-right: 0;
 }
 
 .all_games_name {
-  display: flex;
-  width: 295px;
-  height: 56px;
+  height: 50px;
   color: #FFFFFF;
   background-color: #14213D;
   border-radius: 0 0 15px 15px;
   align-items: center;
+  padding-top: 10px;
   padding-left: 10px;
+  margin-top: 150px;
 }
 
 /* end css */

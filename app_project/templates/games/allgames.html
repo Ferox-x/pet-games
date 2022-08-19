@@ -6,17 +6,15 @@
 {% endblock %}
 {% block content %}
   <div class="container_all_games">
-    <div class="all_games_game">
-      <a href="{% url 'game:stroop' %}">
-        <img class="all_games_img" src="" alt="">
-        <div class="all_games_name">Stroop</div>
-      </a>
-    </div>
-    <div class="all_games_game">
-      <a href="{% url 'game:schulte' %}">
-        <img class="all_games_img" src="" alt="">
+    <a href="{% url 'game:stroop' %}">
+      <div class="all_games_game all_games_img_stroop">
+        <div class="all_games_name ">Stroop</div>
+      </div>
+    </a>
+    <a href="{% url 'game:schulte' %}">
+      <div class="all_games_game all_games_img_schulte">
         <div class="all_games_name">Schulte</div>
-      </a>
-    </div>
+      </div>
+    </a>
   </div>
 {% endblock %}
