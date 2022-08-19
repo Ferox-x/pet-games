@@ -1,52 +1,40 @@
 {% extends 'base.html' %}
 {% block title %}Stroop Game{% endblock %}
 {% block content %}
-  {% load static %}
-  {% load i18n %}
-  <!DOCTYPE html>
-  <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <title>Stroop</title>
-  </head>
-  <body>
-  <div class="stroop_inline">
-    <div class="stroop_left_container"></div>
-    <div class="stroop_container">
-      <div class="stroop_timer-block" id="timerBlock"></div>
-      <div class="stroop_slider-block" id="sliderBlock"></div>
-      <div class="stroop_word-block" id="wordBlock"></div>
-      <div class="stroop_color_elem_block" id="colorElemBlock"></div>
-      <div class="stroop_start-block" id="startBlock"></div>
-      <div class="stroop_score-block" id="scoreBlock"></div>
-    </div>
-    <div class="stroop_right_container">
-      <div class="record_table stroop_table" id="table">
-        <p class="stroop_achievements_p" id="achievements">
-          {% trans 'Your achievements' %}
-        </p>
-      </div>
-      <ol class="stroop_l records_list" id="recordsList">
-        {% if not user.is_authenticated %}
-          <div class="not_auth">
-            <div class="not_auth_alert">{% trans 'You must be authentication to see results' %}</div>
-            <a class="not_auth_link" href="{% url 'users:login' %}">Login</a>
-          </div>
-        {% else %}
-          {% for record in records %}
-            <li class="stroop_r record" id="record">{{ record.record }}
-              <b class="stroop_score">{{ record.score }}</b>
-            </li>
-          {% endfor %}
-        {% endif %}
-      </ol>
-    </div>
+{% load static %}
+{% load i18n %}
+<div class="stroop_inline">
+  <div class="stroop_left_container"></div>
+  <div class="stroop_container">
+    <div class="stroop_timer-block" id="timerBlock"></div>
+    <div class="stroop_slider-block" id="sliderBlock"></div>
+    <div class="stroop_word-block" id="wordBlock"></div>
+    <div class="stroop_color_elem_block" id="colorElemBlock"></div>
+    <div class="stroop_start-block" id="startBlock"></div>
+    <div class="stroop_score-block" id="scoreBlock"></div>
   </div>
-  {% csrf_token %}
-  <script id="script" src="{% static 'scripts/stroop_script.js' %}"></script>
-  </body>
-  </html>
+  <div class="stroop_right_container">
+    <div class="record_table stroop_table" id="table">
+      <p class="stroop_achievements_p" id="achievements">
+        {% trans 'Your achievements' %}
+      </p>
+    </div>
+    <ol class="stroop_l records_list" id="recordsList">
+      {% if not user.is_authenticated %}
+        <div class="not_auth">
+          <div class="not_auth_alert">{% trans 'You must be authentication to see results' %}</div>
+          <a class="not_auth_link" href="{% url 'users:login' %}">Login</a>
+        </div>
+      {% else %}
+        {% for record in records %}
+          <li class="stroop_r record" id="record">{{ record.record }}
+            <b class="stroop_score">{{ record.score }}</b>
+          </li>
+        {% endfor %}
+      {% endif %}
+    </ol>
+  </div>
+</div>
+{% csrf_token %}
+<script id="script" src="{% static 'scripts/stroop_script.js' %}"></script>
 {% endblock %}
