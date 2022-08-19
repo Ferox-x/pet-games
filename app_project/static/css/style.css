@@ -284,9 +284,9 @@ textarea:focus, input:focus {
 }
 
 .field_error_profile {
-  margin-top: 3px;
+  padding-left: 70px;
   text-decoration: none;
-  font-size: 5px;
+  font-size: 12px;
   color: rgb(161, 0, 0);
 }
 
@@ -414,12 +414,13 @@ textarea:focus, input:focus {
   margin-right: 45px;
   margin-bottom: 0;
   transition: all ease-in-out 0.1s;
+  user-select: none;
 }
 
 .header_li_a {
   text-decoration: none;
   color: #14213d;
-
+  user-select: none;
 }
 
 .header_div_right {
@@ -978,7 +979,6 @@ body {
 
 .leaderboards {
   max-width: 1360px;
-  min-height: calc(100vh - 190px);
   max-height: 1664px;
   background: #FFFFFF;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
@@ -1013,6 +1013,7 @@ body {
   margin-right: 30px;
   width: 100px;
   letter-spacing: 0.02em;
+  user-select: none;
 }
 
 .leaderboards_games_ul {
@@ -1040,6 +1041,7 @@ body {
 
 .leaderboards_stick {
   font-size: 20px;
+  user-select: none;
 }
 
 .leaderboards_games_ul_li {
@@ -1070,7 +1072,8 @@ body {
   font-weight: 400;
   font-size: 30px;
   line-height: 48px;
-
+  border-radius: 10px;
+  transition: all ease 0.2s;
 }
 
 .leaderboards_games_ol_li_span_time {
@@ -1097,6 +1100,8 @@ body {
 .leaderboards_games_a {
   text-decoration: none;
   color: #19294b;
+  transition: all ease 0.5s;
+  user-select: none;
 }
 
 
@@ -1107,6 +1112,7 @@ body {
 .leaderboards_games_ol_li_span_nickname {
   width: 400px;
   display: inline-block;
+  user-select: none;
 }
 
 .leaderboards_paginator {
@@ -1138,6 +1144,7 @@ body {
   align-items: center;
   color: #14213D;
   margin-right: 10px;
+  transition: all ease 0.2s;
 }
 
 .leaderboards_paginator_prev_next {
@@ -1146,7 +1153,6 @@ body {
 }
 
 .leaderboards_paginator_prev {
-  margin-right: 10px;
 }
 
 /* end leaderboards-css */
@@ -1669,6 +1675,8 @@ body {
   margin-right: 50px;
   margin-bottom: 30px;
   background-color: #14213D;
+  transition: all ease 0.5s;
+
 }
 
 .all_games_img {

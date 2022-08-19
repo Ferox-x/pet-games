@@ -1,60 +1,69 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load i18n %}
-{% load countries  %}
+{% load countries %}
 {% load leaderboards_tags %}
 {% block title %}{% trans 'Leaderboards' %}{% endblock %}
 {% block content %}
-<div class="leaderboards">
-  <div class="leaderboards_games">
-    <ul class="leaderboards_games_ul">
-      <li class="leaderboards_games_ul_li {% if game == 'schulte' %}games_current{% endif %}"><a class="leaderboards_games_a" href="{% url 'game:leaderboards' 'schulte' %}">Schulte</a></li>
-      <li class="leaderboards_games_ul_li leaderboards_stick">|</li>
-      <li class="leaderboards_games_ul_li {% if game == 'stroop' %}games_current{% endif %}"><a class="leaderboards_games_a" href="{% url 'game:leaderboards' 'stroop' %}">Stroop</a></li>
+  <div class="leaderboards">
+    <div class="leaderboards_games">
+      <ul class="leaderboards_games_ul">
+        <li class="leaderboards_games_ul_li {% if game == 'schulte' %}games_current{% endif %}"><a
+          class="leaderboards_games_a btn_animation" href="{% url 'game:leaderboards' 'schulte' %}">Schulte</a></li>
+        <li class="leaderboards_games_ul_li leaderboards_stick">|</li>
+        <li class="leaderboards_games_ul_li {% if game == 'stroop' %}games_current{% endif %}"><a
+          class="leaderboards_games_a btn_animation" href="{% url 'game:leaderboards' 'stroop' %}">Stroop</a></li>
+      </ul>
+    </div>
+    <ul class="leaderboards_games_ol">
+      {% if leaderboards %}
+        {% for result in leaderboards %}
+          <li class="leaderboards_games_ol_li">
+            <div class="leaderboards_number">{% rating_position forloop.counter page %}</div>
+            <div class="leaderboards_games_ol_div">
+              <div class="leaderboards_games_ol_div">
+                <a href="{% url 'users:profile_detail' result.username %}"
+                   class="leaderboards_games_ol_li_span_result btn_animation">
+                  <div class="leaderboards_games_ol_li_span_nickname">
+                    {% get_country result.country as country %}
+                    <div class="leaderboards_flag"><i class="leaderboards_flag  flag2x {{ country.flag_css }}"
+                                                      style="box-shadow: 0 4px 4px rgba(2, 2, 2, 0.7);"></i></div>
+                    {{ result.username }}
+                  </div>
+                  {% if result.score %}
+                    <div class="leaderboards_games_ol_li_span_score">{{ result.score }}</div>
+                  {% endif %}
+                </a>
+                <div class="leaderboards_games_ol_li_span_time">
+                  {% format_schulte result.record game %}
+                </div>
+              </div>
+            </div>
+          </li>
+        {% endfor %}
+      {% else %}
+        <div class="leaderboards_no_results">
+          {% trans 'No results' %}
+        </div>
+      {% endif %}
     </ul>
   </div>
-  <ul class="leaderboards_games_ol">
-    {% if leaderboards %}
-      {% for result in leaderboards %}
-        <li class="leaderboards_games_ol_li">
-        <div class="leaderboards_number">{% rating_position forloop.counter page %}</div>
-        <div class="leaderboards_games_ol_div">
-          <div class="leaderboards_games_ol_div">
-            <div class="leaderboards_games_ol_li_span_result">
-              <div class="leaderboards_games_ol_li_span_nickname">
-                {% get_country result.country as country %}
-                <div class="leaderboards_flag"><i class="leaderboards_flag  flag2x {{ country.flag_css }}"></i></div>
-                <a href="{% url 'users:profile_detail' result.username %}">{{ result.username }}</a>
-              </div>
-              {% if result.score %}
-                <div class="leaderboards_games_ol_li_span_score">{{ result.score }}</div>
-              {% endif %}
-            </div>
-            <div class="leaderboards_games_ol_li_span_time">
-              {% format_schulte result.record game %}
-            </div>
-          </div>
-        </div>
-      </li>
-      {% endfor %}
-    {% else %}
-      <div class="leaderboards_no_results">
-      {% trans 'No results' %}
-      </div>
-    {% endif %}
-  </ul>
-  </div>
-  {% if leaderboards and leaderboards.has_next or leaderboards.has_next %}
+  {% if leaderboards or leaderboards.has_other_pages %}
     <div class="leaderboards_paginator">
       <div class="leaderboards_paginator_div">
         {% if leaderboards.has_previous %}
-          <a href="/games/leaderboards/{{ game }}/?page={{ leaderboards.previous_page_number }}" class="leaderboards_a"><img class="leaderboards_paginator_prev_next leaderboards_paginator_prev" src="{% static 'img/paginator/ChevronLeft.svg' %}" alt=""></a>
+          <a href="/games/leaderboards/{{ game }}/?page={{ leaderboards.previous_page_number }}" class="leaderboards_a"><img
+            class="leaderboards_paginator_prev_next leaderboards_paginator_prev"
+            src="{% static 'img/paginator/ChevronLeft.svg' %}" alt=""></a>
         {% endif %}
         {% for page in pages %}
-          <a href="/games/leaderboards/{{ game }}/?page={{ page }}" class="leaderboards_a"><div class="leaderboards_paginator_page">{{ page }}</div></a>
+          <a href="/games/leaderboards/{{ game }}/?page={{ page }}" class="leaderboards_a">
+            <div class="leaderboards_paginator_page btn_animation">{{ page }}</div>
+          </a>
         {% endfor %}
         {% if leaderboards.has_next %}
-          <a href="/games/leaderboards/{{ game }}/?page={{ leaderboards.next_page_number }}" class="leaderboards_a"><img class="leaderboards_paginator_prev_next" src="{% static 'img/paginator/ChevronRight.svg' %}" alt=""></a>
+          <a href="/games/leaderboards/{{ game }}/?page={{ leaderboards.next_page_number }}" class="leaderboards_a"><img
+            class="leaderboards_paginator_prev_next" src="{% static 'img/paginator/ChevronRight.svg' %}" alt=""></a>
         {% endif %}
       </div>
     </div>
