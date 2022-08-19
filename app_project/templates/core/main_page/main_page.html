@@ -5,15 +5,51 @@
 {% get_current_language as LANGUAGE_CODE %}
 {% block title %}Pet Games{% endblock %}
 {% block content %}
-  {% cache 500 'mainpage' LANGUAGE_CODE  %}
-  <section class="main-content">
-    <h1 class="main-content-h1 main-content-text">Brain Development
-      Games</h1>
-    <h2 class="main-content-h2">
-      {% trans 'High-quality games with different tasks necessary for brain development' %}</h2>
-    <a class="main-content-a  play_game_button btn_animation" href="#">{% trans 'All games' %}</a>
-  </section>
+  {% cache 500 'mainpage' LANGUAGE_CODE %}
+    <section class="main-content">
+      <h1 class="main-content-h1 main-content-text">Brain Development
+        Games</h1>
+      <h2 class="main-content-h2">
+        {% trans 'High-quality games with different tasks necessary for brain development' %}</h2>
+      <a class="main-content-a  play_game_button btn_animation" href="#">{% trans 'All games' %}</a>
+    </section>
+    <section class="game_present game_present_stroop">
+      <ul class="game_ul">
+        <li class="game_li">
+          <img class="game_img"
+               src="{% static 'img/light_theme/Geometry Stroop.svg' %}" alt="">
+        </li>
+        <li class="game_li game_li_text_right">
+          <h3 class="name_game stroop_name">Stroop</h3>
+          <p class="company_name">BRAIN DEVELOPMENT GAMES</p>
+          <p class="game_description">
+            {% trans 'The Stroop test promotes the development between reading words and their perception, and also increases the concentration of attention and its switchability. Changing the usual algorithm to read first, and then perceive, to a similar one, but the reverse - first perceive, and then read makes the brain do double work.' %}
+          </p>
+          <a href="{% url 'game:stroop' %}" class="play_game_button btn_animation">
+            {% trans 'PLAY GAME' %}
+          </a>
+        </li>
+      </ul>
+    </section>
 
+    <section class="game_present game_present_schulte">
+      <ul class="game_ul">
+        <li class="game_li game_li_text_left">
+          <h3 class="name_game schulte_name">Schulte</h3>
+          <p class="company_name">BRAIN DEVELOPMENT GAMES</p>
+          <p class="game_description game_description_schulte">
+            {% trans 'Schulte tables are a tool for training peripheral vision, concentration of attention and parallel perception of information. The development of these skills helps to master the technique of speed reading.' %}
+          </p>
+          <a href="{% url 'game:schulte' %}" class="play_game_button btn_animation">
+            {% trans 'PLAY GAME' %}
+          </a>
+        </li>
+        <li class="game_li">
+          <img class="game_img"
+               src="{% static 'img/light_theme/shulte table.svg' %}" alt="">
+        </li>
+      </ul>
+    </section>
   <section class="game_present game_present_stroop">
     <ul class="game_ul">
       <li class="game_li">
