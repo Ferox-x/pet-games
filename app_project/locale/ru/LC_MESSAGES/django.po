@@ -2,13 +2,13 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-18 11:12+0500\n"
+"POT-Creation-Date: 2022-08-19 17:00+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,16 +20,16 @@ msgstr ""
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: .\app\settings.py:105
+#: .\app\settings.py:106
 msgid "English"
 msgstr "Английский"
 
-#: .\app\settings.py:106
+#: .\app\settings.py:107
 msgid "Russian"
 msgstr "Русский"
 
 #: .\games\models.py:9 .\games\models.py:25 .\support\models.py:16
-#: .\support\models.py:45 .\users\models.py:99
+#: .\support\models.py:41 .\users\models.py:102
 msgid "User"
 msgstr "Пользователь"
 
@@ -59,27 +59,27 @@ msgstr "Stroop"
 
 #: .\support\models.py:18
 msgid "Header"
-msgstr ""
+msgstr "Заголовок"
 
-#: .\support\models.py:20 .\support\models.py:43
+#: .\support\models.py:20 .\support\models.py:39
 msgid "Date"
-msgstr ""
+msgstr "Дата"
 
 #: .\support\models.py:21
 msgid "Status"
-msgstr ""
+msgstr "Статус"
 
-#: .\support\models.py:27 .\support\models.py:40
+#: .\support\models.py:27 .\support\models.py:36
 msgid "Ticket"
-msgstr ""
+msgstr "Заявка"
 
-#: .\support\models.py:42
+#: .\support\models.py:38 .\templates\support\support.html:64
 msgid "Message"
-msgstr ""
+msgstr "Сообщение"
 
-#: .\support\models.py:50
+#: .\support\models.py:46
 msgid "Chat"
-msgstr ""
+msgstr "Чат"
 
 #: .\templates\about\about.html:6
 msgid "ABOUT US"
@@ -91,11 +91,11 @@ msgid ""
 "abilities. The user of the platform can use the mini-games to customize "
 "their settings, as well as compete with other users of the platform by "
 "moving up the leaderboard."
-
-msgstr "Платформа, включающая в себя мини-игры, направленные на развитие"
- "интеллектуальных способностей. Пользователь платформы может пользоваться"
-  "мини-играми настраивать их параметры, а так же соревноваться с другими"
-   "пользователями платформы, путем продвижения по таблице лидеров"
+msgstr ""
+"Платформа, включающая в себя мини-игры, направленные на "
+"развитиеинтеллектуальных способностей. Пользователь платформы может "
+"пользоватьсямини-играми настраивать их параметры, а так же соревноваться с "
+"другимипользователями платформы, путем продвижения по таблице лидеров"
 
 #: .\templates\core\main_page\main_page.html:13
 msgid "High-quality games with different tasks necessary for brain development"
@@ -108,7 +108,7 @@ msgstr ""
 msgid "All games"
 msgstr "Все игры"
 
-#: .\templates\core\main_page\main_page.html:27
+#: .\templates\core\main_page\main_page.html:26
 msgid ""
 "The Stroop test promotes the development between reading words and their "
 "perception, and also increases the concentration of attention and its "
@@ -122,12 +122,12 @@ msgstr ""
 "обратный- сначала воспринимать, а потом читать - заставляет мозг выполнять "
 "двойную работу."
 
-#: .\templates\core\main_page\main_page.html:30
-#: .\templates\core\main_page\main_page.html:45
+#: .\templates\core\main_page\main_page.html:29
+#: .\templates\core\main_page\main_page.html:44
 msgid "PLAY GAME"
 msgstr "ИГРАТЬ"
 
-#: .\templates\core\main_page\main_page.html:42
+#: .\templates\core\main_page\main_page.html:41
 msgid ""
 "Schulte tables are a tool for training peripheral vision, concentration of "
 "attention and parallel perception of information. The development of these "
@@ -137,22 +137,32 @@ msgstr ""
 "концентрации внимания и параллельного восприятия информации.Развитие этих "
 "навыков помогает овладеть техникой скорочтения."
 
-#: .\templates\games\leaderboards\leaderboards.html:5
+#: .\templates\games\allgames.html:5
+#, fuzzy
+#| msgid "All games"
+msgid "All Games"
+msgstr "Все игры"
+
+#: .\templates\games\leaderboards\leaderboards.html:6
 #: .\templates\includes\header.html:17
 msgid "Leaderboards"
 msgstr "Таблица лидеров"
+
+#: .\templates\games\leaderboards\leaderboards.html:42
+msgid "No results"
+msgstr "Результаты не найдены"
 
 #: .\templates\games\schulte\index.html:13
 msgid "START"
 msgstr "СТАРТ"
 
 #: .\templates\games\schulte\index.html:17
-#: .\templates\games\stroop\index.html:29
+#: .\templates\games\stroop\index.html:19
 msgid "Your achievements"
 msgstr "Твои результаты"
 
 #: .\templates\games\schulte\index.html:23
-#: .\templates\games\stroop\index.html:35
+#: .\templates\games\stroop\index.html:25
 msgid "You must be authentication to see results"
 msgstr "Вы должны быть авторизированны, чтобы увидеть результаты"
 
@@ -176,7 +186,7 @@ msgstr "Домой"
 msgid "About"
 msgstr "О Нас"
 
-#: .\templates\includes\header.html:41 .\templates\registration\login.html:3
+#: .\templates\includes\header.html:42 .\templates\registration\login.html:4
 msgid "Login"
 msgstr "Войти"
 
@@ -184,17 +194,17 @@ msgstr "Войти"
 msgid "Change Password"
 msgstr "Сменить пароль"
 
-#: .\templates\registration\login.html:9
-#: .\templates\registration\login.html:33
+#: .\templates\registration\login.html:10
+#: .\templates\registration\login.html:34
 #: .\templates\registration\password_reset_complete.html:10
 msgid "Login Now"
 msgstr "Войти"
 
-#: .\templates\registration\login.html:12
+#: .\templates\registration\login.html:13
 msgid "Register"
 msgstr "Зарегистрироваться"
 
-#: .\templates\registration\login.html:38
+#: .\templates\registration\login.html:39
 msgid "forgot your password?"
 msgstr "забыли пароль?"
 
@@ -273,11 +283,54 @@ msgstr "The Pet-Games Team"
 msgid "Create Account"
 msgstr "Создать учетную запись"
 
-#: .\templates\support\support.html:6 .\templates\support\support_staff.html:6
+#: .\templates\support\support.html:7 .\templates\support\support_staff.html:7
 #, fuzzy
 #| msgid "Support team"
 msgid "Support"
 msgstr "Служба поддержки"
+
+#: .\templates\support\support.html:13
+#: .\templates\support\support_staff.html:13
+msgid "Open"
+msgstr "Открытые"
+
+#: .\templates\support\support.html:27
+#: .\templates\support\support_staff.html:27
+msgid "In Progress"
+msgstr "В прогрессе"
+
+#: .\templates\support\support.html:41
+#: .\templates\support\support_staff.html:41
+msgid "Closed"
+msgstr "Закрытые"
+
+#: .\templates\support\support.html:62
+msgid "Title"
+msgstr "Тема"
+
+#: .\templates\support\support.html:80
+#: .\templates\support\support_staff.html:67
+msgid "Send"
+msgstr "Отправить"
+
+#: .\templates\support\support.html:85
+#: .\templates\support\support_staff.html:73
+#, fuzzy
+#| msgid "Ticket"
+msgid "Ticket Closed"
+msgstr "Заявка"
+
+#: .\templates\support\support.html:90
+#, fuzzy
+#| msgid "Chat"
+msgid "Chats"
+msgstr "Чат"
+
+#: .\templates\support\support_staff.html:68
+#, fuzzy
+#| msgid "Ticket"
+msgid "Close Ticket"
+msgstr "Заявка"
 
 #: .\users\models.py:53
 #, fuzzy
@@ -298,14 +351,16 @@ msgid "Description"
 msgstr "Описание"
 
 #: .\users\models.py:67
-msgid "Email adress"
+#, fuzzy
+#| msgid "Email adress"
+msgid "Email address"
 msgstr "Электронная почта"
 
 #: .\users\models.py:71
 msgid "Full name"
 msgstr "Полное имя"
 
-#: .\users\models.py:100
+#: .\users\models.py:103
 #, fuzzy
 #| msgid "User"
 msgid "Users"
