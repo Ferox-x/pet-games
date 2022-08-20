@@ -56,9 +56,9 @@ function getIdOnClick(ticketId, status) {
             supportHistoryMessages.innerHTML = ''
             showChat()
             currentTicketStatus = status
-            addHeaderToChat(jsonMessage.ticket.header, jsonMessage.ticket.date, jsonMessage.ticket.first_message, jsonMessage.ticket.user__image.url)
+            addHeaderToChat(jsonMessage.ticket.header, jsonMessage.ticket.date, jsonMessage.ticket.first_message)
             for (let index = 0, len = jsonMessage.len; index < len; ++index) {
-                addMessageToChat(jsonMessage[index].user__username, jsonMessage[index].date, jsonMessage[index].message, jsonMessage[index].user__image.url);
+                addMessageToChat(jsonMessage[index].user__username, jsonMessage[index].date, jsonMessage[index].message, jsonMessage[index].user__image);
             }
             supportHistoryMessages.scrollTop = supportHistoryMessages.scrollHeight - supportHistoryMessages.clientHeight;
         }
@@ -103,7 +103,7 @@ function addMessageToChat(username, date, message, image) {
         image = imageUrl
     }
     let htmlCodeMessage = '<div class="support_chat_message">\n' +
-        '            <img src="' + image + '" alt="" class="support_avatar_ticket">\n' +
+        '            <img src="/media/' + image + '" alt="" class="support_avatar_ticket">\n' +
         '            <div class="support_chat_message_info">\n' +
         '              <div class="support_chat_username_and_date">\n' +
         '                <div class="support_chat_username">' + username + '</div>\n' +
