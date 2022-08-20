@@ -1,6 +1,10 @@
+from typing import Callable
+
 from django.db.models import QuerySet
 from django.utils.formats import localize
 
+from services.pydantic_services import (json_check, UpdateChat,
+                                        MessageChat, TicketId, ChangeStatus)
 from support.models import Chat, SupportTicket
 from users.models import Users
 
@@ -22,7 +26,8 @@ class BaseSupport:
         dict_last_message = {
             'username': self.user.username,
             'message': self.last_message.message,
-            'date': date
+            'date': date,
+            'id': self.last_message.id
         }
         return dict_last_message
 
@@ -43,16 +48,16 @@ class BaseSupport:
         chat = self._chat_to_dict(chat, chat_id)
         return chat
 
-    def _chat_to_dict(self, chat: QuerySet, chat_id: int) -> dict:
+    def _chat_to_dict(self, chat: QuerySet, chat_id: int = None) -> dict:
         """Преобразовывает Chat в словарь."""
-
         chat = list(chat)
-        length = len(chat)
+        len_chat = len(chat)
         for message in chat:
             message['date'] = localize(message['date'])
         json_chat = {key: value for key, value in enumerate(chat)}
-        json_chat['len'] = length
-        json_chat['ticket'] = self._get_ticket_on_id(chat_id)
+        json_chat['len'] = len_chat
+        if chat_id:
+            json_chat['ticket'] = self._get_ticket_on_id(chat_id)
         return json_chat
 
     @staticmethod
@@ -99,6 +104,38 @@ class BaseSupport:
             ticket_id=self.ticket_id, message=self.chat_message, user=self.user
         )
 
+    def _manager_get_chat_from_ticket(self):
+        json_message = self.post_data.get('json_message')
+        ticket_id = json_check(json_message, TicketId).ticket_id
+        return self._get_chat(ticket_id)
+
+    def _manager_add_message_to_chat(self):
+        json_message = self.post_data.get('json_message')
+        json_message = json_check(json_message, MessageChat)
+        self.chat_message = json_message.chat_message
+        self.ticket_id = json_message.ticket_id
+        self._add_message_to_ticket()
+        return self._convert_last_message_to_dict()
+
+    def _update_chat(self):
+        json_message = self.post_data.get('json_message')
+        json_message = json_check(json_message, UpdateChat)
+        ticket_id = json_message.ticket_id
+        last_message_id = json_message.last_message_id
+        try:
+            chat = Chat.objects.select_related(
+                'user'
+            ).values(
+                'message', 'date', 'user__username', 'id', 'user__image'
+            ).filter(
+                id__gt=last_message_id, ticket_id=ticket_id
+            ).all()
+        except Exception as e:
+            print(e)
+        else:
+            json_chat = self._chat_to_dict(chat)
+            return json_chat
+
 
 class Support(BaseSupport):
     """Класс Support отвечает за формирование чатов службы поддержки
@@ -107,21 +144,20 @@ class Support(BaseSupport):
     def __init__(self, user: Users, post: dict):
         super().__init__(user, post)
 
-    def manager(self) -> dict | None:
+    def manager(self) -> Callable[[], dict] | dict:
         """Метод-менеджер."""
+        if self.post_data.get('update_chat'):
+            return self._update_chat()
         if self.post_data.get('get_chat_from_ticket'):
-            return self._get_chat(self.post_data.get('ticket_id'))
+            return self._manager_get_chat_from_ticket()
         elif self.post_data.get('create_ticket'):
             header = self.post_data.get('header')
             chat_message = self.post_data.get('chat_message')
             self._create_ticket_in_db(header, chat_message)
         elif self.post_data.get('add_message_to_chat'):
-            self.chat_message = self.post_data.get('chat_message')
-            self.ticket_id = self.post_data.get('ticket_id')
-            self._add_message_to_ticket()
-            return self._convert_last_message_to_dict()
+            return self._manager_add_message_to_chat()
 
-    def get_tickets(self) -> dict[str, list[SupportTicket]]:
+    def get_tickets(self) -> dict[str, list[dict]]:
         """Достает из БД все тикеты для конкретного пользователя."""
         tickets = SupportTicket.objects.select_related(
             'user'
@@ -147,19 +183,20 @@ class SupportStaff(BaseSupport):
 
     def manager(self) -> dict:
         """Метод-менеджер. Возвращает Json"""
+        if self.post_data.get('update_chat'):
+            return self._update_chat()
         if self.post_data.get('change_status'):
-            ticket_id = self.post_data.get('ticket_id')
-            status = self.post_data.get('status')
+            json_message = self.post_data.get('json_message')
+            json_message = json_check(json_message, ChangeStatus)
+            ticket_id = json_message.ticket_id
+            status = json_message.status
             return self._change_status(ticket_id, status)
         if self.post_data.get('get_chat_from_ticket'):
-            return self._get_chat(self.post_data.get('ticket_id'))
+            return self._manager_get_chat_from_ticket()
         elif self.post_data.get('add_message_to_chat'):
-            self.chat_message = self.post_data.get('chat_message')
-            self.ticket_id = self.post_data.get('ticket_id')
-            self._add_message_to_ticket()
-            return self._convert_last_message_to_dict()
+            return self._manager_add_message_to_chat()
 
-    def get_tickets(self) -> dict[str, list[SupportTicket]]:
+    def get_tickets(self) -> dict[str, list[dict]]:
         """Достает из БД все тикеты."""
         tickets = SupportTicket.objects.select_related(
             'user'
