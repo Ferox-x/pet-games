@@ -8,34 +8,39 @@ const sendData1 = document.getElementById('senddata')
 const textArea = document.getElementById('textarea_message')
 const supportHistoryMessages = document.getElementById('support_history_messages')
 const currentUrl = document.location.pathname
+
 let prevChat = -1
 let currentTicketStatus = undefined
+let lastMessageInChat = 0
+let checkMessagesTimer
 
 sendData1.addEventListener('click', () => {
     let xhr = new XMLHttpRequest()
     let formData = new FormData(formMessage)
     if (formData.get('chat_message') !== '') {
-        formData.append('HTTP_X_REQUESTED_WITH', 'XMLHttpRequest')
-        formData.append('ticket_id', prevChat.id)
-        console.log(currentUrl)
+        let jsonMessage = {
+            'ticket_id': prevChat.id,
+            'chat_message': formData.get('chat_message')
+        }
         if (currentTicketStatus === 'OP' && currentUrl === '/support/staff/') {
             changeStatus('IP')
         }
+        let messageChatForm = new FormData()
+        messageChatForm.append('csrfmiddlewaretoken', csrftoken)
+        messageChatForm.append('add_message_to_chat', 'true')
+        messageChatForm.append('HTTP_X_REQUESTED_WITH', 'XMLHttpRequest')
+        messageChatForm.append('json_message', JSON.stringify(jsonMessage))
         xhr.open('POST', currentUrl)
-        xhr.send(formData)
+        xhr.send(messageChatForm)
         textArea.value = ''
-        xhr.onreadystatechange = function () {
-            if (this.readyState === 4 && this.status === 200) {
-                const jsonMessage = JSON.parse(this.responseText)
-                addMessageToChat(jsonMessage.username, jsonMessage.date, jsonMessage.message)
-                supportHistoryMessages.scrollTop = supportHistoryMessages.scrollHeight - supportHistoryMessages.clientHeight;
-            }
-        }
     }
 
 })
 
 function getIdOnClick(ticketId, status) {
+    if (checkMessagesTimer) {
+        clearInterval(checkMessagesTimer)
+    }
     let xhr = new XMLHttpRequest()
     let selectedTicket = document.getElementById(ticketId);
     if (prevChat !== -1) {
@@ -43,13 +48,17 @@ function getIdOnClick(ticketId, status) {
     }
     prevChat = selectedTicket
     selectedTicket.style.backgroundColor = '#f3f7ff';
-    let formDataNew = new FormData()
-    formDataNew.append('csrfmiddlewaretoken', csrftoken);
-    formDataNew.append('get_chat_from_ticket', 'True');
-    formDataNew.append('HTTP_X_REQUESTED_WITH', 'XMLHttpRequest');
-    formDataNew.append('ticket_id', ticketId);
+    let getTicketChatForm = new FormData()
+    let jsonMessage = {
+        'ticket_id': ticketId
+    }
+    getTicketChatForm.append('csrfmiddlewaretoken', csrftoken);
+    getTicketChatForm.append('get_chat_from_ticket', 'True');
+    getTicketChatForm.append('HTTP_X_REQUESTED_WITH', 'XMLHttpRequest');
+    getTicketChatForm.append('ticket_id', ticketId);
+    getTicketChatForm.append('json_message', JSON.stringify(jsonMessage))
     xhr.open('POST', currentUrl);
-    xhr.send(formDataNew);
+    xhr.send(getTicketChatForm);
     xhr.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
             const jsonMessage = JSON.parse(this.responseText)
@@ -58,7 +67,13 @@ function getIdOnClick(ticketId, status) {
             currentTicketStatus = status
             addHeaderToChat(jsonMessage.ticket.header, jsonMessage.ticket.date, jsonMessage.ticket.first_message)
             for (let index = 0, len = jsonMessage.len; index < len; ++index) {
-                addMessageToChat(jsonMessage[index].user__username, jsonMessage[index].date, jsonMessage[index].message, jsonMessage[index].user__image);
+                addMessageToChat(
+                    jsonMessage[index].user__username,
+                    jsonMessage[index].date,
+                    jsonMessage[index].message,
+                    jsonMessage[index].user__image,
+                );
+                lastMessageInChat = jsonMessage[index].id
             }
             supportHistoryMessages.scrollTop = supportHistoryMessages.scrollHeight - supportHistoryMessages.clientHeight;
         }
@@ -70,6 +85,39 @@ function getIdOnClick(ticketId, status) {
         displayMessageInput()
     }
     changeButtonChat()
+    checkMessagesTimer = setInterval(checkMessages, 10000)
+}
+
+function checkMessages() {
+    let xhr = new XMLHttpRequest()
+    let checkMessagesForm = new FormData()
+    let jsonMessage = {
+        'ticket_id': prevChat.id,
+        'last_message_id': lastMessageInChat
+    }
+    checkMessagesForm.append('csrfmiddlewaretoken', csrftoken);
+    checkMessagesForm.append('HTTP_X_REQUESTED_WITH', 'XMLHttpRequest');
+    checkMessagesForm.append('update_chat', 'True');
+    checkMessagesForm.append('json_message', JSON.stringify(jsonMessage))
+    xhr.open('POST', currentUrl)
+    xhr.send(checkMessagesForm)
+    xhr.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 200) {
+            const jsonMessage = JSON.parse(this.responseText)
+            console.log(jsonMessage.length)
+            for (let index = 0, len = jsonMessage.len; index < len; ++index) {
+                console.log('1')
+                addMessageToChat(
+                    jsonMessage[index].user__username,
+                    jsonMessage[index].date,
+                    jsonMessage[index].message,
+                    jsonMessage[index].user__image,
+                );
+                lastMessageInChat = jsonMessage[index].id
+            }
+            supportHistoryMessages.scrollTop = supportHistoryMessages.scrollHeight - supportHistoryMessages.clientHeight;
+        }
+    }
 }
 
 function blockMessageInput() {
@@ -88,20 +136,21 @@ function displayMessageInput() {
 
 function changeStatus(status) {
     let xhr = new XMLHttpRequest()
-    let formDataNew = new FormData()
-    formDataNew.append('csrfmiddlewaretoken', csrftoken);
-    formDataNew.append('HTTP_X_REQUESTED_WITH', 'XMLHttpRequest');
-    formDataNew.append('change_status', 'status')
-    formDataNew.append('status', status)
-    formDataNew.append('ticket_id', prevChat.id)
+    let changeStatusForm = new FormData()
+    let jsonMessage = {
+        'ticket_id': prevChat.id,
+        'status': status
+    }
+    changeStatusForm.append('csrfmiddlewaretoken', csrftoken);
+    changeStatusForm.append('HTTP_X_REQUESTED_WITH', 'XMLHttpRequest');
+    changeStatusForm.append('change_status', 'status')
+    changeStatusForm.append('json_message', JSON.stringify(jsonMessage))
     xhr.open('POST', '/support/staff/')
-    xhr.send(formDataNew)
+    xhr.send(changeStatusForm)
 }
 
 function addMessageToChat(username, date, message, image) {
-    if (image === undefined){
-        image = imageUrl
-    }
+
     let htmlCodeMessage = '<div class="support_chat_message">\n' +
         '            <img src="/media/' + image + '" alt="" class="support_avatar_ticket">\n' +
         '            <div class="support_chat_message_info">\n' +
