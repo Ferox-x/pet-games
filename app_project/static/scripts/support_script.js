@@ -56,8 +56,7 @@ function getIdOnClick(ticketId, status) {
             supportHistoryMessages.innerHTML = ''
             showChat()
             currentTicketStatus = status
-            console.log(jsonMessage)
-            addHeaderToChat(jsonMessage.ticket.header, jsonMessage.ticket.date, jsonMessage.ticket.first_message, jsonMessage.ticket.user__image.url)
+            addHeaderToChat(jsonMessage.ticket.header, jsonMessage.ticket.date, jsonMessage.ticket.first_message)
             for (let index = 0, len = jsonMessage.len; index < len; ++index) {
                 addMessageToChat(jsonMessage[index].user__username, jsonMessage[index].date, jsonMessage[index].message, jsonMessage[index].user__image);
             }
@@ -100,7 +99,6 @@ function changeStatus(status) {
 }
 
 function addMessageToChat(username, date, message, image) {
-    console.log(image)
     if (image === undefined){
         image = imageUrl
     }
