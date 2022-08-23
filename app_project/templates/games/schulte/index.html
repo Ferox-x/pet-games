@@ -5,33 +5,40 @@
 {% load static %}
 {% block content %}
 <body id="body" class="schulte_body">
-<div class="schulte_container">
+<div class="rules" id="rulesContainer">
+  <div class="description rules_text">
+    {% trans "Schulte tables - tables with randomly arranged numbers, serving to test and develop the speed of finding these objects in a certain order. Exercises with tables can improve peripheral visual perception, which is important, for example, for speed reading. An important condition: strive to ensure that the eyes make as few movements as possible from number to number. Strive for maximum stillness of your eyes. Let your gaze remain fixed on the center of the table, but so that you see the entire field of the table with peripheral vision. Use mostly your peripheral vision when looking for numbers in the correct sequence." %}
+  </div>
+  <div class="stroop_start_game btn_animation" style="margin: 0 auto" id="rulesPlayBtn">ИГРАТЬ</div>
+</div>
+<div class="schulte_container" id="gameContainer">
   <div class="schulte_main_div" id="mainDiv"></div>
   <ul class="schulte_right_side">
     <li id="timer" class="schulte_timer schulte_right_li"></li>
     <li class="schulte_start schulte_right_li">
       <p id="schulte_start" class="schulte_right_li_p_start btn_animation">{% trans 'START' %}</p>
     </li>
-      <div class="record_table" id="table">
-        <p class="stroop_achievements_p" id="achievements">
+    <div class="record_table" id="table">
+      <p class="stroop_achievements_p" id="achievements">
         {% trans 'Your achievements' %}
-        </p>
-      </div>
-      <ol class="schulte_l records_list record_list_schulte" id="recordsList">
-        {% if not user.is_authenticated %}
-          <div class="not_auth">
-            <div class="not_auth_alert">{% trans 'You must be authentication to see results' %}</div>
-            <a class="not_auth_link" href="{% url 'users:login' %}">LogIn</a>
-          </div>
-        {% else %}
-          {% for record in records %}
-            <li class="stroop_r record" id="record">{% format_schulte record.record 'schulte' %}</li>
-          {% endfor %}
-        {% endif %}
-      </ol>
+      </p>
+    </div>
+    <ol class="schulte_l records_list record_list_schulte" id="recordsList">
+      {% if not user.is_authenticated %}
+        <div class="not_auth">
+          <div class="not_auth_alert">{% trans 'You must be authentication to see results' %}</div>
+          <a class="not_auth_link" href="{% url 'users:login' %}">LogIn</a>
+        </div>
+      {% else %}
+        {% for record in records %}
+          <li class="stroop_r record" id="record">{% format_schulte record.record 'schulte' %}</li>
+        {% endfor %}
+      {% endif %}
+    </ol>
   </ul>
 </div>
 {% csrf_token %}
 <script id="script" src="{% static 'scripts/schulte_script.js' %}"></script>
+<script src="{% static 'scripts/game_rules.js' %}"></script>
 </body>
 {% endblock %}
