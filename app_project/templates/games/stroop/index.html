@@ -3,7 +3,13 @@
 {% block content %}
 {% load static %}
 {% load i18n %}
-<div class="stroop_inline">
+  <div class="rules" id="rulesContainer">
+    <div class="description rules_text">
+      {% trans "The player's task is to select the color of the font with which the letters are written using the keyboard or mouse. For each correct answer you get points. You can compare your results in the leaderboard, where, in addition to other answer counters, you can find rating based on skills." %}
+    </div>
+    <div class="stroop_start_game btn_animation" style="margin: 0 auto" id="rulesPlayBtn">ИГРАТЬ</div>
+  </div>
+<div class="stroop_inline" id="gameContainer">
   <div class="stroop_left_container"></div>
   <div class="stroop_container">
     <div class="stroop_timer-block" id="timerBlock"></div>
@@ -37,4 +43,5 @@
 </div>
 {% csrf_token %}
 <script id="script" src="{% static 'scripts/stroop_script.js' %}"></script>
+  <script src="{% static 'scripts/game_rules.js' %}"></script>
 {% endblock %}

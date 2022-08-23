@@ -2,13 +2,13 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-19 17:00+0500\n"
+"POT-Creation-Date: 2022-08-23 10:16+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,11 +20,11 @@ msgstr ""
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: .\app\settings.py:106
+#: .\app\settings.py:104
 msgid "English"
 msgstr "Английский"
 
-#: .\app\settings.py:107
+#: .\app\settings.py:105
 msgid "Russian"
 msgstr "Русский"
 
@@ -148,23 +148,44 @@ msgstr "Все игры"
 msgid "Leaderboards"
 msgstr "Таблица лидеров"
 
-#: .\templates\games\leaderboards\leaderboards.html:42
+#: .\templates\games\leaderboards\leaderboards.html:46
 msgid "No results"
 msgstr "Результаты не найдены"
 
-#: .\templates\games\schulte\index.html:13
+#: .\templates\games\schulte\index.html:10
+msgid ""
+"Schulte tables - tables with randomly arranged numbers, serving to test and "
+"develop the speed of finding these objects in a certain order. Exercises "
+"with tables can improve peripheral visual perception, which is important, "
+"for example, for speed reading. An important condition: strive to ensure "
+"that the eyes make as few movements as possible from number to number. "
+"Strive for maximum stillness of your eyes. Let your gaze remain fixed on the "
+"center of the table, but so that you see the entire field of the table with "
+"peripheral vision. Use mostly your peripheral vision when looking for "
+"numbers in the correct sequence."
+msgstr "Таблицы Шу́льте — таблицы со случайно расположенными числами, служащие для проверки и развития быстроты нахождения этих объектов в определённом порядке. Упражнения с таблицами позволяют улучшить периферическое зрительное восприятие, что важно, например, для скорочтения. Важное условие: стремитесь к тому, чтобы глаза совершали как можно меньше движений от числа к числу. Стремитесь к максимальной неподвижности ваших глаз. Пусть ваш взгляд останется устремленным в центр таблицы, но так, чтобы вы видели все поле таблицы периферийным зрением. Пользуйтесь в основном именно периферийным зрением, когда ищете числа в нужной последовательности."
+
+#: .\templates\games\schulte\index.html:19
 msgid "START"
 msgstr "СТАРТ"
 
-#: .\templates\games\schulte\index.html:17
-#: .\templates\games\stroop\index.html:19
+#: .\templates\games\schulte\index.html:23
+#: .\templates\games\stroop\index.html:25
 msgid "Your achievements"
 msgstr "Твои результаты"
 
-#: .\templates\games\schulte\index.html:23
-#: .\templates\games\stroop\index.html:25
+#: .\templates\games\schulte\index.html:29
+#: .\templates\games\stroop\index.html:31
 msgid "You must be authentication to see results"
 msgstr "Вы должны быть авторизированны, чтобы увидеть результаты"
+
+#: .\templates\games\stroop\index.html:8
+msgid ""
+"The player's task is to select the color of the font with which the letters "
+"are written using the keyboard or mouse. For each correct answer you get "
+"points. You can compare your results in the leaderboard, where, in addition "
+"to other answer counters, you can find rating based on skills."
+msgstr "Задача игрока клавиатурой или мышкой выбрать цвет шрифта, которым написаны буквы. За каждый правильный ответ вы получаете начисление баллов.Сравнить свои результаты вы сможете в таблице лидеров, где помимо прочих счётчика ответов вы можете обнаружитьрейтинг исходя из навыков."
 
 #: .\templates\includes\footer.html:6
 msgid "Consent to&nbsp;data processing"
