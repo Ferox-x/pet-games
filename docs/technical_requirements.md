@@ -120,14 +120,12 @@
 * Бэкенд:
     - Язык Python
     - Фреймворк Django
-    - Фреймворк RestAPI
+    - Django REST framework
     - PostgreSQL
-    - Django ORM
 * Фронтенд:
     - JavaScript
 * Дизайн:
     - Figma
-
 
 # 5. Требования к дизайну
 
