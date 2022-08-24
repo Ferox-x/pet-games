@@ -1,3 +1,5 @@
+[![Test coverage][coveralls-image]][coveralls-url]
+
 ## Brain Development Games 
 #### Пользовательская платформа с мини-играми для развития интеллектуальных способностей.
 
