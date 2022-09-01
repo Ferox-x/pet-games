@@ -19,7 +19,7 @@ SECRET_KEY = config.get('SECRET_KEY')
 
 DEBUG = config.get('DEBUG', False)
 
-ALLOWED_HOSTS = config.get('ALLOWED_HOSTS', 'localhost')
+ALLOWED_HOSTS = config.get('ALLOWED_HOSTS', 'localhost').split()
 
 INSTALLED_APPS = [
     'django.contrib.admin',
