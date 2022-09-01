@@ -1,20 +1,25 @@
 import os
 from pathlib import Path
-from dotenv import load_dotenv
+from dotenv import dotenv_values
 from django.utils.translation import gettext_lazy as _
 
-load_dotenv()
+
+PROD = True
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-)y35k@4bqdjer^irrbic43ez12g+k5u643n13^)r4_gh0ky$40'
 
-DEBUG = True
+if PROD:
+    config = dotenv_values(os.path.join(BASE_DIR, '.env.prod'))
+else:
+    config = dotenv_values(os.path.join(BASE_DIR, '.env'))
 
-ALLOWED_HOSTS = [
-    '127.0.0.1',
-    '127.0.0.1:8000',
-]
+
+SECRET_KEY = config.get('SECRET_KEY')
+
+DEBUG = config.get('DEBUG', False)
+
+ALLOWED_HOSTS = ['127.0.0.1', '127.0.0.1:8000', 'localhost']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -72,16 +77,16 @@ TEMPLATES = [
 
 FIXTURE_DIRS = [os.path.join(BASE_DIR, 'fixtures')]
 
-WSGI_APPLICATION = 'app.wsgi.application'
+WSGI_APPLICATION = 'app_project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'Pet-Games',
-        'USER': os.getenv('NAME'),
-        'PASSWORD': os.getenv('PASSWORD'),
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': config.get('NAME'),
+        'USER': config.get('USER'),
+        'PASSWORD': config.get('PASSWORD'),
+        'HOST': config.get('HOST'),
+        'PORT': config.get('PORT'),
     }
 }
 
@@ -105,10 +110,9 @@ LANGUAGES = (
     ('ru', _('Russian')),
 )
 
-# LANGUAGE_CODE = 'en-us'
 LANGUAGE_CODE = 'ru-RU'
 
-LOCALE_PATHS = (os.path.join(BASE_DIR, 'locale'), )
+LOCALE_PATHS = (os.path.join(BASE_DIR, 'locale'),)
 
 TIME_ZONE = 'UTC'
 
@@ -128,7 +132,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails')
-ADMIN_EMAIL = os.getenv('ADMIN_EMAIL')
+ADMIN_EMAIL = config.get('ADMIN_EMAIL')
 
 INTERNAL_IPS = [
     '127.0.0.1',
