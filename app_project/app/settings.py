@@ -77,7 +77,7 @@ TEMPLATES = [
 
 FIXTURE_DIRS = [path.join(BASE_DIR, 'fixtures')]
 
-WSGI_APPLICATION = 'app_project.wsgi.application'
+WSGI_APPLICATION = 'app.wsgi.application'
 
 DATABASES = {
     'default': {
