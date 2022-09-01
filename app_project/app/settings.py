@@ -3,18 +3,23 @@ from pathlib import Path
 from dotenv import load_dotenv
 from django.utils.translation import gettext_lazy as _
 
-load_dotenv()
+
+PROD = False
+
+
+if PROD:
+    load_dotenv('../.prod.env')
+else:
+    load_dotenv('../.env')
+
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-)y35k@4bqdjer^irrbic43ez12g+k5u643n13^)r4_gh0ky$40'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
-DEBUG = True
+DEBUG = os.getenv('DEBUG', False)
 
-ALLOWED_HOSTS = [
-    '127.0.0.1',
-    '127.0.0.1:8000',
-]
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split()
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -72,16 +77,16 @@ TEMPLATES = [
 
 FIXTURE_DIRS = [os.path.join(BASE_DIR, 'fixtures')]
 
-WSGI_APPLICATION = 'app.wsgi.application'
+WSGI_APPLICATION = 'app_project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'Pet-Games',
-        'USER': os.getenv('NAME'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': os.getenv('NAME'),
+        'USER': os.getenv('USER'),
         'PASSWORD': os.getenv('PASSWORD'),
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
+        'HOST': os.getenv('HOST'),
+        'PORT': os.getenv('PORT'),
     }
 }
 
@@ -105,10 +110,9 @@ LANGUAGES = (
     ('ru', _('Russian')),
 )
 
-# LANGUAGE_CODE = 'en-us'
 LANGUAGE_CODE = 'ru-RU'
 
-LOCALE_PATHS = (os.path.join(BASE_DIR, 'locale'), )
+LOCALE_PATHS = (os.path.join(BASE_DIR, 'locale'),)
 
 TIME_ZONE = 'UTC'
 

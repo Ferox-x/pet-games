@@ -1,0 +1,63 @@
+version: '3'
+
+volumes:
+    pgdata:
+        driver: local
+services:
+    nginx:
+        container_name: nginx
+        restart: always
+        image: nginx:latest
+        expose:
+          - 8080
+        ports:
+          - "80:8080"
+        volumes:
+            - ./app_project/static:/srv/www/app_project/static
+            - ./app_project/media:/srv/www/app_project/media
+            - ./app_project/logs:/srv/www/app_project/logs
+            - ./docker/nginx:/etc/nginx/conf.d
+        depends_on:
+            - python
+            
+    python:
+        container_name: python
+        restart: always
+        build:
+            context: .
+            dockerfile: docker/python/Dockerfile
+
+        volumes:
+            - ./app_project:/srv/www/app_project
+        expose:
+          - 8000
+        ports:
+            - 8000:8000
+        command: "gunicorn -c gunicorn.py app.wsgi:application"
+        
+    postgres:
+        container_name: postgres
+        image: postgres:14.0
+        environment:
+            POSTGRES_USER: db_user
+            POSTGRES_PASSWORD: 4789
+            POSTGRES_DB: Pet-Games
+            PGDATA: /var/lib/postgresql/data
+        volumes:
+            - pgdata:/var/lib/postgresql/data
+            
+    pgbouncer:
+        image: edoburu/pgbouncer
+        environment:
+           - DB_USER=db_user
+           - DB_PASSWORD=4789
+           - DB_HOST=postgres
+           - DB_NAME=Pet-Games
+           - POOL_MODE=transaction
+           - ADMIN_USERS=postgres
+           - MAX_CLIENT_CONN=1000
+           - AUTH_TYPE=plain
+        ports:
+          - 5432:5432
+        depends_on:
+            - postgres

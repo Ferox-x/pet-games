@@ -1,0 +1,10 @@
+.idea
+requirements.txt
+README.md
+LICENSE
+.gitignore
+.editorconfig
+venv
+games
+docs
+__pycahce__
