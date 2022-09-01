@@ -39,7 +39,7 @@ class Leaderboards:
          лучших результатов."""
         stroop_leaderboard = StroopModel.objects.raw(
             """
-            WITH table1 AS (SELECT DISTINCT ON (user_id) use_id, games_stroop.id, score,record, date, username, country FROM games_stroop
+            WITH table1 AS (SELECT DISTINCT ON (user_id) user_id, games_stroop.id, score,record, date, username, country FROM games_stroop
             INNER JOIN "users" ON user_id = "users"."id"
             ORDER BY user_id, score DESC)
             SELECT id, score, record, date, username, country FROM table1

@@ -10,7 +10,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 if PROD:
-    config = dotenv_values(path.join(BASE_DIR, '.env.prod'))
+    config = dotenv_values(path.join(BASE_DIR, '.prod.env'))
 else:
     config = dotenv_values(path.join(BASE_DIR, '.env'))
 
