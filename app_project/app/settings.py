@@ -1,25 +1,25 @@
-import os
+from os import path
 from pathlib import Path
 from dotenv import dotenv_values
 from django.utils.translation import gettext_lazy as _
 
 
-PROD = True
+PROD = False
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 if PROD:
-    config = dotenv_values(os.path.join(BASE_DIR, '.env.prod'))
+    config = dotenv_values(path.join(BASE_DIR, '.env.prod'))
 else:
-    config = dotenv_values(os.path.join(BASE_DIR, '.env'))
+    config = dotenv_values(path.join(BASE_DIR, '.env'))
 
 
 SECRET_KEY = config.get('SECRET_KEY')
 
 DEBUG = config.get('DEBUG', False)
 
-ALLOWED_HOSTS = ['127.0.0.1', '127.0.0.1:8000', 'localhost']
+ALLOWED_HOSTS = config.get('ALLOWED_HOSTS', 'localhost').split()
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -55,8 +55,8 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'app.urls'
 
-TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+TEMPLATES_DIR = path.join(BASE_DIR, 'templates')
+STATICFILES_DIRS = [path.join(BASE_DIR, 'static')]
 
 TEMPLATES = [
     {
@@ -75,7 +75,7 @@ TEMPLATES = [
     },
 ]
 
-FIXTURE_DIRS = [os.path.join(BASE_DIR, 'fixtures')]
+FIXTURE_DIRS = [path.join(BASE_DIR, 'fixtures')]
 
 WSGI_APPLICATION = 'app_project.wsgi.application'
 
@@ -112,7 +112,7 @@ LANGUAGES = (
 
 LANGUAGE_CODE = 'ru-RU'
 
-LOCALE_PATHS = (os.path.join(BASE_DIR, 'locale'),)
+LOCALE_PATHS = (path.join(BASE_DIR, 'locale'),)
 
 TIME_ZONE = 'UTC'
 
@@ -128,10 +128,10 @@ AUTH_USER_MODEL = 'users.Users'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = path.join(BASE_DIR, 'media')
 
 EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
-EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails')
+EMAIL_FILE_PATH = path.join(BASE_DIR, 'sent_emails')
 ADMIN_EMAIL = config.get('ADMIN_EMAIL')
 
 INTERNAL_IPS = [
