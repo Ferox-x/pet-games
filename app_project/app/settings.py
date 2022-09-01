@@ -1,25 +1,25 @@
 import os
 from pathlib import Path
-from dotenv import load_dotenv
+from dotenv import dotenv_values
 from django.utils.translation import gettext_lazy as _
 
 
-PROD = False
-
-
-if PROD:
-    load_dotenv('../.prod.env')
-else:
-    load_dotenv('../.env')
-
+PROD = True
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.getenv('SECRET_KEY')
 
-DEBUG = os.getenv('DEBUG', False)
+if PROD:
+    config = dotenv_values(os.path.join(BASE_DIR, '.env.prod'))
+else:
+    config = dotenv_values(os.path.join(BASE_DIR, '.env'))
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split()
+
+SECRET_KEY = config.get('SECRET_KEY')
+
+DEBUG = config.get('DEBUG', False)
+
+ALLOWED_HOSTS = ['127.0.0.1', '127.0.0.1:8000', 'localhost']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -82,11 +82,11 @@ WSGI_APPLICATION = 'app_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.getenv('NAME'),
-        'USER': os.getenv('USER'),
-        'PASSWORD': os.getenv('PASSWORD'),
-        'HOST': os.getenv('HOST'),
-        'PORT': os.getenv('PORT'),
+        'NAME': config.get('NAME'),
+        'USER': config.get('USER'),
+        'PASSWORD': config.get('PASSWORD'),
+        'HOST': config.get('HOST'),
+        'PORT': config.get('PORT'),
     }
 }
 
@@ -132,7 +132,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails')
-ADMIN_EMAIL = os.getenv('ADMIN_EMAIL')
+ADMIN_EMAIL = config.get('ADMIN_EMAIL')
 
 INTERNAL_IPS = [
     '127.0.0.1',
