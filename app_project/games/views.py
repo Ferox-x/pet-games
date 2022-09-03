@@ -6,8 +6,6 @@ from services.games_services import Leaderboards, Achievements
 from services.generic_services import is_ajax
 
 
-
-
 class SchulteGame(View):
     """Представление отображающее SchulteGame."""
     def get(self, request):

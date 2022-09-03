@@ -7,7 +7,9 @@
 {% block content %}
   {% cache 500 'mainpage' LANGUAGE_CODE %}
     <section class="main-content">
-      <h1 class="main-content-h1 main-content-text">Brain Development
+      <h1 class="main-content-h1 main-content-text">
+        Brain
+        Development
         Games</h1>
       <h2 class="main-content-h2">
         {% trans 'High-quality games with different tasks necessary for brain development' %}</h2>
@@ -37,7 +39,7 @@
         <li class="game_li game_li_text_left game_li_background">
           <h3 class="name_game schulte_name">Schulte</h3>
           <p class="company_name">BRAIN DEVELOPMENT GAMES</p>
-          <p class="game_description game_description_schulte">
+          <p class="game_description">
             {% trans 'Schulte tables are a tool for training peripheral vision, concentration of attention and parallel perception of information. The development of these skills helps to master the technique of speed reading.' %}
           </p>
           <a href="{% url 'game:schulte' %}" class="play_game_button btn_animation">
