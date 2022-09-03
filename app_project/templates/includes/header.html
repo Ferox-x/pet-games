@@ -1,29 +1,25 @@
 {% load static %}
 {% load i18n %}
 <header class="header">
-  <nav>
-    <ul class="header-ul">
-      <a href="{% url 'core:main' %}">
-        <img class="header_li header_img btn_animation"
-             src="{% static '/img/fav/header-logo.svg' %}" alt="">
-      </a>
-      <li class="header_li btn_animation">
-        <a href="{% url 'core:main' %}" class="header_li_a">{% trans 'Home' %}</a>
-      </li>
-      <li class="header_li btn_animation">
-        <a href="{% url 'game:allgames' %}" class="header_li_a">{% trans 'All games' %}</a>
-      </li>
-      <li class="header_li btn_animation">
-        <a href="{% url 'game:leaderboards' 'schulte' %}" class="header_li_a">{% trans 'Leaderboards' %}</a>
-      </li>
-      <li class="header_li btn_animation">
-        <a href="{% url 'about:about' %}" class="header_li_a">{% trans 'About' %}</a>
-      </li>
-      <div class="header_div_right">
-        <li class="header_li">
+  <div class="header__container">
+    <a href="{% url 'core:main' %}" class="header__link btn_animation">
+      <img src="{% static '/img/fav/header-logo.svg' %}" alt="" class="header__logo">
+    </a>
+    <div class="header__menu menu">
+      <div class="menu__icon">
+        <span></span>
+      </div>
+      <nav class="menu__body">
+        <ul class="menu__list">
+          <li class="header__link btn_animation"><a href="{% url 'core:main' %}" class="menu__link">{% trans 'Home' %}</a></li>
+          <li class="header__link btn_animation"><a href="{% url 'game:allgames' %}" class="menu__link">{% trans 'All games' %}</a></li>
+          <li class="header__link btn_animation"><a href="{% url 'game:leaderboards' 'schulte' %}" class="menu__link">{% trans 'Leaderboards' %}</a></li>
+          <li class="header__link btn_animation"><a href="{% url 'about:about' %}" class="menu__link">{% trans 'About' %}</a></li>
+        </ul>
+        <ul class="menu__list">
           <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
             <input name="next" type="hidden" value="{{ redirect_to }}">
-            <select name="language" onchange="this.form.submit();" class="language_select btn_animation">
+            <select name="language" onchange="this.form.submit();" class="menu__link language_select btn_animation">
               {% get_current_language as LANGUAGE_CODE %}
               {% get_available_languages as LANGUAGES %}
               {% get_language_info_list for LANGUAGES as languages %}
@@ -34,14 +30,15 @@
               {% endfor %}
             </select>
           </form>
-        <input type="hidden" name="LANGUAGE_CODE" value="{{ LANGUAGE_CODE }}">
-        </li>
-        {% if request.user.is_authenticated %}
-          <a href="{% url 'users:profile' %}" class="header_li btn_animation">{{ user.username }}</a>
-        {% else %}
-          <a class="header_li btn_animation" href="{% url 'users:login' %}">{% trans 'Login' %}</a>
-        {% endif %}
-      </div>
-    </ul>
-  </nav>
+          <input type="hidden" name="LANGUAGE_CODE" value="{{ LANGUAGE_CODE }}">
+          {% if request.user.is_authenticated %}
+            <li class="header__link btn_animation"><a href="{% url 'users:profile' %}" class="menu__link">{{ user.username }}</a></li>
+          {% else %}
+            <li class="header__link btn_animation"><a href="{% url 'users:login' %}" class="menu__link">{% trans 'Login' %}</a></li>
+          {% endif %}
+        </ul>
+      </nav>
+    </div>
+  </div>
 </header>
+<script src="{% static 'scripts/header_script.js' %}"></script>
