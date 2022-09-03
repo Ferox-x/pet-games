@@ -46,11 +46,12 @@ html,
 body {
   margin: 0 auto;
   line-height: 1;
-  font-size: 17px;
+  font-size: calc((100vw - 17px) * 0.009);
   font-family: 'Poppins', 'Fira Sans', sans-serif;
   color: #14213d;
   font-weight: 400;
   background-color: #fff;
+  width: calc(100vw - 17px);
 }
 
 /*auth styles*/
@@ -393,8 +394,8 @@ textarea:focus, input:focus {
 .background-img {
   background-image: url("../img/light_theme/rectangle_all.svg");
   background-repeat: no-repeat;
-  max-width: 1920px;
-
+  background-position: center;
+  background-size: calc(100vw - 17px);
 }
 
 .container {
@@ -608,8 +609,8 @@ body._lock {
 
 .main-content {
   padding-left: 30px;
-  height: 506px;
-  margin-bottom: 298px;
+  max-height: 606px;
+  margin-bottom: calc(100% - 81%);
 }
 
 .main-content-text {
@@ -621,16 +622,16 @@ body._lock {
 
 .main-content-h1 {
   font-weight: 500;
-  margin-top: 150px;
+  margin-top: 11%;
   margin-bottom: 24px;
-  width: 735px;
-  font-size: 96px;
+  width: 320px;
+  font-size: 5.6em;
 }
 
 .main-content-h2 {
   width: 401px;
   height: 106px;
-  font-size: 22px;
+  font-size: 1.3em;
   margin-bottom: 24px;
   line-height: 30px;
   user-select: none;
@@ -642,25 +643,24 @@ body._lock {
 }
 
 .game_present {
-  height: 600px;
+  max-height: 725px;
 }
 
 .game_present_stroop {
-  height: 600px;
-  margin-bottom: 450px;
+  margin-bottom: 33%;
 }
 
 .game_present_schulte {
-  margin-bottom: 290px;
+  margin-bottom: 21%;
 }
 
 .game_ul {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
 }
 
 .game_li {
-  margin-right: 232px;
 }
 
 .game_li:last-child {
@@ -668,10 +668,16 @@ body._lock {
 }
 
 .game_img {
-  width: 552px;
-  height: 600px;
+  width: calc(100vw * 0.31);
+  height: calc(100vw * 0.31);
   user-select: none;
 }
+
+/*.game_img {*/
+/*  width: 552px;*/
+/*  height: 600px;*/
+/*  user-select: none;*/
+/*}*/
 
 .game_li_text_right {
   text-align: right;
@@ -681,41 +687,41 @@ body._lock {
   background-color: #14213D;
   border: 15px solid #14213D;
   border-radius: 45px;
+  width: 44%;
 }
 
 .game_li_text_left {
   text-align: left;
-  margin-right: 255px;
 }
 
 .game_description {
   font-weight: 400;
-  font-size: 24px;
+  font-size: 1.4em;
   line-height: 30px;
-  margin-bottom: 81px;
+  margin-bottom: 30%;
   color: #fff;
   user-select: none;
 }
 
 .game_description_schulte {
-  width: 545px;
-  height: 144px;
-  margin-bottom: 177px;
+  width: 40%;
+  height: 10%;
+  margin-bottom: 8.5%;
 }
 
 .name_game {
   font-weight: 500;
-  font-size: 96px;
+  font-size: 5.6em;
   color: #fff;
-  margin-bottom: 28px;
+  margin-bottom: 2%;
   user-select: none;
 }
 
 .company_name {
   color: #fff;
-  font-size: 20px;
+  font-size: 1.17em;
   letter-spacing: 0.02em;
-  margin-bottom: 85px;
+  margin-bottom: 6.2%;
   user-select: none;
 }
 
@@ -724,10 +730,10 @@ body._lock {
   align-items: center;
   justify-content: center;
   color: black;
-  width: 317px;
-  height: 50px;
+  width: calc(100vw * 0.18);
+  height: calc(100vw * 0.025);
   background: #fff;
-  border-radius: 16px;
+  border-radius: calc(100vw * 0.008);
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   transition: all ease 0.1s;
   user-select: none;
@@ -746,7 +752,7 @@ body._lock {
   line-height: 150%;
   padding-top: 40px;
   padding-bottom: 15px;
-  bottom: 0;
+  margin: 0 auto;
 }
 
 .footer_div_ul {
