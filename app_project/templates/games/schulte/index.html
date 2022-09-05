@@ -4,7 +4,6 @@
 {% block title %}Schulte{% endblock %}
 {% load static %}
 {% block content %}
-<body id="body" class="schulte_body">
 <div class="rules" id="rulesContainer">
   <div class="description rules_text">
     {% trans "Schulte tables - tables with randomly arranged numbers, serving to test and develop the speed of finding these objects in a certain order. Exercises with tables can improve peripheral visual perception, which is important, for example, for speed reading. An important condition: strive to ensure that the eyes make as few movements as possible from number to number. Strive for maximum stillness of your eyes. Let your gaze remain fixed on the center of the table, but so that you see the entire field of the table with peripheral vision. Use mostly your peripheral vision when looking for numbers in the correct sequence." %}
@@ -40,5 +39,4 @@
 {% csrf_token %}
 <script id="script" src="{% static 'scripts/schulte_script.js' %}"></script>
 <script src="{% static 'scripts/game_rules.js' %}"></script>
-</body>
 {% endblock %}

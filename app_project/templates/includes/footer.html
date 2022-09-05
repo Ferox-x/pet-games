@@ -1,16 +1,14 @@
 {% load static %}
 {% load i18n %}
-<footer class="footer">
-  <div class="footer_div">
-    <ul class="footer_div_ul">
-      <li class="footer_div_ul_li">{% trans 'Consent to&nbsp;data processing' %}</li>
-      <li class="footer_div_ul_li">
-        <a href="{% url 'support:support' %}" style="color: white">{% trans 'Support team' %}</a>
-      </li>
-      <li class="footer_div_ul_li">{% trans 'Privacy Policy' %}</li>
+<footer class="footer_container">
+  <div>
+    <ul class="footer_content">
+      <li class="footer_content__text">{% trans 'Consent to&nbsp;data processing' %}</li>
+      <li class="footer_content__text"><a href="{% url 'support:support' %}" style="color: white">{% trans 'Support team' %}</a></li>
+      <li class="footer_content__text">{% trans 'Privacy Policy' %}</li>
     </ul>
-    <p class="footer_div_p">
-      &copy;&nbsp;braindevelopmentgames.com, {{ year }}&nbsp;| Pet-Games Team
-    </p>
+    <div class="footer_content__text">
+      <p class="footer_content__text-center">Pet-Games Team&nbsp;| {{ year }}</p>
+    </div>
   </div>
 </footer>

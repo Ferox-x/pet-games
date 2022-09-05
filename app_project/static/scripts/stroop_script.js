@@ -80,7 +80,7 @@ function sendData(data, score) {
 }
 
 function formatResult(total, correct, incorrect) {
-    return total + ' - ' + correct + ' - ' + incorrect
+    return total + '-' + correct + '-' + incorrect
 }
 
 function achievementsBlock() {

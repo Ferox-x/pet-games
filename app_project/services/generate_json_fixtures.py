@@ -59,7 +59,7 @@ def create_fixtures() -> None:
             "pk": index,
             "fields": {
                 "user": index,
-                "record": f"{correct} - {incorrect} - {all_answers}",
+                "record": f"{correct}-{incorrect}-{all_answers}",
                 "score": score,
                 "date": "2022-08-05T05:18:40.794Z"
             }
