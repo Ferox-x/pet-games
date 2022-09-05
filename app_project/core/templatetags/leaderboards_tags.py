@@ -25,9 +25,11 @@ def format_schulte(record: int, game: str) -> str | int:
         second = convert_time(second_raw)
         mil_sec = convert_time(mil_sec_raw)
 
-        return '{minute}:{second}:{mil_sec}'.format(minute=minute,
-                                                    second=second,
-                                                    mil_sec=mil_sec)
+        return '{minute}:{second}:{mil_sec}'.format(
+            minute=minute,
+            second=second,
+            mil_sec=mil_sec
+        )
     return record
 
 
