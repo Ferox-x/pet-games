@@ -95,6 +95,7 @@ function checkMessages() {
         'ticket_id': prevChat.id,
         'last_message_id': lastMessageInChat
     }
+    console.log(jsonMessage)
     checkMessagesForm.append('csrfmiddlewaretoken', csrftoken);
     checkMessagesForm.append('HTTP_X_REQUESTED_WITH', 'XMLHttpRequest');
     checkMessagesForm.append('update_chat', 'True');
@@ -104,7 +105,7 @@ function checkMessages() {
     xhr.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
             const jsonMessage = JSON.parse(this.responseText)
-            console.log(jsonMessage.length)
+            console.log(jsonMessage)
             for (let index = 0, len = jsonMessage.len; index < len; ++index) {
                 console.log('1')
                 addMessageToChat(
@@ -177,29 +178,37 @@ function addHeaderToChat(header, date, message) {
     supportHistoryMessages.insertAdjacentHTML('beforeend', htmlCodeMessage)
 }
 
-supportButton.addEventListener('click', () => {
-    switch (supportButton.innerHTML) {
-        case 'New ticket':
-            changeButtonTicket()
-            showCreateTicket()
-            break
-        case 'Chats':
-            changeButtonChat()
-            showChat()
-            break
-    }
-})
+if (currentUrl === '/support/') {
+    supportButton.addEventListener('click', () => {
+
+        switch (supportButton.innerHTML) {
+            case 'New ticket':
+                changeButtonTicket()
+                showCreateTicket()
+                break
+            case 'Chats':
+                changeButtonChat()
+                showChat()
+                break
+        }
+
+    })
+}
 
 function changeButtonTicket() {
-    supportButton.innerHTML = 'Chats'
-    supportButton.style.backgroundColor = 'white'
-    supportButton.style.color = '#14213D'
+    if (currentUrl === '/support/') {
+        supportButton.innerHTML = 'Chats'
+        supportButton.style.backgroundColor = 'white'
+        supportButton.style.color = '#14213D'
+    }
 }
 
 function changeButtonChat() {
-    supportButton.innerHTML = 'New ticket'
-    supportButton.style.backgroundColor = '#14213D'
-    supportButton.style.color = 'white'
+    if (currentUrl === '/support/') {
+        supportButton.innerHTML = 'New ticket'
+        supportButton.style.backgroundColor = '#14213D'
+        supportButton.style.color = 'white'
+    }
 }
 
 function showChat() {
