@@ -15,23 +15,22 @@
   <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
   <link rel="stylesheet" href="{% static 'flags/sprite-hq.css' %}">
-
   <title>{% block title %}{% endblock %}</title>
 </head>
-<body class="background-img">
-<div class="preloader">
-  <div class="preloader__row">
-    <div class="preloader__item"></div>
-    <div class="preloader__item"></div>
+<body>
+  <div class="preloader">
+    <div class="preloader__row">
+      <div class="preloader__item"></div>
+      <div class="preloader__item"></div>
+    </div>
   </div>
-</div>
-<header>{% include 'includes/header.html' %}</header>
-<div class="container">
-  {% block content %}
-  {% endblock %}
-</div>
-{% cache 500 games_footer LANGUAGE_CODE %}
-  {% include 'includes/footer.html' %}
-{% endcache %}
-<script src="{% static 'scripts/preloader.js' %}"></script>
+  {% include 'includes/header.html' %}
+  <div class="container">
+    {% block content %}
+    {% endblock %}
+  </div>
+  {% cache 500 games_footer LANGUAGE_CODE %}
+    {% include 'includes/footer.html' %}
+  {% endcache %}
+  <script src="{% static 'scripts/preloader.js' %}"></script>
 </body>
