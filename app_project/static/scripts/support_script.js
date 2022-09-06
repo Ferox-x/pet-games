@@ -107,7 +107,6 @@ function checkMessages() {
             const jsonMessage = JSON.parse(this.responseText)
             console.log(jsonMessage)
             for (let index = 0, len = jsonMessage.len; index < len; ++index) {
-                console.log('1')
                 addMessageToChat(
                     jsonMessage[index].user__username,
                     jsonMessage[index].date,
@@ -152,27 +151,27 @@ function changeStatus(status) {
 
 function addMessageToChat(username, date, message, image) {
 
-    let htmlCodeMessage = '<div class="support_chat_message">\n' +
-        '            <img src="/media/' + image + '" alt="" class="support_avatar_ticket">\n' +
-        '            <div class="support_chat_message_info">\n' +
-        '              <div class="support_chat_username_and_date">\n' +
-        '                <div class="support_chat_username">' + username + '</div>\n' +
-        '                <div class="support_chat_message_date">' + date + '</div>\n' +
+    let htmlCodeMessage = '<div class="support-chat__message">\n' +
+        '            <img src="/media/' + image + '" alt="" class="support-tickets__avatar">\n' +
+        '            <div class="support-chat__message-info">\n' +
+        '              <div class="support-chat__username-and-date">\n' +
+        '                <div class="support-chat__username">' + username + '</div>\n' +
+        '                <div class="support-chat__message-date">' + date + '</div>\n' +
         '              </div>\n' +
-        '              <div class="support_chat_message_text">' + message + '</div>\n' +
+        '              <div class="support-chat__message-text">' + message + '</div>\n' +
         '            </div>\n' +
         '          </div>'
     supportHistoryMessages.insertAdjacentHTML('beforeend', htmlCodeMessage)
 }
 
 function addHeaderToChat(header, date, message) {
-    let htmlCodeMessage = '<div class="support_chat_message">\n' +
-        '            <div class="support_chat_message_info">\n' +
-        '              <div class="support_chat_username_and_date">\n' +
-        '                <div class="support_chat_username"><b>' + header + '</b></div>\n' +
-        '                <div class="support_chat_message_date">' + date + '</div>\n' +
+    let htmlCodeMessage = '<div class="support-chat__message">\n' +
+        '            <div class="support-chat__message-info">\n' +
+        '              <div class="support-chat__username-and-date">\n' +
+        '                <div class="support-chat__username"><b>' + header + '</b></div>\n' +
+        '                <div class="support-chat__message-date">' + date + '</div>\n' +
         '              </div>\n' +
-        '              <div class="support_chat_message_text">' + message + '</div>\n' +
+        '              <div class="support-chat__message-text">' + message + '</div>\n' +
         '            </div>\n' +
         '          </div>'
     supportHistoryMessages.insertAdjacentHTML('beforeend', htmlCodeMessage)

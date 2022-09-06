@@ -35,7 +35,7 @@ class SupportStaffView(View):
             context = {
                 'tickets': tickets,
             }
-            return render(request, 'support/support_staff.html', context)
+            return render(request, 'support/support.html', context)
 
     def post(self, request):
         if request.user.is_support_staff:

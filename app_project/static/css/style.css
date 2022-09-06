@@ -1437,29 +1437,31 @@ body._lock {
 /* end profile css */
 
 /* support css */
-.support_container {
+
+.support-container {
   display: flex;
-  width: 1100px;
-  height: auto;
-  margin: 0 auto;
+  flex-grow: 1;
+  max-width: 1100px;
   flex-wrap: wrap;
+  margin: 15px auto 30px;
+  position: relative;
 }
 
-.support_tickets {
-  width: 350px;
-  height: 796px;
+.support-tickets {
+  flex-basis: 30%;
   padding: 2px;
   background-color: #14213D;
-  overflow: auto;
+  overflow-y: auto;
+  height: 780px
 }
 
-.support_ticket_status {
+.support-tickets__tickets {
   margin-bottom: 2px;
-  overflow: auto;
+  overflow-y: auto;
   max-height: 500px;
 }
 
-.support_status {
+.support-tickets__status {
   display: flex;
   justify-content: left;
   align-items: center;
@@ -1472,64 +1474,63 @@ body._lock {
   padding-left: 15px;
 }
 
-.support_message_chat {
+.support-tickets__message {
   background: #FFFFFF;
-  height: 65px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: space-between;
   padding: 5px;
-  align-content: stretch;
+  overflow: hidden;
+  min-height: 60px;
 }
 
-.support_avatar_ticket {
-  width: 55px;
-  height: 55px;
+.support-tickets__avatar {
+  max-width: 55px;
+  max-height: 55px;
   background-color: #14213D;
   margin-right: 5px;
   border-radius: 50%;
 }
 
-.support_title {
+.support-tickets__message-title {
   font-weight: 500;
   font-size: 15px;
   margin-bottom: 5px;
 }
 
-.support_short_message {
+.support-tickets__message-short {
   font-style: normal;
   font-weight: 500;
   font-size: 12px;
 }
 
-.support_date {
+.support-tickets__date {
   font-size: 10px;
   font-weight: 500;
   height: 100%;
-  width: 85px;
   text-align: right;
   padding: 3px;
+  flex-basis: 40%;
 }
 
-.support_message_info {
-  width: 142px;
+.support-tickets__info {
   height: 100%;
+  flex-basis: 60%;
 }
 
-.support_right_aria {
-  width: 750px;
-  height: 796px;
+.support-right {
+  flex-basis: 68%;
   background: #FFFFFF;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  height: 780px
 }
 
-.support_create_ticket {
-  padding-left: 80px;
-  padding-top: 40px;
+.support-right__create-ticket {
+  padding: 40px 80px;
 }
 
-.support_new_ticket {
+.support-right__new-ticket {
   width: 100%;
   height: 100%;
   position: relative;
@@ -1538,25 +1539,25 @@ body._lock {
   border-color: #14213D;
 }
 
-.support_label {
+.support-right__label {
   display: block;
   font-weight: 400;
   font-size: 15px;
   margin-bottom: 5px;
 }
 
-.support_input {
+.support-right__input {
   display: block;
   border: 1px solid #14213D;
-  width: 580px;
+  width: 100%;
   height: 40px;
   margin-bottom: 15px;
   padding-left: 10px;
   border-radius: 5px;
 }
 
-.support_input_long {
-  width: 580px;
+.support-right__input_long {
+  width: 100%;
   height: 150px;
   resize: none;
   padding: 10px;
@@ -1573,7 +1574,7 @@ body._lock {
   color: white;
 }
 
-.support_chat {
+.support-chat {
   width: 100%;
   height: 100%;
   padding: 15px;
@@ -1583,7 +1584,7 @@ body._lock {
   border-color: #14213D;
 }
 
-.support_chat_message {
+.support-chat__message {
   display: flex;
   flex-direction: row;
   min-height: 60px;
@@ -1592,40 +1593,40 @@ body._lock {
   border-radius: 10px;
 }
 
-.support_chat_message_info {
+.support-chat__message-info {
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
   height: 100%;
-  max-width: 600px;
+  max-width: 100%;
   margin-left: 10px;
 }
 
-.support_chat_username_and_date {
+.support-chat__username-and-date {
   display: flex;
   min-height: 30px;
   align-items: baseline;
   margin-bottom: 10px;
 }
 
-.support_chat_message_date {
+.support-chat__message-date {
   font-weight: 400;
   font-size: 13px;
   color: rgba(20, 33, 61, 0.7);
   text-align: right;
 }
 
-.support_chat_username {
+.support-chat__username {
   margin-right: 10px;
   font-size: 20px;
 }
 
-.support_chat_message_text {
+.support-chat__message-text {
   text-align: justify;
 }
 
-.support_history_messages {
-  height: 650px;
+.support-chat__messages {
+  height: 550px;
   overflow: auto;
 }
 
@@ -1633,19 +1634,19 @@ body._lock {
   height: 600px;
 }
 
-.support_history_messages::-webkit-scrollbar,
+.support-chat__messages::-webkit-scrollbar,
 .support_tickets::-webkit-scrollbar,
 .support_ticket_status::-webkit-scrollbar {
   width: 12px;
 }
 
-.support_history_messages::-webkit-scrollbar-track,
+.support-chat__messages::-webkit-scrollbar-track,
 .support_tickets::-webkit-scrollbar-track,
 .support_ticket_status::-webkit-scrollbar-track {
   background: #FFFFFF;
 }
 
-.support_history_messages::-webkit-scrollbar-thumb,
+.support-chat__messages::-webkit-scrollbar-thumb,
 .support_tickets::-webkit-scrollbar-thumb,
 .support_ticket_status::-webkit-scrollbar-thumb {
   background-color: #14213D;
@@ -1654,8 +1655,8 @@ body._lock {
   border: 3px solid #FFFFFF;
 }
 
-.support_chat_textarea {
-  width: 710px;
+.support-chat__textarea {
+  width: 100%;
   height: 100px;
   border: 1px solid #14213D;
   margin-top: 15px;
@@ -1670,11 +1671,11 @@ body._lock {
   margin-top: 20px;
 }
 
-.close_ticket_button {
-  margin-left: 70px;
+.support-right__buttons {
+  justify-content: space-between;
 }
 
-.ticket_closed {
+.support-chat__ticket_closed {
   justify-content: center;
   align-items: center;
   height: 150px;
@@ -1688,6 +1689,15 @@ body._lock {
   border-radius: 10px;
   /*box-shadow: 4px 4px rgba(0, 0, 0, 0.25);*/
   box-shadow: 11px 14px 26px 0 rgba(34, 60, 80, 0.2);
+}
+@media (max-width: 900px) {
+  .support-right__create-ticket {
+    padding: 20px 40px;
+  }
+  .support-tickets__message {
+    flex-direction: column;
+    justify-content: flex-start;
+  }
 }
 /* end support css */
 
