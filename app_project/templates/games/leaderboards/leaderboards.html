@@ -25,8 +25,11 @@
               {% rating_position forloop.counter page %}
             </div>
           </div>
-          <a href="{% url 'users:profile_detail' result.username %}"
-             class="leaderboards_games_ol_li_span_result btn_animation">
+          {% if request.user.username == result.username %}
+            <a href="{% url 'users:profile' %}" class="leaderboards_games_ol_li_span_result btn_animation">
+          {% else %}
+            <a href="{% url 'users:profile_detail' result.username %}" class="leaderboards_games_ol_li_span_result btn_animation">
+          {% endif %}
             <div class="leaderboards_result__user-info">
               <div class="leaderboards_result__username-flag">
                 {% get_country result.country as country %}
@@ -60,7 +63,8 @@
         {% endif %}
         {% for page in pages %}
           <a href="/games/leaderboards/{{ game }}/?page={{ page }}" class="leaderboards_a">
-            <div class="leaderboards_paginator_page btn_animation {% if leaderboards.number == page %} active_page {% endif %}">{{ page }}</div>
+            <div
+              class="leaderboards_paginator_page btn_animation {% if leaderboards.number == page %} active_page {% endif %}">{{ page }}</div>
           </a>
         {% endfor %}
         {% if leaderboards.has_next %}
