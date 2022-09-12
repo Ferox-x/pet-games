@@ -59,7 +59,7 @@ class Users(AbstractBaseUser, PermissionsMixin):
     description = models.CharField(
         max_length=256,
         verbose_name=_('Description'),
-        default=_('Информация не указана'),
+        default=_('No information specified'),
         blank=True,
         null=True
     )
