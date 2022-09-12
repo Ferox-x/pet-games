@@ -18,3 +18,5 @@ COPY . .
 
 RUN pip install --no-cache /wheels/*
 RUN apk add gettext
+RUN python manage.py makemigrations
+RUN python manage.py compilemessages
