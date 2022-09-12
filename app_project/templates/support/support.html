@@ -9,7 +9,7 @@
 {% block content %}
 <input type="hidden" name="image_url" value="{{ user.image }}">
 <div class="support-container">
-  <div class="support-tickets">
+  <div id="support-tickets" class="support-tickets">
     <div class="support-tickets__status">{% trans 'Open' %}</div>
     <div class="support-tickets__tickets">
       {% for ticket in tickets.op %}
@@ -50,7 +50,7 @@
       {% endfor %}
     </div>
   </div>
-  <div class="support-right">
+  <div id="support-right" class="support-right">
     <div id="support_new_ticket" class="support-right__new-ticket">
       <form method="post">
         {% csrf_token %}
@@ -61,7 +61,7 @@
           <label class="support-right__label" for="chat_message">{% trans 'Message' %}</label>
           <textarea required name="chat_message" class="support-right__input support-right__input_long" id="chat_message" cols="30" rows="10"></textarea>
         </div>
-        <button type="submit" class="play_game_button support_send_data btn_animation">
+        <button type="submit" class="play_game_button support__button-send support_send_data btn_animation">
           Send
         </button>
       </form>
@@ -74,10 +74,10 @@
           {% csrf_token %}
           <input type="hidden" name="add_message_to_chat" value="True">
           <textarea id="textarea_message" name="chat_message" class="support-chat__textarea" placeholder="Write message" aria-multiline="true" type="text"></textarea>
-          <div class="support-right__buttons flex">
-            <div id="senddata" class="play_game_button btn_animation">{% trans 'Send' %}</div>
+          <div class="support-right__buttons">
+            <div id="senddata" class="play_game_button support__button btn_animation">{% trans 'Send' %}</div>
             {% if user.is_support_staff %}
-              <div class="play_game_button btn_animation" onclick="changeStatus('CL')">{% trans 'Close Ticket' %}</div>
+              <div class="play_game_button btn_animation support__button" onclick="changeStatus('CL')">{% trans 'Close Ticket' %}</div>
             {% endif %}
           </div>
         </form>
@@ -89,7 +89,8 @@
       </div>
     </div>
   </div>
-  <div id="support_button" class="btn_animation play_game_button support_button">{% trans 'Chats' %}</div>
+  <div id="support_button" class="btn_animation play_game_button support_button support__button">{% trans 'Chats' %}</div>
+  <div id="support_button_tickets" class="btn_animation play_game_button support_button support__button support_button_tickets">{% trans 'Tickets' %}</div>
 <script src="{% static 'scripts/support_script.js' %}"></script>
 </div>
 {% endblock %}

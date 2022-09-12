@@ -1105,6 +1105,7 @@ body._lock {
   justify-content: center;
   margin: 0 auto 0.5%;
   max-width: 65%;
+  padding-top: 8px;
 }
 .leaderboards_number {
   text-align: right;
@@ -1605,7 +1606,7 @@ body._lock {
 
 .support-right__input_long {
   width: 100%;
-  height: 150px;
+  height: 350px;
   resize: none;
   padding: 10px;
 }
@@ -1718,6 +1719,7 @@ body._lock {
 }
 
 .support-right__buttons {
+  display: flex;
   justify-content: space-between;
 }
 
@@ -1736,7 +1738,11 @@ body._lock {
   /*box-shadow: 4px 4px rgba(0, 0, 0, 0.25);*/
   box-shadow: 11px 14px 26px 0 rgba(34, 60, 80, 0.2);
 }
-@media (max-width: 900px) {
+.support_button_tickets {
+  display: none;
+}
+
+@media (max-width: 1090px) {
   .support-right__create-ticket {
     padding: 20px 40px;
   }
@@ -1744,6 +1750,28 @@ body._lock {
     flex-direction: column;
     justify-content: flex-start;
   }
+  .support__button {
+    white-space: nowrap;
+    width: 45%;
+    min-width: 130px;
+  }
+}
+@media (max-width: 800px) {
+  .support_button_tickets {
+    display: flex;
+  }
+  .support-tickets {
+    display: none;
+  }
+  .support-right {
+    flex-basis: 100%;
+  }
+}
+@media (max-width: 450px) {
+  .support__button-send {
+    width: 150px;
+  }
+
 }
 /* end support css */
 

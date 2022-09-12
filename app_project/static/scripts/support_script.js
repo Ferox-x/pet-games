@@ -2,12 +2,15 @@ const supportButton = document.getElementById('support_button')
 const supportNewTicket = document.getElementById('support_new_ticket')
 const supportChat = document.getElementById('support_chat')
 const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
-const imageUrl = document.querySelector('[name=image_url]').value
 const formMessage = document.getElementById('formMessage')
 const sendData1 = document.getElementById('senddata')
 const textArea = document.getElementById('textarea_message')
 const supportHistoryMessages = document.getElementById('support_history_messages')
 const currentUrl = document.location.pathname
+const supportButtonTickets = document.getElementById('support_button_tickets')
+const supportRight = document.getElementById('support-right')
+const supportTickets = document.getElementById('support-tickets')
+const mediaQuery800 = window.matchMedia("(max-width: 800px)")
 
 let prevChat = -1
 let currentTicketStatus = undefined
@@ -86,6 +89,12 @@ function getIdOnClick(ticketId, status) {
     }
     changeButtonChat()
     checkMessagesTimer = setInterval(checkMessages, 10000)
+    if (mediaQuery800) {
+        supportButtonTickets.style.display = 'flex'
+        supportRight.style.display = 'block'
+        supportTickets.style.display = 'none'
+        supportRight.style.flexBasis = '100%'
+    }
 }
 
 function checkMessages() {
@@ -184,6 +193,12 @@ if (currentUrl === '/support/') {
             case 'New ticket':
                 changeButtonTicket()
                 showCreateTicket()
+                if (mediaQuery800) {
+                    supportButtonTickets.style.display = 'flex'
+                    supportRight.style.display = 'block'
+                    supportTickets.style.display = 'none'
+                    supportRight.style.flexBasis = '100%'
+                }
                 break
             case 'Chats':
                 changeButtonChat()
@@ -220,3 +235,14 @@ function showCreateTicket() {
     supportNewTicket.style.display = 'inherit'
     supportChat.style.display = 'none'
 }
+
+supportButtonTickets.addEventListener('click', () => {
+    if (mediaQuery800) {
+        supportButtonTickets.style.display = 'none'
+        supportRight.style.display = 'none'
+        supportTickets.style.display = 'block'
+        supportTickets.style.flexBasis = '100%'
+        changeButtonChat()
+    }
+})
+
