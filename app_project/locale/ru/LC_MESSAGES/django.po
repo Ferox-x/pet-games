@@ -2,13 +2,13 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-23 10:16+0500\n"
+"POT-Creation-Date: 2022-09-12 22:58+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,16 +20,16 @@ msgstr ""
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: .\app\settings.py:104
+#: .\app\settings.py:109
 msgid "English"
 msgstr "Английский"
 
-#: .\app\settings.py:105
+#: .\app\settings.py:110
 msgid "Russian"
 msgstr "Русский"
 
 #: .\games\models.py:9 .\games\models.py:25 .\support\models.py:16
-#: .\support\models.py:41 .\users\models.py:102
+#: .\support\models.py:41 .\users\models.py:103
 msgid "User"
 msgstr "Пользователь"
 
@@ -73,7 +73,7 @@ msgstr "Статус"
 msgid "Ticket"
 msgstr "Заявка"
 
-#: .\support\models.py:38 .\templates\support\support.html:64
+#: .\support\models.py:38 .\templates\support\support.html:61
 msgid "Message"
 msgstr "Сообщение"
 
@@ -97,18 +97,18 @@ msgstr ""
 "пользоватьсямини-играми настраивать их параметры, а так же соревноваться с "
 "другимипользователями платформы, путем продвижения по таблице лидеров"
 
-#: .\templates\core\main_page\main_page.html:13
+#: .\templates\core\main_page\main_page.html:16
 msgid "High-quality games with different tasks necessary for brain development"
 msgstr ""
 "Высококачественные игры с различными заданиями, необходимыми для развития "
 "мозга"
 
-#: .\templates\core\main_page\main_page.html:14
-#: .\templates\includes\header.html:14
+#: .\templates\core\main_page\main_page.html:19
+#: .\templates\includes\header.html:15
 msgid "All games"
 msgstr "Все игры"
 
-#: .\templates\core\main_page\main_page.html:26
+#: .\templates\core\main_page\main_page.html:25
 msgid ""
 "The Stroop test promotes the development between reading words and their "
 "perception, and also increases the concentration of attention and its "
@@ -122,12 +122,12 @@ msgstr ""
 "обратный- сначала воспринимать, а потом читать - заставляет мозг выполнять "
 "двойную работу."
 
-#: .\templates\core\main_page\main_page.html:29
-#: .\templates\core\main_page\main_page.html:44
+#: .\templates\core\main_page\main_page.html:27
+#: .\templates\core\main_page\main_page.html:36
 msgid "PLAY GAME"
 msgstr "ИГРАТЬ"
 
-#: .\templates\core\main_page\main_page.html:41
+#: .\templates\core\main_page\main_page.html:34
 msgid ""
 "Schulte tables are a tool for training peripheral vision, concentration of "
 "attention and parallel perception of information. The development of these "
@@ -144,15 +144,15 @@ msgid "All Games"
 msgstr "Все игры"
 
 #: .\templates\games\leaderboards\leaderboards.html:6
-#: .\templates\includes\header.html:17
+#: .\templates\includes\header.html:16
 msgid "Leaderboards"
 msgstr "Таблица лидеров"
 
-#: .\templates\games\leaderboards\leaderboards.html:46
-msgid "No results"
-msgstr "Результаты не найдены"
+#: .\templates\games\leaderboards\leaderboards.html:51
+msgid "NO RESULTS"
+msgstr "НЕТ РЕЗУЛЬТАТОВ"
 
-#: .\templates\games\schulte\index.html:10
+#: .\templates\games\schulte\index.html:9
 msgid ""
 "Schulte tables - tables with randomly arranged numbers, serving to test and "
 "develop the speed of finding these objects in a certain order. Exercises "
@@ -163,18 +163,27 @@ msgid ""
 "center of the table, but so that you see the entire field of the table with "
 "peripheral vision. Use mostly your peripheral vision when looking for "
 "numbers in the correct sequence."
-msgstr "Таблицы Шу́льте — таблицы со случайно расположенными числами, служащие для проверки и развития быстроты нахождения этих объектов в определённом порядке. Упражнения с таблицами позволяют улучшить периферическое зрительное восприятие, что важно, например, для скорочтения. Важное условие: стремитесь к тому, чтобы глаза совершали как можно меньше движений от числа к числу. Стремитесь к максимальной неподвижности ваших глаз. Пусть ваш взгляд останется устремленным в центр таблицы, но так, чтобы вы видели все поле таблицы периферийным зрением. Пользуйтесь в основном именно периферийным зрением, когда ищете числа в нужной последовательности."
+msgstr ""
+"Таблицы Шу́льте — таблицы со случайно расположенными числами, служащие для "
+"проверки и развития быстроты нахождения этих объектов в определённом "
+"порядке. Упражнения с таблицами позволяют улучшить периферическое зрительное "
+"восприятие, что важно, например, для скорочтения. Важное условие: стремитесь "
+"к тому, чтобы глаза совершали как можно меньше движений от числа к числу. "
+"Стремитесь к максимальной неподвижности ваших глаз. Пусть ваш взгляд "
+"останется устремленным в центр таблицы, но так, чтобы вы видели все поле "
+"таблицы периферийным зрением. Пользуйтесь в основном именно периферийным "
+"зрением, когда ищете числа в нужной последовательности."
 
-#: .\templates\games\schulte\index.html:19
+#: .\templates\games\schulte\index.html:18
 msgid "START"
 msgstr "СТАРТ"
 
-#: .\templates\games\schulte\index.html:23
+#: .\templates\games\schulte\index.html:22
 #: .\templates\games\stroop\index.html:25
 msgid "Your achievements"
 msgstr "Твои результаты"
 
-#: .\templates\games\schulte\index.html:29
+#: .\templates\games\schulte\index.html:28
 #: .\templates\games\stroop\index.html:31
 msgid "You must be authentication to see results"
 msgstr "Вы должны быть авторизированны, чтобы увидеть результаты"
@@ -185,29 +194,33 @@ msgid ""
 "are written using the keyboard or mouse. For each correct answer you get "
 "points. You can compare your results in the leaderboard, where, in addition "
 "to other answer counters, you can find rating based on skills."
-msgstr "Задача игрока клавиатурой или мышкой выбрать цвет шрифта, которым написаны буквы. За каждый правильный ответ вы получаете начисление баллов.Сравнить свои результаты вы сможете в таблице лидеров, где помимо прочих счётчика ответов вы можете обнаружитьрейтинг исходя из навыков."
+msgstr ""
+"Задача игрока клавиатурой или мышкой выбрать цвет шрифта, которым написаны "
+"буквы. За каждый правильный ответ вы получаете начисление баллов.Сравнить "
+"свои результаты вы сможете в таблице лидеров, где помимо прочих счётчика "
+"ответов вы можете обнаружитьрейтинг исходя из навыков."
 
 #: .\templates\includes\footer.html:6
 msgid "Consent to&nbsp;data processing"
 msgstr "Согласие на&nbsp;обработку данных"
 
-#: .\templates\includes\footer.html:8
+#: .\templates\includes\footer.html:7
 msgid "Support team"
 msgstr "Служба поддержки"
 
-#: .\templates\includes\footer.html:10
+#: .\templates\includes\footer.html:8
 msgid "Privacy Policy"
 msgstr "Политика конфиденциальности"
 
-#: .\templates\includes\header.html:11
+#: .\templates\includes\header.html:14
 msgid "Home"
 msgstr "Домой"
 
-#: .\templates\includes\header.html:20
+#: .\templates\includes\header.html:17
 msgid "About"
 msgstr "О Нас"
 
-#: .\templates\includes\header.html:42 .\templates\registration\login.html:4
+#: .\templates\includes\header.html:37 .\templates\registration\login.html:4
 msgid "Login"
 msgstr "Войти"
 
@@ -216,16 +229,16 @@ msgid "Change Password"
 msgstr "Сменить пароль"
 
 #: .\templates\registration\login.html:10
-#: .\templates\registration\login.html:34
+#: .\templates\registration\login.html:31
 #: .\templates\registration\password_reset_complete.html:10
 msgid "Login Now"
 msgstr "Войти"
 
-#: .\templates\registration\login.html:13
+#: .\templates\registration\login.html:12
 msgid "Register"
 msgstr "Зарегистрироваться"
 
-#: .\templates\registration\login.html:39
+#: .\templates\registration\login.html:35
 msgid "forgot your password?"
 msgstr "забыли пароль?"
 
@@ -304,53 +317,54 @@ msgstr "The Pet-Games Team"
 msgid "Create Account"
 msgstr "Создать учетную запись"
 
-#: .\templates\support\support.html:7 .\templates\support\support_staff.html:7
+#: .\templates\support\support.html:7
 #, fuzzy
 #| msgid "Support team"
 msgid "Support"
 msgstr "Служба поддержки"
 
 #: .\templates\support\support.html:13
-#: .\templates\support\support_staff.html:13
 msgid "Open"
 msgstr "Открытые"
 
-#: .\templates\support\support.html:27
-#: .\templates\support\support_staff.html:27
+#: .\templates\support\support.html:26
 msgid "In Progress"
 msgstr "В прогрессе"
 
-#: .\templates\support\support.html:41
-#: .\templates\support\support_staff.html:41
+#: .\templates\support\support.html:39
 msgid "Closed"
 msgstr "Закрытые"
 
-#: .\templates\support\support.html:62
+#: .\templates\support\support.html:59
 msgid "Title"
 msgstr "Тема"
 
-#: .\templates\support\support.html:80
-#: .\templates\support\support_staff.html:67
+#: .\templates\support\support.html:65 .\templates\support\support.html:78
 msgid "Send"
 msgstr "Отправить"
 
-#: .\templates\support\support.html:85
-#: .\templates\support\support_staff.html:73
+#: .\templates\support\support.html:80
+#, fuzzy
+#| msgid "Ticket"
+msgid "Close Ticket"
+msgstr "Заявка"
+
+#: .\templates\support\support.html:87
 #, fuzzy
 #| msgid "Ticket"
 msgid "Ticket Closed"
 msgstr "Заявка"
 
-#: .\templates\support\support.html:90
+#: .\templates\support\support.html:92
 #, fuzzy
 #| msgid "Chat"
 msgid "Chats"
 msgstr "Чат"
 
-#: .\templates\support\support_staff.html:68
+#: .\templates\support\support.html:93
 #, fuzzy
 #| msgid "Ticket"
-msgid "Close Ticket"
+msgid "Tickets"
 msgstr "Заявка"
 
 #: .\users\models.py:53
@@ -371,21 +385,28 @@ msgstr "Страна"
 msgid "Description"
 msgstr "Описание"
 
-#: .\users\models.py:67
+#: .\users\models.py:62
+msgid "No information specified"
+msgstr "Информация не указана"
+
+#: .\users\models.py:68
 #, fuzzy
 #| msgid "Email adress"
 msgid "Email address"
 msgstr "Электронная почта"
 
-#: .\users\models.py:71
+#: .\users\models.py:72
 msgid "Full name"
 msgstr "Полное имя"
 
-#: .\users\models.py:103
+#: .\users\models.py:104
 #, fuzzy
 #| msgid "User"
 msgid "Users"
 msgstr "Пользователи"
+
+#~ msgid "No results"
+#~ msgstr "Результаты не найдены"
 
 #~ msgid "Contacts"
 #~ msgstr "Контакты"
