@@ -77,7 +77,7 @@ class LeaderboardsView(View):
                 'leaderboards': leaderboard.get_page(page),
                 'page': int(page),
                 'pages': leaderboard.page_range,
-                'game': game
+                'game': game,
             }
         return render(request, 'games/leaderboards/leaderboards.html',
                       context)
