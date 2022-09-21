@@ -126,6 +126,10 @@
     - JavaScript
 * Дизайн:
     - Figma
+* Деплой:
+    - Docker
+    - Nginx
+    - Gunicorn
 
 # 5. Требования к дизайну
 
