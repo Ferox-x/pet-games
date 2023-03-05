@@ -3,7 +3,7 @@ from os import path
 from random import randint
 
 fixtures_dir = path.join(path.abspath(__file__), '../../')
-
+print(fixtures_dir)
 
 def create_fixtures() -> None:
     def write_file(file_name: str, data_list: list):

@@ -1,13 +1,13 @@
 import logging
 
 from django.core.paginator import Paginator
-from django.db import ProgrammingError
 from django.db.models.query import RawQuerySet, QuerySet
 
 from games.models import SchulteModel, StroopModel
 from users.models import Users
 
 logger = logging.getLogger('main')
+
 
 class Leaderboards:
     """Класс Leaderboards отвечает за формирование таблицы лидеров."""

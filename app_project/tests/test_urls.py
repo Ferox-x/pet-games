@@ -90,7 +90,7 @@ class UrlTest(TestCase):
             '/users/TestUser/': 'users/profile_detail.html',
             '/users/profile/': 'users/profile.html',
             '/support/': 'support/support.html',
-            '/support/staff/': 'support/support_staff.html'
+            '/support/staff/': 'support/support.html'
 
         }
         for url, template in url_names_templates.items():

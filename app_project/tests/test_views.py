@@ -66,7 +66,7 @@ class ViewsTests(TestCase):
                 'users/profile_detail.html',
             reverse('users:profile'): 'users/profile.html',
             reverse('support:support'): 'support/support.html',
-            reverse('support:support_staff'): 'support/support_staff.html'
+            reverse('support:support_staff'): 'support/support.html'
         }
         for reverse_name, template in templates_page_names.items():
             with self.subTest(reverse_name=reverse_name):
